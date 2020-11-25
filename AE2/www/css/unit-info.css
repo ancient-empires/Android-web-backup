@@ -1,0 +1,57 @@
+.unit-info-wrapper {
+	position: fixed;
+	top: -1px;
+	left: 3.8rem;
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 1rem;
+	z-index: 0;
+	padding: 0 0.2rem 0 0.3rem;
+}
+
+.unit-info-icon {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	float: left;
+	width: 1rem;
+	height: 1rem;
+}
+
+.unit-info-icon-attack {
+	background-image: url(../i/ui/icon-unit-fast-info-attack.png);
+}
+
+.unit-info-icon-defence {
+	background-image: url(../i/ui/icon-unit-fast-info-defence.png);
+}
+
+.unit-info-icon-level {
+	background-image: url(../i/ui/icon-unit-fast-info-level.png);
+}
+
+.unit-info-sign-block {
+	height: 0.85rem;
+	width: 0.62rem;
+	float: left;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.unit-info-sign-block-space {
+	width: 0.2rem;
+}
+
+.unit-info-sign {
+	float: left;
+	height: 100%;
+	width: auto;
+	opacity: 0;
+	display: block;
+}
+
+
+
+
+

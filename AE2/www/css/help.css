@@ -1,0 +1,40 @@
+.icon-in-text {
+	height: 1.2rem;
+	width: auto;
+}
+
+.popup-page-image {
+	display: block;
+	width: 100%;
+	padding-bottom: 0.5rem;
+}
+
+@media only screen and (orientation: landscape) {
+	.popup-page-image {
+		width: 50%;
+		float: left;
+		padding-right: 1rem;
+	}
+}
+
+.popup-page-text {
+	font-size: 1rem;
+	text-align: left;
+	line-height: 2rem;
+	padding-bottom: 0.7rem;
+}
+
+.popup-page-text.ta-center {
+	text-align: center;
+}
+
+.scroll-area .popup-page:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.popup-page {
+	border-bottom-style: solid;
+	border-bottom-width: 0.15rem;
+	margin-bottom: 2rem;
+}

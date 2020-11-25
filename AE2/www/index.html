@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<title>Ancient Empire: Strike Back</title>
+
+	<!-- cordova for iOS only-->
+	<!--<script src="cordova.js" type="text/javascript"></script>-->
+	<!--<script src="cordova_plugins.js" type="text/javascript"></script>-->
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- do not phone -->
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- styles -->
+	<link rel="stylesheet" href="css/main.css"/>
+
+	<!-- languages -->
+	<script src="js/i18n/en.js" type="text/javascript"></script>
+	<script src="js/i18n/ru.js" type="text/javascript"></script>
+	<script src="js/i18n/es.js" type="text/javascript"></script>
+	<script src="js/i18n/zh.js" type="text/javascript"></script>
+
+	<!-- libs and services -->
+	<script src="js/lib/shim.js" type="text/javascript"></script>
+	<script src="js/lib/jquery-2.1.3.js" type="text/javascript"></script>
+	<script src="js/lib/jquery.finger-0.1.2.js" type="text/javascript"></script>
+	<script src="js/lib/jquery.mousewheel.js" type="text/javascript"></script>
+	<script src="js/lib/jquery.mb.browser.js" type="text/javascript"></script>
+	<script src="js/lib/jquery.press-and-hold.js" type="text/javascript"></script>
+	<script src="js/lib/fastclick.js" type="text/javascript"></script>
+	<script src="js/lib/underscore.js" type="text/javascript"></script>
+	<script src="js/lib/backbone.js" type="text/javascript"></script>
+	<script src="js/services/info.js" type="text/javascript"></script>
+	<script src="js/services/lang.js" type="text/javascript"></script>
+	<script src="js/services/template-master.js" type="text/javascript"></script>
+	<script src="js/services/util.js" type="text/javascript"></script>
+	<script src="js/services/log.js" type="text/javascript"></script>
+	<script src="js/lib/mover.js" type="text/javascript"></script>
+	<script src="js/services/tool.js" type="text/javascript"></script>
+	<script src="js/services/android-ads.js" type="text/javascript"></script>
+
+	<!-- router -->
+	<script src="js/app/router/router.js" type="text/javascript"></script>
+
+	<!-- maps -->
+	<script src="js/app/map/map.js" type="text/javascript"></script>
+	<script src="js/app/map/map-tiles.js" type="text/javascript"></script>
+	<script src="js/app/map/images.js" type="text/javascript"></script>
+
+	<!-- skirmish -->
+	<script src="js/app/map/skirmish/skirmish_001_001.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_002.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_003.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_004.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_005.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_006.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_007.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_008.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_009.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_010.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_011.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_012.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_013.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_014.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_015.js" type="text/javascript"></script>
+
+	<script src="js/app/map/skirmish/skirmish_001_016.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_017.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_018.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_019.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_020.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_021.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_022.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_023.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_024.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_025.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_026.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_027.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_028.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_029.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_030.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_031.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_032.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_033.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_034.js" type="text/javascript"></script>
+
+	<script src="js/app/map/skirmish/skirmish_001_035.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_036.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_037.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_038.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_039.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_040.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_041.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_042.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_043.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_044.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_045.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_046.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_047.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_048.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_049.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_050.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_051.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_052.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_053.js" type="text/javascript"></script>
+
+	<script src="js/app/map/skirmish/skirmish_001_054.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_055.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_056.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_057.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_058.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_059.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_060.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_061.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_062.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_063.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_064.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_065.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_066.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_067.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_068.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_069.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_070.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_071.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_072-129.js" type="text/javascript"></script>
+	<script src="js/app/map/skirmish/skirmish_001_130-234.js" type="text/javascript"></script>
+
+	<!-- missions -->
+	<script src="js/app/map/mission/mission-1.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-2.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-3.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-4.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-5.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-6.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-7.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-8.js" type="text/javascript"></script>
+
+	<!-- views -->
+	<script src="js/app/view/base.js" type="text/javascript"></script>
+	<script src="js/app/view/title.js" type="text/javascript"></script>
+	<script src="js/app/view/popup.js" type="text/javascript"></script>
+	<script src="js/app/view/ticket.js" type="text/javascript"></script>
+	<script src="js/app/view/rate.js" type="text/javascript"></script>
+	<script src="js/app/view/settings.js" type="text/javascript"></script>
+	<script src="js/app/view/play.js" type="text/javascript"></script>
+	<script src="js/app/view/about.js" type="text/javascript"></script>
+	<script src="js/app/view/instructions.js" type="text/javascript"></script>
+	<script src="js/app/view/load-game.js" type="text/javascript"></script>
+	<script src="js/app/view/select-level.js" type="text/javascript"></script>
+	<script src="js/app/view/skirmish-select-map.js" type="text/javascript"></script>
+	<script src="js/app/view/skirmish-setup-map.js" type="text/javascript"></script>
+	<script src="js/app/view/battle.js" type="text/javascript"></script>
+	<script src="js/app/view/map-editor.js" type="text/javascript"></script>
+	<script src="js/app/view/battle-menu.js" type="text/javascript"></script>
+	<script src="js/app/view/unit-store.js" type="text/javascript"></script>
+	<script src="js/app/view/save-game.js" type="text/javascript"></script>
+	<script src="js/app/view/load-game-popup.js" type="text/javascript"></script>
+	<script src="js/app/view/story.js" type="text/javascript"></script>
+	<!--<script src="js/app/view/fight-animation.js" type="text/javascript"></script>-->
+
+	<!-- model -->
+	<script src="js/app/model/device.js" type="text/javascript"></script>
+	<script src="js/app/model/battle.js" type="text/javascript"></script>
+
+	<!-- unit data and models -->
+	<script src="js/app/model/unit/master-unit.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/base-unit.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-archer.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-catapult.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-crystal.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-demon-lord.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-dire-wolf.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-dragon.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-elemental.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-galamar.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-golem.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-saeth.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-saeth-heavens-fury.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-skeleton.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-soldier.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-sorceress.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-valadorn.js" type="text/javascript"></script>
+	<script src="js/app/model/unit/unit-wisp.js" type="text/javascript"></script>
+
+	<!-- sounds -->
+	<script src="js/app/sound/sound-master.js" type="text/javascript"></script>
+	<script src="js/app/sound/player-web.js" type="text/javascript"></script>
+	<script src="js/app/sound/player-android.js" type="text/javascript"></script>
+	<script src="js/app/sound/player-ios.js" type="text/javascript"></script>
+
+	<!-- cpu -->
+	<script src="js/app/cpu/cpu.js" type="text/javascript"></script>
+	<script src="js/app/cpu/scenario.js" type="text/javascript"></script>
+
+	<!-- building -->
+	<script src="js/app/model/building.js" type="text/javascript"></script>
+
+	<!-- start app -->
+	<script src="js/app/main.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="js-wrapper">
+
+	<div class="double-blocks-wrapper title-game-bg js-no-scroll">
+
+		<div class="double-block-container port-padding-top js-no-scroll">
+			<div class="logo-bg h100">
+				&nbsp;
+			</div>
+		</div>
+
+		<div class="double-block-container text-align-center clear-fix table js-no-scroll">
+			<div class="table-row h100">
+				<div class="table-cell land-padding-top land-vertical-align-middle">
+					<div class="inline-block" style="width: 75%;">
+						<div style="border: 0.15rem #fff solid;">
+							<div class="js-progress-bar" style="background-color: #f0f0f0; width: 0; line-height: 0.8rem;">&nbsp;</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<script type="text/x-template" data-name="header">
+
+	<div class="main-header-wrapper clear-fix">
+
+		<div class="main-header"><%= (obj && obj.header) || window.APP.lang.get('appName') %></div>
+
+		<% if ( window.location.hash ) { %>
+		<div data-sound="click.mp3" class="js-back back">&lt;&lt;</div>
+		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
+		<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
+		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="title">
+
+	<div class="double-blocks-wrapper title-game-bg js-no-scroll">
+
+		<div class="sticker js-no-scroll js-unlock-all-levels">Fan<br>Game</div>
+
+		<% if (window.APP.info.withAds) { %>
+		<a class="js-external-link to-pro" href="<%= window.APP.info.getLinkToStore('pro') %>">Pro</a>
+		<% }; %>
+
+		<div class="double-block-container port-padding-top js-no-scroll">
+			<div class="logo-bg h100">
+				&nbsp;
+			</div>
+		</div>
+
+		<div class="double-block-container text-align-center clear-fix table js-no-scroll">
+			<div class="table-row h100">
+				<div class="table-cell land-padding-top land-vertical-align-middle">
+					<div class="inline-block">
+						<div class="main-button" data-sound="click.mp3" data-route="play"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ play }}</div>
+						<!--<div class="main-button opacity50 hidden"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ online }}</div>-->
+						<div class="main-button" data-sound="click.mp3" data-route="settings"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ settings }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="map-editor"><div class="main-button-icon main-button-icon-5">&nbsp;</div>{{ mapEditor }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="instructions"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ instructions }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="about"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ about }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--<div class="game-version js-no-scroll">v1.4.3</div>-->
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="settings">
+
+	<div class="js-settings-wrapper settings-wrapper screen-wrapper">
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('settings') }) %>
+
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+
+					<div class="list-setting-wrapper">
+						<div class="setting-name">{{ mainSettings }}:</div>
+					</div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'confirmTurn', info: info }) %>
+						<div class="setting-name">{{ confirmTurn }}</div>
+					</div>
+					<div class="clear"></div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'confirmMove', info: info }) %>
+						<div class="setting-name">{{ confirmMove }}</div>
+					</div>
+					<div class="clear"></div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'confirmAttack', info: info }) %>
+						<div class="setting-name">{{ confirmAttack }}</div>
+					</div>
+					<div class="clear"></div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'music', info: info }) %>
+						<div class="setting-name">{{ music }}</div>
+					</div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'autoSave', info: info }) %>
+						<div class="setting-name">{{ autoSave }}</div>
+					</div>
+
+					<div class="disable hidden js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'vibrate', info: info }) %>
+						<div class="setting-name">{{ vibrate }}</div>
+					</div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'help', info: info }) %>
+						<div class="setting-name">{{ help }}</div>
+					</div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'buildingSmoke', info: info }) %>
+						<div class="setting-name">{{ buildingSmoke }}</div>
+					</div>
+
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'unitAnimation', info: info }) %>
+						<div class="setting-name">{{ unitAnimation }}</div>
+					</div>
+
+					<div class="disable hidden js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'fightAnimation', info: info }) %>
+						<div class="setting-name">{{ fightAnimation }}</div>
+					</div>
+
+					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ language }}:</div>
+						<div class="clear-fix">
+							<% _.each(info.availableLanguages, function(lang) { %>
+							<% if ( lang === info.get('language') ) { %>
+							<div class="js-change-select-setting setting-state selected-in-list" data-key="language" data-value="<%= lang %>">
+								<%= window.APP.languages[lang].languageName %>
+							</div>
+							<% } else { %>
+							<div class="opacity50 js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
+								<%= window.APP.languages[lang].languageName %>
+							</div>
+							<% }; %>
+							<% }); %>
+						</div>
+					</div>
+
+					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ font }}:</div>
+						<div class="clear-fix">
+							<% _.each(info.availableFonts, function(font) { %>
+							<% var fontId = font.id; %>
+							<% if ( fontId === info.get('font') ) { %>
+							<div class="js-change-select-setting setting-state selected-in-list <%= font.cssClass %>" data-key="font" data-value="<%= fontId %>">
+								<%= fontId %>
+							</div>
+							<% } else { %>
+							<div class="opacity50 js-change-select-setting setting-state <%= font.cssClass %>" data-key="font" data-value="<%= fontId %>">
+								<%= fontId %>
+							</div>
+							<% }; %>
+							<% }); %>
+						</div>
+					</div>
+
+					<div class="select-setting-wrapper <%= isBattleState ? 'disable' : '' %>">
+						<div class="setting-name">{{ gameDifficulty }}:</div>
+						<div class="clear-fix">
+							<% _.each(['easy', 'normal', 'hard'], function(difficult) { %>
+							<% var gameDifficulty = window.APP.lang.get(difficult); %>
+							<% if ( difficult === info.get('difficult') ) { %>
+							<div class="js-change-select-setting setting-state selected-in-list" data-key="difficult" data-value="<%= difficult %>">
+								<%= gameDifficulty %>
+							</div>
+							<% } else { %>
+							<div class="opacity50 js-change-select-setting setting-state" data-key="difficult" data-value="<%= difficult %>">
+								<%= gameDifficulty %>
+							</div>
+							<% }; %>
+							<div class="clear"></div>
+							<% }); %>
+						</div>
+					</div>
+
+					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ gameSpeed }}:</div>
+						<div class="clear-fix">
+							<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
+							<% var gameSpeedWord = window.APP.lang.get('gameSpeed-' + speed); %>
+							<% if ( speed === info.get('gameSpeed') ) { %>
+							<div class="js-change-select-setting setting-state selected-in-list" data-key="gameSpeed" data-value="<%= speed %>">
+								<%= gameSpeedWord %>
+							</div>
+							<% } else { %>
+							<div class="opacity50 js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
+								<%= gameSpeedWord %>
+							</div>
+							<% }; %>
+							<div class="clear"></div>
+							<% }); %>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="settingsOnOff">
+
+		<% if (info.get(key) === 'on') { %>
+		<div class="js-change-on-off-setting setting-state on-off-enable" data-key="<%= key %>" data-value="on">[<span class="on-off">*</span>]</div>
+		<% } else { %>
+		<div class="js-change-on-off-setting setting-state" data-key="<%= key %>" data-value="off">[<span class="on-off">*</span>]</div>
+		<% }; %>
+
+</script>
+
+<script type="text/x-template" data-name="about">
+
+	<div class="screen-wrapper">
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('about') }) %>
+
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area ta-center">
+					<div>{{ aboutText }}</div>
+					<br/>
+					<br/>
+					<a class="credits-link js-external-link" href="http://statlex.com/">statlex.com</a>
+					<a class="credits-link" href="mailto:ae.fan.game@gmail.com?subject=Ancient Empire: Strike Back">ae.fan.game@gmail.com</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="play">
+
+	<div class="double-blocks-wrapper js-no-scroll">
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('play') }) %>
+		<div class="screen-wrapper">
+			<div class="title-game-bg h100">
+				<div class="double-block-container port-padding-top">
+					<div class="logo-bg h100">
+						&nbsp;
+					</div>
+				</div>
+				<div class="double-block-container text-align-center clear-fix table">
+					<div class="table-row h100">
+						<div class="table-cell land-padding-top land-vertical-align-middle">
+							<div class="inline-block">
+								<div data-sound="click.mp3" class="main-button js-start-game"><div class="main-button-icon flip main-button-icon-0">&nbsp;</div>{{ companies }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-1">&nbsp;</div>{{ loadGame }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-2">&nbsp;</div>{{ selectLevel }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div>{{ skirmish }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="user-map-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div> {{ userMaps }}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<% if (window.APP.info.withAds) { %>
+				<a class="js-external-link to-pro" href="<%= window.APP.info.getLinkToStore('pro') %>">Pro</a>
+				<% }; %>
+
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="simple-popup">
+
+	<div>
+
+		<div class="popup-header"><%= header %></div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button js-back">{{ ok }}</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="route-from-battle">
+
+	<div>
+
+		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button js-quit-battle">{{ yes }}</div>
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button js-back">{{ no }}</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="route-from-map-editor">
+
+	<div>
+
+		<div class="popup-header">{{ areYouSureToLeaveMapEditor }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button js-quit-map-editor">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="win-or-defeat">
+
+	<div>
+
+		<div class="popup-header"><%= header %></div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="end-turn-popup">
+
+	<div>
+		<div class="popup-header">{{ endTurnQuestion }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="clear-map">
+
+	<div>
+		<div class="popup-header">{{ cleanMapNotSavedDataWillBeLost }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button js-clear-map">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="end-turn-popup">
+
+	<div>
+		<div class="popup-header">{{ endTurnQuestion }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="simple-notification">
+
+	<div>
+		<div class="js-back">
+			<% if ( obj.header && header ) { %>
+				<div class="popup-header"><%= header %></div>
+			<% }; %>
+			<% if ( obj.text && text ) { %>
+				<div class="popup-text"><%= text %></div>
+			<% }; %>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="briefing">
+
+	<div>
+		<div class="js-back briefing-content">
+			<% if (obj.img) { %>
+			<div class="briefing-img" style="background-image: url(<%= img %>);">&nbsp;</div>
+			<% }; %>
+			<p class="briefing-text"><%= text %></p>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="map-list-popup">
+
+	<div>
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+
+		<% if ( _.keys(mapsInfo).length ) { %>
+		<div class="popup-header">{{ unsavedMapProgressWillBeLost }}</div>
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area js-saved-list">
+				<% _.each(mapsInfo, function (map) { %>
+				<div data-map-name="<%= map.jsKey %>" class="saved-item-wrapper js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= map.name %></div>
+				<% }); %>
+			</div>
+		</div>
+		<% } else { %>
+			<div class="popup-header">{{ noSavedMaps }}</div>
+		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="map-list-popup-delete">
+
+	<div>
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+
+		<% if ( _.keys(mapsInfo).length ) { %>
+		<div class="popup-header js-popup-header">{{ maps }}</div>
+
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area js-saved-list">
+
+			<% var languageField = 'name-' + window.APP.info.get('language'); %>
+			<% _.each(mapsInfo, function (map, jsKey) { %>
+				<% var mapName = map[languageField] || map.name; %>
+
+				<div class="saved-item-wrapper js-user-map-wrapper clear-fix" data-user-map-name="<%= mapName %>">
+
+					<div data-sound="click.mp3" class="save-input-button ellipsis js-tab-button" data-user-map-name="<%= name %>" data-tab-id="delete-user-map-<%= jsKey %>" data-tab-state="close">{{ delete }}</div>
+					<div class="save-input-text-wrapper">
+						<div class="saved-item js-set-input-text-value" data-user-map-name="<%= mapName %>">(<%= map.maxPlayers %>) <%= mapName %></div>
+					</div>
+
+					<div class="js-tab-block hidden small-confirm-wrapper clear-fix" data-tab-id="delete-user-map-<%= jsKey %>">
+
+						<div class="small-confirm-header">{{ youAreSureToDeleteMap }}</div>
+
+						<div class="small-confirm-buttons-wrapper">
+
+							<div data-sound="click.mp3" class="small-confirm-button js-delete-user-map" data-user-map-name="<%= mapName %>">{{ yes }}</div>
+							<div data-sound="click.mp3" class="small-confirm-button js-tab-close" data-tab-id="delete-user-map-<%= jsKey %>" data-user-map-name="<%= mapName %>">{{ no }}</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			<% }); %>
+			</div>
+		</div>
+		<% } else { %>
+			<div class="popup-header">{{ noSavedMaps }}</div>
+		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="between-turn-notification">
+
+	<div>
+		<div class="js-back bg-gradient-color-<%= color %> new-turn-notification">
+			<div class="popup-header">{{ newTurn }}<br>{{ income }}: <%= earn %></div>
+		</div>
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="popup-wrapper">
+
+	<div class="js-popup-wrapper popup-wrapper">
+
+		<div class="table popup-wrapper-table js-back">
+
+			<div class="table-row">
+				<div class="table-cell">
+
+					<div class="popup-container">
+
+						<div class="popup-form js-popup-container">
+
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="ticket-wrapper">
+
+	<div class="js-ticket-wrapper popup-wrapper ticket-wrapper">
+
+		<%= text %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="popup-confirm-restart-battle">
+
+	<div>
+		<div class="popup-header">{{ areYouSureToRestartBattle }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button js-restart-battle">{{ yes }}</div>
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="popup-confirm-quit-battle">
+
+	<div>
+		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button js-quit-battle">{{ yes }}</div>
+			<div data-sound="click.mp3" data-on-hide="none" class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="battle-menu">
+
+	<div>
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+
+		<div class="popup-header">{{ menu }}</div>
+
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-load-state">{{ loadGame }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="loadGame">
+
+	<div class="screen-wrapper">
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('loadGame') }) %>
+
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+
+					<% if ( obj.savedGames && obj.savedGames.length ) { %>
+						<% _.each(savedGames, function(name, index){ %>
+							<div class="js-saved-item-wrapper saved-item-wrapper clear-fix" data-save-name="<%= name %>">
+								<div data-sound="click.mp3" class="js-load-game side-form-button" data-save-name="<%= name %>">{{ load }}</div>
+								<div><%= name %></div>
+							</div>
+						<% }); %>
+					<% } else { %>
+						{{ noSavedGames }}
+					<% }; %>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="save-game">
+
+	<div>
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+
+		<div class="popup-header">{{ saveGame }}</div>
+
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area js-saved-list"></div>
+		</div>
+
+		<div class="save-small-form-wrapper clear-fix">
+			<div data-sound="click.mp3" class="save-input-button ellipsis js-save-game">{{ save }}</div>
+			<div class="save-input-text-wrapper">
+				<input type="text" class="save-input-text js-save-input-text" value="<%= saveName %>"/>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="save-game-items">
+
+	<% if ( savedGames.length ) { %>
+		<% _.each(savedGames, function(name, index){ %>
+			<div class="saved-item-wrapper js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
+				<div data-sound="click.mp3" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="delete-save-<%= index %>" data-tab-state="close">{{ delete }}</div>
+				<div class="save-input-text-wrapper">
+					<div class="saved-item js-set-input-text-value" data-save-name="<%= name %>"><%= name %></div>
+				</div>
+				<div class="js-tab-block hidden small-confirm-wrapper clear-fix" data-tab-id="delete-save-<%= index %>">
+
+					<div class="small-confirm-header">{{ areYouSureToDeleteSavedGame }}</div>
+
+					<div class="small-confirm-buttons-wrapper">
+
+						<div data-sound="click.mp3" class="small-confirm-button js-remove-saved-game" data-save-name="<%= name %>">{{ yes }}</div>
+						<div data-sound="click.mp3" class="small-confirm-button js-close-delete-confirm" data-save-name="<%= name %>">{{ no }}</div>
+
+					</div>
+
+				</div>
+			</div>
+		<% }); %>
+	<% } else { %>
+		{{ noSavedGames }}
+	<% }; %>
+
+</script>
+
+<script type="text/x-template" data-name="load-game-popup">
+
+	<div class="js-load-game-popup-wrapper">
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+
+		<div class="popup-header">{{ loadGame }}</div>
+
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area js-saved-list">
+
+				<% if ( obj.savedGames && obj.savedGames.length ) { %>
+					<% _.each(savedGames, function(name, index){ %>
+						<div class="saved-item-wrapper js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
+							<div data-sound="click.mp3" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="load-save-<%= index %>" data-tab-state="close">{{ load }}</div>
+							<div class="save-input-text-wrapper">
+								<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
+							</div>
+							<div class="js-tab-block hidden small-confirm-wrapper clear-fix" data-tab-id="load-save-<%= index %>">
+
+								<div class="small-confirm-header">{{ areYouSureToLoadGame }}</div>
+
+								<div class="small-confirm-buttons-wrapper">
+
+									<div data-sound="click.mp3" class="small-confirm-button js-load-game" data-save-name="<%= name %>">{{ yes }}</div>
+									<div data-sound="click.mp3" class="small-confirm-button js-close-load-confirm" data-save-name="<%= name %>">{{ no }}</div>
+
+								</div>
+
+							</div>
+						</div>
+					<% }); %>
+				<% } else { %>
+					{{ noSavedGames }}
+				<% }; %>
+
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="skirmishSetupMap">
+
+	<div class="screen-wrapper">
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('skirmish') }) %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+
+					<% _.each(playersData, function(player, index){ %>
+
+					<div class="js-player-info-wrapper setup-form-wrapper clear-fix">
+						<div class="js-player-color w40" data-player-color="<%= player.color %>">
+							<div class="setup-form-item"><div class="team-color-sign team-color-sign-<%= player.color %>">&nbsp;</div><%= window.APP.lang.get(player.color) %></div>
+							<!--<div class="setup-form-item">{{ team }} #</div>-->
+						</div>
+						<div class="w60">
+							<div class="setup-form-item w100 ta-center">
+								<span class="js-list-backward float-left" data-group-name="player-type-<%= index %>"> <- </span>
+								<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+								<span class="js-list-forward float-right" data-group-name="player-type-<%= index %>"> -> </span>
+							</div>
+							<div class="setup-form-item w100 ta-center">
+								<span class="js-list-backward float-left" data-group-name="team-number-<%= index %>"> <- </span>
+								<span class="js-list-backward" data-group-name="team-number-<%= index %>">{{ team }}&nbsp;</span>
+								<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+								<span class="js-list-forward float-right" data-group-name="team-number-<%= index %>"> -> </span>
+							</div>
+						</div>
+					</div>
+
+					<% }); %>
+
+					<div class="setup-form-wrapper clear-fix">
+						<div class="setup-form-item w40">{{ money }}</div>
+
+						<div class="setup-form-item w60 ta-center">
+							<span class="js-list-backward float-left" data-group-name="money"> <- </span>
+							<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
+							<span class="js-list-forward float-right" data-group-name="money"> -> </span>
+						</div>
+
+					</div>
+
+					<div class="setup-form-wrapper clear-fix">
+						<div class="setup-form-item w40">{{ unitLimit }}</div>
+
+						<div class="setup-form-item w60 ta-center">
+							<span class="js-list-backward float-left" data-group-name="unit-limit"> <- </span>
+							<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+							<span class="js-list-forward float-right" data-group-name="unit-limit"> -> </span>
+						</div>
+
+					</div>
+
+					<div class="popup-buttons-wrapper ta-center">
+						<div data-sound="click.mp3" class="js-go-to-battle popup-button popup-button-single-in-row single-screen-button"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ fight }}!</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="skirmishSelectMap">
+
+	<div class="screen-wrapper">
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('skirmish') }) %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+				<% if ( _.keys(mapsInfo).length ) { %>
+					<% var languageField = 'name-' + window.APP.info.get('language'); %>
+					<% _.each(mapsInfo, function (map) { %>
+						<% var mapName = map[languageField] || map.name; %>
+							<div class="map-name-list-item">
+								<div data-sound="click.mp3" data-map-route="<%= urlPrefix %>/<%= map.jsKey %>" data-map-preview-header="<%= mapName %>" data-js-map-key="<%= map.jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview">&nbsp;</div>
+								<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %><div class="map-list-map-size"><%= map.size.width %>&times;<%= map.size.height %></div></div>
+								<div data-preview-wrapper-for="<%= map.jsKey %>" class="hidden js-map-preview-wrapper map-preview-wrapper">
+									<div data-preview-image-for="<%= map.jsKey %>" class="map-preview-image js-map-preview-image"></div>
+									<!--<img data-preview-image-for="<%= map.jsKey %>" class="map-preview-image js-map-preview-image" src="" alt=""/>-->
+									<!--<div class="map-preview-text"><%= map.size.width %>&times;<%= map.size.height %></div>-->
+								</div>
+							</div>
+					<% }); %>
+				<% } else { %>
+					{{ noSavedMaps }}
+				<% }; %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="battle">
+
+	<div class="battle-view-wrapper js-battle-view-wrapper">
+		<div class="battle-view-container">
+			<div class="battle-view-inner-container js-move-area-wrapper js-no-scroll">
+				<div class="js-move-area-container">
+					<div class="js-main-event-handler main-event-handler"></div>
+					<div class="js-event-handler-wrapper event-handler-wrapper"></div>
+					<div class="js-smoke-wrapper smoke-wrapper"></div>
+					<div class="units-wrapper js-units-wrapper"></div>
+					<div class="building-wrapper js-building-wrapper"></div>
+					<!--<canvas class="js-map-image-wrapper block map-image-wrapper hidden"></canvas>-->
+					<div class="js-map-image-wrapper block map-image-wrapper"><img class="js-map-image map-image" src="" alt=""/></div>
+				</div>
+			</div>
+		</div>
+		<div class="js-unit-info-wrapper"></div>
+		<div class="js-battle-settings-wrapper battle-settings-wrapper"></div>
+		<div class="js-store-wrapper"></div>
+		<div data-sound="click.mp3" class="js-end-turn end-turn">&gt;|</div>
+		<div data-sound="click.mp3" class="js-help-button show-help-button blink hidden">!</div>
+		<div data-sound="click.mp3" class="js-battle-menu-button battle-menu-button">
+			<div class="battle-menu-button-line">&nbsp;</div>
+			<div class="battle-menu-button-line">&nbsp;</div>
+		</div>
+		<div data-sound="click.mp3" class="js-move-back-button move-back-button hidden">&lt;-</div>
+		<div class="battle-view-status-bar js-battle-view-status-bar"></div>
+		<div class="js-battle-menu-static-wrapper"></div>
+		<div class="js-view-disable view-disable js-no-scroll hidden"></div>
+		<div class="js-view-cpu-disable view-cpu-disable js-no-scroll hidden"></div>
+		<style type="text/css" class="js-style-square-size"></style>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="map-editor">
+
+	<div class="battle-view-wrapper map-editor-wrapper js-map-editor-wrapper">
+
+		<input type="text" class="map-name input-text js-map-name" placeholder="{{ mapName }}" value="<%= mapName %>" />
+		<div class="map-editor-disable-screen js-map-editor-disable-screen js-no-scroll hidden"></div>
+		<div class="map-size js-map-size"></div>
+		<div class="size-tools-wrapper">
+
+			<div class="size-buttons-wrapper size-buttons-wrapper-up">
+				<div data-position="up" data-delta="-1" class="js-size-button size-button">-</div>
+				<div data-position="up" data-delta="+1" class="js-size-button size-button">+</div>
+			</div>
+			<div class="size-buttons-wrapper size-buttons-wrapper-right">
+				<div data-position="right" data-delta="+1" class="js-size-button size-button">+</div>
+				<div data-position="right" data-delta="-1" class="js-size-button size-button">-</div>
+			</div>
+			<div class="size-buttons-wrapper size-buttons-wrapper-down">
+				<div data-position="down" data-delta="-1" class="js-size-button size-button">-</div>
+				<div data-position="down" data-delta="+1" class="js-size-button size-button">+</div>
+			</div>
+			<div class="size-buttons-wrapper size-buttons-wrapper-left">
+				<div data-position="left" data-delta="+1" class="js-size-button size-button">+</div>
+				<div data-position="left" data-delta="-1" class="js-size-button size-button">-</div>
+			</div>
+
+		</div>
+		<div class="battle-view-container map-editor-container">
+			<div class="battle-view-inner-container js-move-area-wrapper js-no-scroll">
+				<div class="js-move-area-container">
+					<div class="js-main-event-handler main-event-handler square-grid"></div>
+					<div class="js-event-handler-wrapper event-handler-wrapper"></div>
+					<!--<div class="js-smoke-wrapper smoke-wrapper"></div>-->
+					<div class="units-wrapper js-units-wrapper"></div>
+					<div class="building-wrapper js-building-wrapper"></div>
+					<canvas class="js-map-image-wrapper block map-image-wrapper"></canvas>
+					<!--<div class="js-map-image-wrapper block map-image-wrapper"><img class="js-map-image map-image" src=""/></div>-->
+				</div>
+			</div>
+		</div>
+		<!--<div class="js-unit-info-wrapper"></div>-->
+		<!--<div class="js-battle-settings-wrapper"></div>-->
+		<!--<div class="js-store-wrapper"></div>-->
+		<!--<div class="js-end-turn end-turn">&gt;|</div>-->
+		<!--<div class="js-battle-menu-button battle-menu-button">-->
+			<!--<div class="battle-menu-button-line">&nbsp;</div>-->
+			<!--<div class="battle-menu-button-line">&nbsp;</div>-->
+		<!--</div>-->
+		<div class="battle-view-status-bar js-battle-view-status-bar">
+			<div class="map-editor-status-bap-icon map-editor-status-save js-save-map">{{ save }}</div>
+			<div class="map-editor-status-bap-icon map-editor-status-open js-open-map-popup">{{ open }}</div>
+			<div class="map-editor-status-bap-icon map-editor-status-delete js-delete-map-popup">{{ delete }}</div>
+			<div class="map-editor-status-bap-icon map-editor-status-clean js-clear-map-popup">{{ clean }}</div>
+			<div class="map-editor-status-bap-icon map-editor-status-exit js-back">{{ exit }}</div>
+		</div>
+		<div class="map-editor-tools-wrapper">
+			<div class="map-editor-tools-container js-scroll-area-container scroll-touch">
+				<div class="js-map-editor-tools-wrapper">
+
+				</div>
+			</div>
+		</div>
+		<!--<div class="js-battle-menu-static-wrapper"></div>-->
+		<!--<div class="js-view-disable view-disable js-no-scroll hidden"></div>-->
+		<!--<div class="js-view-cpu-disable view-cpu-disable js-no-scroll hidden"></div>-->
+		<style type="text/css" class="js-style-square-size"></style>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="help">
+
+	<div>
+
+		<div class="h100 js-scroll-area-container scroll-touch">
+			<div class="scroll-area">
+
+				<div class="popup-button popup-button-single-in-row js-disable-all-tips">{{ disableAllTips }}</div>
+
+				<p class="popup-page-text ta-center">{{ youCanDisableHelpNotification }}</p>
+
+				<% _.each(help, function (item) { %>
+
+				<div class="popup-page">
+					<% if ( item.img ) { %>
+					<img src="<%= item.img %>" alt="" class="popup-page-image"/>
+					<% }; %>
+
+					<% _.each(item.text, function(text){ %>
+
+					<p class="popup-page-text"> <%= text %> </p>
+
+					<% }); %>
+
+				</div>
+
+				<% }); %>
+
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="map-editor-tools">
+
+	<div>
+
+		<% _.each(["terrain", "unit", "building"], function(type) { %>
+			<% if ( brush.type === type ) { %>
+			<div class="js-set-brush-type map-editor-brush-type-icon map-editor-brush-type-icon-<%= type %>" data-brush-type="<%= type %>">&nbsp;</div>
+			<% } else { %>
+			<div class="opacity50 js-set-brush-type map-editor-brush-type-icon map-editor-brush-type-icon-<%= type %>" data-brush-type="<%= type %>">&nbsp;</div>
+			<% }; %>
+		<% }); %>
+
+		<% if ( brush.type !== 'terrain' ) { %>
+			<% _.each(window.APP.map.allColors, function(color){ %>
+				<% if ( brush.type === 'unit' && color === 'gray') { return; }; %>
+				<% if ( brush.color === color ) { %>
+				<div class="bg-gradient-color-<%= color %> js-set-brush-color map-editor-color-tile" data-brush-color="<%= color %>">&nbsp;</div>
+				<% } else { %>
+				<div class="bg-gradient-color-<%= color %> opacity50 js-set-brush-color map-editor-color-tile" data-brush-color="<%= color %>">&nbsp;</div>
+				<% }; %>
+			<% }); %>
+		<% }; %>
+		<div class="clear"></div>
+		<% if ( brush.type === 'terrain' ) { %>
+			<% _.each(window.APP.map.terrainTypes, function(terrain) { %>
+				<% if ( brush.form === terrain ) { %>
+				<div class="terrain-<%= terrain %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<% } else { %>
+				<div class="terrain-<%= terrain %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<% }; %>
+			<% }); %>
+
+			<% if ( brush.form === 'eraser' ) { %>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type map-editor-brush-form-eraser">&nbsp;</div>
+			<% } else { %>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type opacity50 map-editor-brush-form-eraser">&nbsp;</div>
+			<% }; %>
+
+		<% }; %>
+
+		<% if ( brush.type === 'unit' ) { %>
+
+			<% var noInEditor = window.APP.unitMaster.noInEditor, commanderList = window.APP.unitMaster.commanderList, allColors = window.APP.map.allColors; %>
+
+			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+
+				<% if ( brush.color === 'gray') { return; }; %>
+
+				<% if ( _.contains(noInEditor, key) ) { return; }; %>
+
+				<% if ( _.contains(commanderList, key) && allColors.indexOf(brush.color) !== commanderList.indexOf(key) || hasCommander ) { return; }; %>
+
+				<% if ( brush.form === key ) { %>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= key %>">&nbsp;</div>
+				<% } else { %>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= key %>">&nbsp;</div>
+				<% }; %>
+
+			<% }); %>
+
+			<% if ( brush.form === 'eraser' ) { %>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type map-editor-brush-form-eraser">&nbsp;</div>
+			<% } else { %>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type opacity50 map-editor-brush-form-eraser">&nbsp;</div>
+			<% }; %>
+
+		<% }; %>
+
+		<% if ( brush.type === 'building' ) { %>
+			<% _.each(window.APP.building.list, function(buildingData, key) { %>
+				<% var color = _.contains(window.APP.building.noMansBuildingsList, key) ? 'gray' : brush.color; %>
+				<% if ( brush.form === key ) { %>
+				<div class="building-<%= key %>-<%= color %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= key %>">&nbsp;</div>
+				<% } else { %>
+				<div class="building-<%= key %>-<%= color %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= key %>">&nbsp;</div>
+				<% }; %>
+			<% }); %>
+
+			<% if ( brush.form === 'farm-destroyed' ) { %>
+			<div class="building-farm-destroyed js-set-brush-form map-editor-brush-form-type" data-brush-form="farm-destroyed">&nbsp;</div>
+			<% } else { %>
+			<div class="building-farm-destroyed js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="farm-destroyed">&nbsp;</div>
+			<% }; %>
+
+			<% if ( brush.form === 'eraser' ) { %>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type map-editor-brush-form-eraser">&nbsp;</div>
+			<% } else { %>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type opacity50 map-editor-brush-form-eraser">&nbsp;</div>
+			<% }; %>
+
+		<% }; %>
+
+		<div class="clear"></div>
+
+		</div>
+
+</script>
+
+<script type="text/x-template" data-name="unit-info">
+
+	<div class="unit-info-wrapper">
+		<div class="unit-info-icon unit-info-icon-attack">&nbsp;</div>
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: String(atk).split('') }) %>
+
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space'] }) %>
+		<div class="unit-info-icon unit-info-icon-defence">&nbsp;</div>
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: String(def).split('') }) %>
+
+		<% if (placeArmor) { %>
+			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['plus'].concat(String(placeArmor).split('')) }) %>
+		<% }; %>
+
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space'] }) %>
+
+		<% if (level) { %>
+			<div class="unit-info-icon unit-info-icon-level">&nbsp;</div>
+			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: [level, 'space'] }) %>
+		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="short-unit-info-sign">
+
+	<% _.each(signs, function(sign) { %>
+		<% sign = (sign === '-') ? 'minus' : sign; %>
+		<% if (sign === 'space') { %>
+		<div class="unit-info-sign-block unit-info-sign-block-space">&nbsp;</div>
+		<% } else { %>
+		<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">&nbsp;</div>
+		<% }; %>
+	<% }); %>
+
+</script>
+
+<script type="text/x-template" data-name="battle-view-status-bar">
+
+	<div class="status-bar-info-square-wrapper js-status-bar-info-square-wrapper">
+		<div class="status-bar-info-square-border"> &nbsp; </div>
+	</div>
+	<div class="status-bar-player-info-wrapper bg-gradient-color-<%= color %>">
+		<div class="status-bar-player-info-container">
+			<div class="status-bar-money">
+				<div class="status-bar-sign-block status-bar-sign-block-icon-money" style="background-image: url(i/fonts/numbers-2-icon-money.png);">&nbsp;</div>
+				<% var arr = String(money).split(''); %>
+				<% _.each(arr, function(sign) { %>
+				<% sign = (sign === '-') ? 'minus' : sign; %>
+				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
+				<% }); %>
+			</div>
+
+
+			<div class="status-bar-units">
+				<div class="status-bar-sign-block status-bar-sign-block-unit-icon" style="background-image: url(i/fonts/numbers-2-icon-unit.png);">&nbsp;</div>
+				<% arr = (String(unitCount).split('')).concat(['slash']).concat(String(unitLimit).split('')); %>
+				<% _.each(arr, function(sign) { %>
+				<% sign = (sign === '-') ? 'minus' : sign; %>
+				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
+				<% }); %>
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="battle-view-info-square">
+
+	<div class="status-bar-info-square-container js-status-bar-info-square-container">
+		<div class="<%= className %> status-bar-square-info-image">
+			&nbsp;
+			<div class="status-bar-sign-square-wrapper">
+				<% arr = ['def'].concat(String(armor).split('')); %>
+				<% _.each(arr, function(sign) { %>
+				<div class="status-bar-sign-square-info-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">&nbsp;</div>
+				<% }); %>
+			</div>
+		</div>
+
+	</div>
+
+
+</script>
+
+<script type="text/x-template" data-name="unit-store">
+
+	<div class="js-unit-store-wrapper unit-store-wrapper">
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('unitStoreHeader') }) %>
+
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+
+					<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
+					<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+
+					<% var isCommander = _.contains(unitsData.commanderList, key), isAvailable = !(!isCommander && availableStoreUnits && !_.contains(availableStoreUnits, key)); %>
+
+					<% if ( unitData.canNotBeBuy ) { %>
+						<% return; %>
+					<% }; %>
+
+					<% if ( isCommander && key !== commander.name ) { %>
+						<% return; %>
+					<% }; %>
+
+					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card <%= isAvailable ? '' : 'disable' %>" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+
+						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
+							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-key="<%= key %>"></span>
+						</div>
+
+						<div class="unit-shot-info-wrapper clear-fix js-show-unit-description" data-description-is-show="no" data-unit-key="<%= key %>">
+							<div class="unit-shot-info-image">
+								<div class="unit-image unit-image-<%= key %>-<%= playerColor %>">&nbsp;</div>
+							</div>
+							<div class="unit-shot-info-properties">
+								<div class="unit-shot-info-attack"><%= unitData.atk.min %>-<%= unitData.atk.max %></div>
+								<div class="clear"></div>
+								<div class="unit-shot-info-defence"><%= unitData.def %></div>
+								<div class="unit-shot-info-move"><%= unitData.mov %></div>
+							</div>
+						</div>
+
+						<div data-sound="click.mp3" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
+							<% if (isCommander) { %>
+								<%= unitData.cost + (commander.deadCount || 0) * unitsData.commanderAddedCost %>
+							<% } else { %>
+								<%= unitData.cost %>
+							<% }; %>
+						</div>
+						<div class="clear"></div>
+						<div class="js-description-unit-info description-unit-info hidden" data-unit-key="<%= key %>">
+							<%= langUnits[unitData.langKey].description %>
+						</div>
+
+					</div>
+
+					<% }); %>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="selectLevel">
+
+	<div class="screen-wrapper">
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('selectLevel') }) %>
+
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+					<% var info = window.APP.info, languageField = 'name-' + info.get('language'), index = 0; isTestMode = info.get('isTestMode', true); %>
+					<% _.each(mapsInfo, function (map, jsKey) { %>
+					<% var mapName = map[languageField] || map.name, maxDoneLevel = 'no-level'; %>
+						<% index += 1; %>
+						<% if (map.isOpen || isTestMode) { %>
+							<% _.each(['easy', 'normal', 'hard'], function(level) { %>
+								<% maxDoneLevel = map['isDoneByDifficult_' + level] ? level : maxDoneLevel; %>
+							<% }); %>
+
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="saved-item-wrapper ellipsis">
+								<%= index %>. <%= window.APP.templateMaster.tmplFn['level-start']({ level: maxDoneLevel }) %>&nbsp;<%= mapName %>
+							</div>
+						<% } else { %>
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\S/g, '?') %></div>
+						<% }; %>
+					<% }); %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="level-start">
+
+	<span>
+		<% if (level === 'no-level') { %>[<span class="opacity50 level-star">*</span><span class="opacity50 level-star">*</span><span class="opacity50 level-star">*</span>]<% }; %>
+		<% if (level === 'easy') { %>[<span class="level-star">*</span><span class="opacity50 level-star">*</span><span class="opacity50 level-star">*</span>]<% }; %>
+		<% if (level === 'normal') { %>[<span class="level-star">*</span><span class="level-star">*</span><span class="opacity50 level-star">*</span>]<% }; %>
+		<% if (level === 'hard') { %>[<span class="level-star">*</span><span class="level-star">*</span><span class="level-star">*</span>]<% }; %>
+	</span>
+
+</script>
+
+<script type="text/x-template" data-name="instructions">
+
+	<div class="screen-wrapper">
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('instructions') }) %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+					<% _.each(window.APP.lang.get('instructionsText'), function(part, index) { %>
+					<% var itemIndex = index <= 9 ? '0' + index : index; %>
+					<p><%= itemIndex %>. <%= part %></p>
+					<br/>
+					<br/>
+					<% }); %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="rate">
+
+	<div class="js-popup-wrapper popup-wrapper">
+		<div class="table popup-wrapper-table js-back">
+			<div class="table-row">
+				<div class="table-cell">
+					<div class="popup-container clear-fix">
+
+						<div class="js-stop-event popup-form clear-fix">
+							<% var rateUs = window.APP.lang.get('rateUs'); %>
+							<p class="popup-text"><%= rateUs.header %></p>
+
+							<div class="width-50 float-left">
+								<div class="popup-button js-back">
+									<%= rateUs.notNow %>
+								</div>
+							</div>
+							<div class="width-50 float-left">
+								<a class="popup-button js-five-stars js-external-link" href="<%= link %>">
+									<%= rateUs.fiveStars %>
+								</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="story">
+
+	<div>
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+		<div class="h100 js-scroll-area-container scroll-touch">
+			<div class="scroll-area">
+				<div class="popup-page">
+				<% _.each(content.split('_!_'), function(part) { %>
+					<% if ( part.indexOf('.png') !== -1  ) { %>
+					<img src="<%= part %>" alt="" class="popup-page-image"/>
+					<% } else { %>
+					<p class="popup-page-text"> <%= part %> </p>
+					<% }; %>
+				<% }); %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="full-unit-info">
+
+	<div>
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+		<div class="h100 js-scroll-area-container scroll-touch">
+			<div class="scroll-area">
+				<div class="popup-page">
+
+					<div class="ta-left">
+						<div class="unit-card-header"><%= name %> - <%= unit.get('health') %> <!-- /<%= unit.get('defaultHealth') %> --> </div>
+						<div class="unit-shot-info-wrapper clear-fix">
+							<div class="unit-shot-info-image">
+								<div class="unit-image <%= img %>">&nbsp;</div>
+							</div>
+							<div class="unit-shot-info-properties unit-shot-info-properties-wide">
+								<% var atk = unit.get('atk'), level = unit.get('level'), unitMaster = window.APP.unitMaster; %>
+								<div class="unit-shot-info-attack"><%= atk.min %>-<%= atk.max %><%= level ? '+' + unitMaster.atkByLevel * level : '' %></div>
+								<div class="clear"></div>
+								<div class="unit-shot-info-defence"><%= unit.get('def') %><%= level ? '+' + unitMaster.defByLevel * level : '' %><%= defByTerrain ? '+' + defByTerrain : '' %></div>
+								<div class="unit-shot-info-move"><%= unit.get('mov') %></div>
+							</div>
+						</div>
+
+						<div class="clear"></div>
+						<div class="unit-level-icon unit-info-icon-level<%= level ? ' unit-info-icon-with-level' : '' %>"><%= level || '&nbsp;' %></div>
+						<div class="unit-xp-level-wrapper<%= level ? ' unit-xp-level-wrapper-with-level' : '' %>"><div class="unit-xp-level" style="width: <%= levelPercent + '%' %>"></div></div>
+
+						<div class="clear"></div>
+						<div class="description-unit-info"><%= description %></div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<!--
+
+
+
+
+
+					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card <%= isAvailable ? '' : 'disable' %>" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+
+						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
+							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-key="<%= key %>"></span>
+						</div>
+
+						<div class="unit-shot-info-wrapper clear-fix js-show-unit-description" data-description-is-show="no" data-unit-key="<%= key %>">
+							<div class="unit-shot-info-image">
+								<div class="unit-image unit-image-<%= key %>-<%= playerColor %>">&nbsp;</div>
+							</div>
+							<div class="unit-shot-info-properties">
+								<div class="unit-shot-info-attack"><%= unitData.atk.min %>-<%= unitData.atk.max %></div>
+								<div class="clear"></div>
+								<div class="unit-shot-info-defence"><%= unitData.def %></div>
+								<div class="unit-shot-info-move"><%= unitData.mov %></div>
+							</div>
+						</div>
+
+						<div data-sound="click.mp3" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
+							<% if (isCommander) { %>
+							<%= unitData.cost + (commander.deadCount || 0) * unitsData.commanderAddedCost %>
+							<% } else { %>
+							<%= unitData.cost %>
+							<% }; %>
+						</div>
+						<div class="clear"></div>
+						<div class="js-description-unit-info description-unit-info hidden" data-unit-key="<%= key %>">
+							<%= langUnits[unitData.langKey].description %>
+						</div>
+
+					</div>
+
+
+
+
+
+
+
+<script type="text/x-template" data-name="fight-animation">
+
+	<div class="fight-animation-wrapper js-fight-animation-wrapper">
+
+		<div class="fighters-wrapper">
+
+			<% [attacker, defender].forEach(function(data, index){ %>
+
+				<% var unitActionType = index ? 'defender' : 'attacker'; %>
+
+				<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= data.terrain %>">
+
+					<% _.each(data.fighters, function(value, index){ %>
+
+					<% var unit = data.unit, unitType = unit.get('type'), unitColor = unit.get('color'); %>
+						<div class="fighter-position-animation-wrapper-<%= unitType %> fighter-wrapper-<%= data.fullCount %>-<%= index + 1 %><%= value ? '' : ' hidden' %>">
+							<div class="fighter-unit-animation-wrapper-<%= unitType %> fighter-unit" style="background-image: url(i/unit-fighter/unit-<%= unitType %>-<%= unitColor %>.png);">&nbsp;</div>
+						</div>
+					<% }); %>
+
+				</div>
+
+			<% }); %>
+
+		</div>
+
+		<%= window.APP.templateMaster.tmplFn['fight-animation-status-bar'](obj) %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="fight-animation-status-bar">
+
+	<div class="js-fight-animation-status-bar">
+
+		<% [attacker, defender].forEach(function(data, index){ %>
+
+			<% var unitActionType = index ? 'defender' : 'attacker'; %>
+
+			<div class="js-<%= unitActionType %>-status-bar-wrapper battle-view-status-bar status-bar-health-container status-bar-health-container-<%= unitActionType %> bg-gradient-color-<%= data.unit.get('color') %>">
+
+				<div class="status-bar-player-info-container">
+
+					<div class="status-bar-health clear-fix">
+						<% var arr = [].concat(data.unit.get('health').toString().split(''), ['slash'], data.unit.get('defaultHealth').toString().split('')); %>
+						<% _.each(arr, function(sign) { %>
+						<div class="status-bar-sign-block status-bar-health-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
+						<% }); %>
+					</div>
+
+				</div>
+
+			</div>
+
+		<% }); %>
+
+	</div>
+
+</script>
+
+ -->
+
+<script type="text/x-template" data-name="game-speed">
+
+	<style type="text/css" class="js-game-speed-style">
+
+		.popup-wrapper,
+		.popup-wrapper.show-out,
+
+		.attack-square.moving,
+
+		.unit-wrapper.moving {
+			-webkit-transition: -webkit-transform <%= time %>ms ease-out;
+			transition: transform <%= time %>ms ease-out;
+		}
+
+		.spark {
+			-webkit-animation-duration: <%= time/2 %>ms;
+			animation-duration: <%= time/2 %>ms;
+		}
+
+		.unit-image {
+			-webkit-transition: background <%= time %>ms ease-out;
+			transition: background <%= time %>ms ease-out;
+		}
+
+		.building-smoke-mover,
+		.building-smoke {
+			-webkit-animation-duration: <%= 2.6 * time %>ms;
+			animation-duration: <%= 2.6 * time %>ms;
+			-webkit-animation-delay: <%= 5.2 * time %>ms;
+			animation-delay: <%= 5.2 * time %>ms;
+		}
+
+		/*.show-available-path,*/
+		/*.show-available-attack,*/
+		.show-confirm-move,
+		.show-fix-building,
+		.show-occupy-building,
+		.show-confirm-attack,
+		.show-open-store,
+
+		.active-square-mark, /* 2 frames */
+
+		.unit-image, /* 2 frames */
+
+		.unit-level-up.move-up {
+			-webkit-animation-duration: <%= time %>ms;
+			animation-duration: <%= time %>ms;
+		}
+
+		.bounce {
+			-webkit-animation-duration: <%= 1.5 * time %>ms;
+			animation-duration: <%= 1.5 * time %>ms;
+		}
+
+		.show-unit-under-attack, /* 3 frames */
+		.show-raise-skeleton {
+			-webkit-animation-duration: <%= 1.5 * time %>ms;
+			animation-duration: <%= 1.5 * time %>ms;
+		}
+
+	</style>
+
+</script>
+
+</body>
+</html>

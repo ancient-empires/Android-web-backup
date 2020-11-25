@@ -1,0 +1,244 @@
+/* TEMP */
+.unit {
+	-webkit-transition: all ease-out 0.2s;
+	-moz-transition: all ease-out 0.2s;
+	transition: all ease-out 0.2s;
+}
+
+.unit {
+	position: absolute;
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	background-position: 0 0;
+}
+
+.unit-archer {
+	background-image: url(../img/unit/archer/sprite.png);
+}
+
+.unit-bones {
+	background-image: url(../img/unit/bones/sprite.png);
+}
+
+.unit-catapult {
+	background-image: url(../img/unit/catapult/sprite.png);
+}
+
+.unit-golem {
+	background-image: url(../img/unit/golem/sprite.png);
+}
+
+.unit-knight {
+	background-image: url(../img/unit/knight/sprite.png);
+}
+
+.unit-lizard {
+	background-image: url(../img/unit/lizard/sprite.png);
+}
+
+.unit-soldier {
+	background-image: url(../img/unit/soldier/sprite.png);
+}
+
+.unit-spider {
+	background-image: url(../img/unit/spider/sprite.png);
+}
+
+.unit-wisp {
+	background-image: url(../img/unit/wisp/sprite.png);
+}
+
+.unit-wizard {
+	background-image: url(../img/unit/wizard/sprite.png);
+}
+
+.unit-wyvern {
+	background-image: url(../img/unit/wyvern/sprite.png);
+}
+
+.unit-color-blue {
+	background-position: 0 0;
+}
+
+.unit-color-red {
+	background-position: 0 100%;
+}
+
+.unit-health,
+.delta-health {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	text-shadow: 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 0 0 #000;
+	white-space: nowrap;
+}
+
+.unit-health {
+	color: #fff;
+}
+
+.delta-health {
+	opacity: 0;
+	text-shadow: 0 1px 0 #ffffff, 0 -1px 0 #ffffff, -1px 0 0 #ffffff, 1px 0 0 #ffffff;
+}
+
+.unit-poisoned .unit-health {
+	color: #d8b319;
+}
+
+.grave .unit-health {
+	display: none;
+}
+
+.unit-end-turn {
+	opacity: 0.5;
+}
+
+.grave {
+	-webkit-transition: none;
+	background-position: 0 0;
+	background-image: url(../img/unit/grave.png);
+	z-index: -1;
+}
+
+.unit-for-grave-up {
+	position: relative;
+}
+
+.unit-for-grave-up:after {
+	content: '.';
+	color: transparent;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-image: url(../img/unit/up-bones.gif);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.active-unit {
+	z-index: 1;
+}
+
+.active-unit:after {
+	content: '.';
+	color: transparent;
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	left: -50%;
+	top: -50%;
+	background-image: url(../img/unit/active-unit.gif);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+
+}
+
+
+.unit-under-attack {
+	background-image: url(../img/unit/attack.gif);
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.wisp-aura {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	background-image: url(../img/unit/wisp-aura.png);
+	background-repeat: no-repeat;
+	background-size: 50% 50%;
+	background-position: top right;
+}
+
+.under-wisp-aura .wisp-aura {
+	display: block;
+}
+
+.grave .wisp-aura {
+	display: none;
+}
+
+.level-bar {
+	background-repeat: no-repeat;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	position: absolute;
+	height: 25%;
+	width: 100%;
+	top: 0;
+	z-index: 1;
+}
+
+[data-level="1"] .level-bar {
+	background-image: url(../img/unit/level-item-1.png);
+}
+
+[data-level="2"] .level-bar {
+	background-image: url(../img/unit/level-item-2.png);
+}
+
+[data-level="3"] .level-bar {
+	background-image: url(../img/unit/level-item-3.png);
+}
+
+.go-to-store-by-unit {
+	background-image: url(../img/unit/shop.gif);
+	background-repeat: no-repeat;
+	-webkit-background-size: 80% 80%;
+	background-size: 80% 80%;
+	background-position: center center;
+}
+
+.delta-health-animation {
+	-webkit-animation-name: delta-health;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes delta-health {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+
+	25%, 80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -115%, 0);
+	}
+
+}
+
+.attack-animation-block {
+	display: block;
+	opacity: 0;
+	position: absolute;
+	background-image: url(../img/unit/skull.png);
+	-webkit-background-size: 75% 75%;
+	background-size: 75% 75%;
+	z-index: 10;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+

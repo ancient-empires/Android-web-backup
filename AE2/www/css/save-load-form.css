@@ -1,0 +1,99 @@
+.save-input-text-wrapper {
+	margin-right: 7.5rem;
+}
+
+.save-input-text {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	border: none;
+	padding: 0.5rem 0.1rem 0.25rem 0.4rem;
+	font-size: 1rem;
+	line-height: 1rem;
+	font-family: inherit;
+}
+
+.save-input-button {
+	float: right;
+	width: 7rem;
+	overflow: hidden;
+	font-size: 1rem;
+	box-sizing: border-box;
+	padding: 0.5rem 0.4rem;
+	border-style: solid;
+	border-width: 0.15rem;
+	margin-top: -0.15rem;
+	-webkit-box-shadow: 0.2rem 0.2rem 0 #000;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+}
+
+.save-input-button:active {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.save-small-form-wrapper {
+	padding: 0.5rem 0 0;
+	position: relative;
+}
+
+.save-list-wrapper {
+	max-height: 20rem;
+}
+
+.small-area-container .save-list-wrapper {
+	max-height: 4rem;
+}
+
+.popup-form.small-area-container {
+	top: 0;
+	position: absolute;
+}
+
+@media only screen and (orientation: landscape) {
+	.save-list-wrapper {
+		max-height: 10rem;
+	}
+}
+
+.saved-item-wrapper {
+	padding: 0.7rem 0;
+	position: relative;
+}
+
+.saved-item {
+	word-break: break-all;
+	text-align: left;
+}
+
+.small-confirm-wrapper {
+	border-bottom-style: solid;
+	border-bottom-width: 0.15rem;
+	clear: both;
+}
+
+.small-confirm-header {
+	font-size: 0.75rem;
+}
+
+.small-confirm-buttons-wrapper {
+	padding: 0.6rem 0 0.6rem;
+}
+
+.small-confirm-button {
+	display: inline-block;
+	font-size: 0.75rem;
+	padding: 0.25rem 0;
+	border-style: solid;
+	border-width: 0.15rem;
+	width: 4rem;
+	margin: 0 0.6rem;
+	-webkit-box-shadow: 0.2rem 0.2rem 0 #000;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+}
+
+.small-confirm-button:active {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+

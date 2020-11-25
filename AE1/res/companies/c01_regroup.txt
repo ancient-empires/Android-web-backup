@@ -1,0 +1,58 @@
+A:
+The Kingdom of Thorin is divided. Betrayed by his own twin brother Valadorn, King Galamar has fled into the borderlands of the east. Only the Blue guard, Galamar's personal troops, have remained loyal and stand ready to reclaim the land...
+H:
+Sire, your troops are weary after last night's battle. It would be wise to regroup at the abandoned castle.
+G:
+Sound advice, captain. Ready the troops - we should not let the enemy catch us unprepared.
+H:
+Valadorn's army should be easy to spot with their red uniforms.
+T:
+King Galamar must occupy castle, keep all troops alive.
+
+// When any unit across the bridge, appear enemy soldier and H say
+H:
+Spies!! Valadorn and his Red legion must know where we are! Quickly, protect the King!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

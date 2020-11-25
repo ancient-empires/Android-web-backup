@@ -1,0 +1,11 @@
+Ancient Empires
+
+
+Пошаговая стратегия. Порт оригинальной игры "Ancient Empires".
+
+Действие игры разворачивается в фэнтезийном средневековом царстве Торин, где правит король Галамар. Игра начинается с того, что Галамару едва удаётся избежать смерти после переворота, организованного его братом Валадорном, который, захватив власть над царством, объявил охоту на Галамара.
+
+
+Turn-based strategy. Port of the original game "Ancient Empires".
+
+The game takes place in a fantasy medieval kingdom of Thorin ruled by the benevolent King Galamar. The game begins with Galamar barely escaping a bloody coup by his younger brother Valadorn, who has taken control of the kingdom and declared a hunt on his brother.

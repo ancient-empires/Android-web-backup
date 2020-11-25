@@ -1,0 +1,39 @@
+@font-face {
+	font-family: 'main-font';
+	src: url('../font/RittswoodRedStar_8.ttf');
+}
+
+@font-face {
+	font-family: 'big-pixel-font';
+	src: url('../font/PressStart2P.ttf');
+}
+
+@font-face {
+	font-family: 'Courier New';
+	src: url('../font/courier.ttf');
+}
+
+body {
+	color: #f0f0f0;
+	background-color: #242a45;
+	line-height: 135%;
+	letter-spacing: 0.05rem;
+}
+
+.font-pixel {
+	font-family: 'main-font', 'Lucida Grande', monospace;
+}
+
+.font-lucida {
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
+.font-courier {
+	font-family: "Courier New", Courier, monospace;
+}
+
+.add-more-sharp {
+	display: block;
+	position: absolute;
+}
+

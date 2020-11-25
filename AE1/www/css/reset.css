@@ -1,0 +1,176 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, audio, canvas, details, figcaption, figure, footer,
+header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video,
+.clear {
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	text-decoration: none;
+	vertical-align: baseline;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	line-height: 1;
+}
+
+article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote {
+	display: block;
+}
+
+nav ul {
+	list-style: none;
+}
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+
+ul ul {
+	list-style: circle;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: none;
+}
+
+mark {
+	background: none;
+}
+
+abbr[title], dfn[title] {
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+input, button, select {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+input, select, a img {
+	vertical-align: middle;
+}
+
+/* custom classes */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, audio, canvas, details, figcaption, figure, footer,
+header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video,
+.clear {
+
+	-webkit-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-ms-tap-highlight-color: transparent;
+	-o-tap-highlight-color: transparent;
+	tap-highlight-color: transparent;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-o-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	-ms-interpolation-mode: nearest-neighbor;
+
+}
+
+.clear {
+	display: block;
+	clear: both;
+	float: none;
+}
+
+.clear-fix {
+	display: block;
+}
+
+.clear-fix:after {
+	content: '';
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.disable {
+	opacity: 0.15;
+	-webkit-pointer-events: none;
+	pointer-events: none;
+}
+
+.table {
+	display: table;
+}
+
+.table-row {
+	display: table-row;
+}
+
+.table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	display: block;
+	width: 100%;
+}
+
+/* custom classes */
+
+
+
