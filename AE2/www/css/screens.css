@@ -1,0 +1,301 @@
+.screen-wrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.title-game-bg {
+	/*background-image: url(../img/other/1.jpg);*/
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center;
+	background-color: #333C57;
+	background-image: -webkit-linear-gradient(top, #7F8598, #333C57);
+	background-image: linear-gradient(top, #7F8598, #333C57);
+}
+
+.logo-bg {
+	background-image: url(../img/other/logo.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: center center;
+}
+
+.main-button {
+	font-size: 1rem;
+	line-height: 1.4rem;
+	text-align: left;
+	padding: 0.45rem 0.3rem 0.2rem 0.35rem;
+	display: block;
+	text-shadow: 0.15rem 0.15rem 0 #000;
+	position: relative;
+	float: left;
+	clear: both;
+	background-color: #242a45;
+	margin-bottom: 0.3rem;
+	border-radius: 0.25rem;
+	width: 100%;
+	box-sizing: border-box;
+	-webkit-box-shadow: 0.1rem 0.1rem 0 #000;
+	box-shadow: 0.1rem 0.1rem 0 #000;
+}
+
+.main-button:active {
+	text-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.main-button-icon {
+	height: 1.8rem;
+	width: 1.8rem;
+	background-repeat: no-repeat;
+	background-image: url(../i/ui/menu-icons.png);
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	float: left;
+	margin: -0.2rem 0.3rem 0 -0.2rem;
+}
+
+.main-button-icon.flip {
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.main-button-icon-0 {
+	background-position: 0 0;
+}
+
+.main-button-icon-1 {
+	background-position: 11.111% 0;
+}
+
+.main-button-icon-2 {
+	background-position: 22.222% 0;
+}
+
+.main-button-icon-3 {
+	background-position: 33.333% 0;
+}
+
+.main-button-icon-4 {
+	background-position: 44.444% 0;
+}
+
+.main-button-icon-5 {
+	background-position: 55.555% 0;
+}
+
+.main-button-icon-6 {
+	background-position: 66.666% 0;
+}
+
+.main-button-icon-7 {
+	background-position: 77.777% 0;
+}
+
+.main-button-icon-8 {
+	background-position: 88.888% 0;
+}
+
+.main-button-icon-9 {
+	background-position: 100% 0;
+}
+
+.side-form-button {
+	float: right;
+	width: 7rem;
+	overflow: hidden;
+	font-size: 1rem;
+	box-sizing: border-box;
+	padding: 0.5rem 0.4rem;
+	border-style: solid;
+	border-width: 0.15rem;
+	margin-top: -0.15rem;
+	text-align: center;
+	-webkit-box-shadow: 0.2rem 0.2rem 0 #000;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+}
+
+.side-form-button:active {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.sticker {
+	font-size: 0.6rem;
+	position: fixed;
+	line-height: 0.9rem;
+	top: 0;
+	right: 0;
+	text-align: right;
+	background-color: #242a45;
+	padding: 0.25rem 0.4rem 0.2rem 0.4rem;
+	border-radius: 0 0 0 0.2rem;
+	text-shadow: 0.15rem 0.15rem 0 #000;
+	text-transform: uppercase;
+	opacity: 0;
+}
+
+/*
+.game-version {
+	font-size: 0.5rem;
+	position: fixed;
+	line-height: 0.5rem;
+	bottom: 0;
+	right: 0;
+	padding: 0.2rem 0.1rem;
+	text-shadow: 0.1rem 0.1rem 0 #000;
+}
+*/
+
+.team-color-sign {
+	float: left;
+	width: 1rem;
+	height: 1rem;
+	background-repeat: no-repeat;
+	background-image: url(../i/ui/team-color-icons.png);
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	margin: 0.2rem 0.3rem 0 0.1rem;
+}
+
+.team-color-sign-blue {
+	background-position: 0 0;
+}
+
+.team-color-sign-red {
+	background-position: 33.3333% 0;
+}
+
+.team-color-sign-green {
+	background-position: 66.6666% 0;
+}
+
+.team-color-sign-black {
+	background-position: 100% 0;
+}
+
+.single-screen-button {
+	display: inline-block;
+	width: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+@media screen and (orientation: landscape) {
+	.land-vertical-align-middle {
+		vertical-align: middle;
+	}
+
+	.land-padding-top {
+		padding-top: 3.4rem;
+	}
+
+}
+
+@media screen and (orientation: portrait) {
+
+	.port-padding-top {
+		padding-top: 3.4rem;
+	}
+
+}
+
+.credits-link {
+	-webkit-user-select: auto;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: auto;
+	padding: 0.5rem 0;
+	display: block;
+	color: #f0f0f0;
+}
+
+.map-name-list-item {
+	clear: both;
+	position: relative;
+}
+
+.map-list-map-size {
+	font-size: 0.65rem;
+	line-height: 0.65rem;
+	/* text-align: center; */
+	/* margin-top: 0.4rem; */
+	position: absolute;
+	bottom: 0;
+	/* display: none; */
+	padding-left: 2.6rem;
+}
+
+.map-preview-button {
+	float: right;
+	padding: 0.4rem;
+	width: 1rem;
+	height: 1rem;
+	position: relative;
+	z-index: 1;
+	margin-top: 0.6rem;
+	margin-right: 0;
+	background-image: url(../i/ui/map-preview.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.map-preview-button:after {
+	content: '';
+	position: absolute;
+	width: 150%;
+	height: 150%;
+	top: -25%;
+	left: -25%;
+}
+
+.map-preview-image {
+	display: block;
+	max-width: 100%;
+	min-width: 80%;
+	height: auto;
+	width: auto;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+	box-sizing: border-box;
+	border-color: #666;
+	border-width: 0.15rem;
+	border-style: solid;
+	margin: 0.3rem auto 0.1rem;
+}
+
+.map-preview-canvas {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/*.map-preview-text {*/
+	/*font-size: 0.65rem;*/
+	/*line-height: 0.65rem;*/
+	/*text-align: center;*/
+	/*margin-top: 0.4rem;*/
+/*}*/
+
+.map-preview-wrapper {
+	padding-bottom: 0.8rem;
+}
+
+.to-pro {
+	position: fixed;
+	text-decoration: underline;
+	padding: 0.7rem;
+	right: 0;
+	bottom: 0;
+	color: #f0f0f0;
+}
+
+
+
+

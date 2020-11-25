@@ -1,0 +1,5 @@
+.battle-menu-wrapper {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	z-index: 4; /* see .battle-view-status-bar z-i: 3 */
+}

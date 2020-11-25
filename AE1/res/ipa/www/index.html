@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>AOE</title>
+
+	<!-- mobile device -->
+	<meta charset="UTF-8"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+
+	<!-- styles -->
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/unit.css"/>
+	<link rel="stylesheet" href="css/terrain.css"/>
+	<link rel="stylesheet" href="css/building.css"/>
+	<link rel="stylesheet" href="css/store.css"/>
+	<link rel="stylesheet" href="css/create-map.css"/>
+	<link rel="stylesheet" href="css/font.css"/>
+	<link rel="stylesheet" href="css/landscape.css"/>
+	<link rel="stylesheet" href="css/notification.css"/>
+
+	<!-- langs -->
+	<script src="js/lang/en.js" type="text/javascript"></script>
+
+	<!-- libs -->
+	<script src="js/lib/shim.js" type="text/javascript"></script>
+	<script src="js/lib/bro.js" type="text/javascript"></script>
+	<script src="js/lib/underscore.js" type="text/javascript"></script>
+	<script src="js/lib/backbone.js" type="text/javascript"></script>
+	<script src="js/lib/move-area.js" type="text/javascript"></script>
+
+	<!-- services -->
+	<script src="js/service/info.js" type="text/javascript"></script>
+	<script src="js/service/lang.js" type="text/javascript"></script>
+	<script src="js/service/template-master.js" type="text/javascript"></script>
+	<script src="js/service/util.js" type="text/javascript"></script>
+	<script src="js/service/div-position.js" type="text/javascript"></script>
+
+	<!-- views and relative objects -->
+	<script src="js/app/screen/base-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/title/title-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/battle/battle-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/battle/battle-controller.js" type="text/javascript"></script>
+	<script src="js/app/screen/store/store-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/maps/maps-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/create-map/create-map.js" type="text/javascript"></script>
+	<!--<script src="js/app/screen/companies/companies.js" type="text/javascript"></script>-->
+	<script src="js/app/screen/setting/setting.js" type="text/javascript"></script>
+	<script src="js/app/screen/battle-menu/battle-menu-view.js" type="text/javascript"></script>
+	<script src="js/app/screen/notification/notification.js" type="text/javascript"></script>
+	<script src="js/app/screen/instruction/instruction.js" type="text/javascript"></script>
+	<script src="js/app/screen/credits/credits.js" type="text/javascript"></script>
+
+	<!-- main -->
+	<script src="js/main.js" type="text/javascript"></script>
+
+	<!-- maps -->
+	<script src="js/app/maps/base-map/base-map.js" type="text/javascript"></script>
+	<!--<script src="js/app/maps/test-map/map.js" type="text/javascript"></script>-->
+	<!--<script src="js/app/maps/test-map/map2.js" type="text/javascript"></script>-->
+	<script src="js/app/maps/test-map/map3.js" type="text/javascript"></script>
+	<script src="js/app/maps/skirmish/island-cross.js" type="text/javascript"></script>
+	<script src="js/app/maps/skirmish/rocky-bay.js" type="text/javascript"></script>
+
+	<!-- companies -->
+	<script src="js/app/maps/companies/c01_regroup.js" type="text/javascript"></script>
+	<script src="js/app/maps/companies/c02_friend-and-enemies.js" type="text/javascript"></script>
+	<script src="js/app/maps/companies/c03_escort.js" type="text/javascript"></script>
+	<script src="js/app/maps/companies/c04_reinforcements.js" type="text/javascript"></script>
+	<script src="js/app/maps/companies/c05_wyvern-rescue.js" type="text/javascript"></script>
+	<script src="js/app/maps/companies/c06_siege.js" type="text/javascript"></script>
+	<script src="js/app/maps/companies/c07_final-assault.js" type="text/javascript"></script>
+
+	<!-- units -->
+	<script src="js/app/unit/units-info.js" type="text/javascript"></script>
+	<script src="js/app/unit/base-unit/base-unit.js" type="text/javascript"></script>
+	<script src="js/app/unit/archer/archer.js" type="text/javascript"></script>
+	<script src="js/app/unit/bones/bones.js" type="text/javascript"></script>
+	<script src="js/app/unit/catapult/catapult.js" type="text/javascript"></script>
+	<script src="js/app/unit/golem/golem.js" type="text/javascript"></script>
+	<script src="js/app/unit/knight/knight.js" type="text/javascript"></script>
+	<script src="js/app/unit/lizard/lizard.js" type="text/javascript"></script>
+	<script src="js/app/unit/soldier/soldier.js" type="text/javascript"></script>
+	<script src="js/app/unit/spider/spider.js" type="text/javascript"></script>
+	<script src="js/app/unit/wisp/wisp.js" type="text/javascript"></script>
+	<script src="js/app/unit/wizard/wizard.js" type="text/javascript"></script>
+	<script src="js/app/unit/wyvern/wyvern.js" type="text/javascript"></script>
+
+	<!-- cpu -->
+	<script src="js/app/cpu/cpu.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="js-wrapper wrapper">
+
+</div>
+
+<script type="text/x-template" data-name="title">
+
+	<div class="title-screen double-blocks-wrapper js-no-scroll">
+
+		<div class="double-block-container title-game-logo clear-fix">
+			&nbsp;
+		</div>
+
+		<div class="double-block-container text-align-center clear-fix table">
+
+			<div class="table-row">
+
+				<div class="table-cell vertical-align-top land-vertical-align-middle cell-button-wrapper">
+
+					<div class="inline-block">
+
+						<div class="js-go-to-companies main-button">companies</div>
+
+						<div class="js-go-to-select-map main-button">create game</div>
+
+						<!--<div class="js-create-map main-button disable">create map</div>-->
+
+						<div class="js-instruction main-button">instruction</div>
+
+						<div class="js-go-to-settings main-button">settings</div>
+
+						<div class="js-to-credits main-button">credits</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="instruction">
+
+	<div class="instruction-screen fixed">
+
+		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
+
+			<div class="js-back header-button left"><- Back</div>
+
+			<div class="js-go-to-battle header-button right small-header ellipsis">Instructions</div>
+
+		</div>
+
+		<div class="js-block-fix-wrapper overflow-auto js-fix-edge-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
+			<div class="instruction-item-list">
+
+				<% lang.instructions.forEach(function(value) { %>
+					<div class="instruction-item">
+						<p class="instruction-item-value"><%= value %></p>
+					</div>
+				<% }); %>
+
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="credits">
+
+	<div class="instruction-screen fixed">
+
+		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
+
+			<div class="js-back header-button left"><- Back</div>
+
+			<div class="js-go-to-battle header-button right">Credits</div>
+
+		</div>
+
+		<div class="js-block-fix-wrapper overflow-auto js-fix-edge-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
+			<div class="instruction-item-list">
+
+				<div class="instruction-item text-align-center credits-item">
+					<%= lang.thanks %>
+				</div>
+
+				<div class="instruction-item text-align-center credits-item mail-wrapper">
+					statlex.com<br><br>
+					ae.fan.game@gmail.com
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="setting">
+
+	<div class="setting-screen fixed">
+
+		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
+
+			<div class="js-back header-button left"><- Back</div>
+
+			<div class="js-go-to-battle header-button right">Settings</div>
+
+		</div>
+
+		<div class="js-block-fix-wrapper js-no-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
+			<div class="setting-list-wrapper">
+				<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
+				<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
+
+				<div class="setting-item-wrapper game-speed-wrapper">
+					<p class="setting-item-small-header">game speed</p>
+					<div class="clear-fix game-speed-arrows-wrapper">
+						<div class="left"><- slow</div>
+						<div class="right">fast -></div>
+					</div>
+					<div class="text-align-center">
+						<% window.util.fromTo(function(index){ %><div data-tag="label" class="game-speed-input-wrapper"><input class="show-after hidden js-game-speed" name="game-speed" type="radio" value="<%= index %>"/>[<span class="show-after-show"><%= index %></span>]</div><% }, 1, 6); %>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="select-map">
+
+	<div class="select-map-screen fixed">
+
+		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
+
+			<div class="js-back header-button left"><- Back</div>
+
+			<div class="js-go-to-battle header-button right">Fight -></div>
+
+		</div>
+
+		<div class="js-block-fix-wrapper js-no-scroll <%= type === 'mission' ? 'hidden' : '' %>" data-size-land="float: left; width: 50%; height: max" data-size-port="min" data-size-order="2">
+
+				<p class="text-align-center with-padding-1">Players</p>
+
+				<div class="item-wrapper clear-fix js-player-form">
+
+					<div class="left">P1</div>
+
+					<div class="left">&nbsp;</div>
+
+					<div data-tag="label" class="left radio-button-wrapper">
+						<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="human" checked="checked"/>
+						<span class="left relative-opacity">Human</span>
+					</div>
+
+					<div class="left small-separator">&nbsp;</div>
+					<div data-tag="label" class="left radio-button-wrapper">
+						<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="cpu"/>
+						<span class="left relative-opacity">CPU</span>
+					</div>
+
+					<div class="left land-clear land-with-padding-left">&nbsp;</div>
+
+					<div class="land-left">
+
+
+					<div data-tag="label" class="right radio-button-wrapper">
+						<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="red"/>
+						<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
+					</div>
+
+					<div class="right small-separator">&nbsp;</div>
+					<div data-tag="label" class="right radio-button-wrapper">
+						<input class="hidden custom-radio-button" type="radio" name="p1-color" data-type="color" value="blue" checked="checked"/>
+						<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
+					</div>
+
+					</div>
+
+					</div>
+
+				<div class="item-wrapper clear-fix js-player-form">
+
+					<div class="left">P2</div>
+
+					<div class="left">&nbsp;</div>
+
+					<div data-tag="label" class="left radio-button-wrapper">
+						<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="human"/>
+						<span class="left relative-opacity">Human</span>
+					</div>
+
+					<div class="left small-separator">&nbsp;</div>
+					<div data-tag="label" class="left radio-button-wrapper">
+						<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="cpu" checked="checked"/>
+						<span class="left relative-opacity">CPU</span>
+					</div>
+
+					<div class="left land-clear land-with-padding-left">&nbsp;</div>
+
+					<div class="land-left">
+						<div data-tag="label" class="right radio-button-wrapper">
+							<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="red" checked="checked"/>
+							<img class="left relative-opacity select-color-square red-bg" src="i/square.png" alt=""/>
+						</div>
+
+						<div class="right small-separator">&nbsp;</div>
+						<div data-tag="label" class="right radio-button-wrapper">
+							<input class="hidden custom-radio-button" type="radio" name="p2-color" data-type="color" value="blue"/>
+							<img class="left relative-opacity select-color-square blue-bg" src="i/square.png" alt=""/>
+						</div>
+					</div>
+
+
+				</div>
+
+		</div>
+
+		<div class="js-block-fix-wrapper relative scroll-arrows-bg" data-size-land="float: left; height: max; <%= type === 'mission' ? 'width: 100%; ' : 'width: 50%;' %>" data-size-port="float: none; width: 100%; height: max" data-size-order="3">
+
+				<p class="text-align-center with-padding-1 black-header js-no-scroll">
+					<% if ( type === 'skirmish' ) { %>
+						Maps
+					<% } else { %>
+						Companies
+					<% }; %>
+				</p>
+
+				<div class="maps-list-wrapper js-block-fix-wrapper-with-scroll overflow-auto js-fix-edge-scroll transform-0">
+
+					<div class="maps-list-container clear-fix transform-0">
+						<div class="item-wrapper clear-fix transform-0">
+							<% var wasChecked = false; %>
+							<% maps.forEach(function(map, index) { %>
+
+							<% if (map.type !== type) { %>
+								<% return false; %>
+							<% }; %>
+
+							<% var isDisabled = (map.type === 'mission' && info.get('openMissions').indexOf(map.jsName) === -1); %>
+
+							<div data-tag="label" class="radio-button-wrapper clear-fix <%= isDisabled ? 'disable opacity5' : '' %>">
+								<% if ( !wasChecked ) { %>
+								<% wasChecked = true; %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
+								<% } else { %>
+								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
+								<% }; %>
+								<span class="left relative-opacity ellipsis"><%= isDisabled ? map.name.replace(/\S/g, '?') : map.name %></span>
+							</div>
+
+							<% }); %>
+
+						</div>
+					</div>
+
+				</div>
+
+
+		</div>
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="battle">
+
+	<div class="battle-screen js-battle-screen">
+
+		<div class="js-cpu-running cpu-running-disable-buttons hidden">bot is running</div>
+
+		<div class="js-disable-screen animation-running-disable-buttons hidden"></div>
+
+		<div class="status-bar js-status-bar clear-fix js-no-scroll">
+			<div class="status-bar-color js-status-bar-color">&nbsp;&nbsp;</div>
+			<div class="status-bar-gold">0</div>
+			<div class="battle-menu-button js-menu-button">menu</div>
+
+			<div class="status-bar-battle js-back">exit -></div>
+
+
+			<div class="status-bar-end-turn js-end-turn js-no-scroll js-hide-for-store">&gt;|<span class="js-status-bar-end-turn-hidden-confirm status-bar-end-turn-hidden-confirm hidden">?</span></div>
+
+			<div class="scale-button js-scale-button js-no-scroll js-hide-for-store" data-type="+">+</div>
+			<div class="scale-button scale-button-second js-scale-button js-no-scroll js-hide-for-store" data-type="-">&ndash;</div>
+
+			<div class="status-bar-add-info-wrapper js-no-scroll js-hide-for-store">
+				<div class="status-bar-damage js-status-bar-damage">0</div>
+				<div class="status-bar-armor js-status-bar-armor">0</div>
+			</div>
+
+		</div>
+
+		<div class="js-layers-moving-wrapper layers-moving-wrapper js-hide-for-store transform-0">
+
+			<div class="js-layers-wrapper layers-wrapper clear-fix">
+
+				<div class="inter-wrapper transform-0">
+
+					<div class="event-handler js-event-handler">
+						<% util.fromTo(function(i){ %>
+						<div class="square-line">
+							<% util.fromTo(function(j){ %>
+							<div class="square js-event-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+							<% }, size.width); %>
+						</div>
+						<% }, size.height); %>
+					</div>
+
+					<div class="units-layer js-units-layer">
+						<div class="attack-animation-block js-attack-animation-block"> &nbsp; </div>
+					</div>
+
+					<div class="objects-layer"></div>
+
+					<div class="available-path-layer js-available-path-layer">
+						<% util.fromTo(function(i){ %>
+						<div class="square-line">
+							<% util.fromTo(function(j){ %>
+							<div class="square js-available-path-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+							<% }, size.width); %>
+						</div>
+						<% }, size.height); %>
+					</div>
+
+					<div class="buildings-layer js-buildings-layer"></div>
+
+					<div class="js-background-layer background-layer"></div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="unit">
+
+	<div data-level="<%= unit.level %>" class="unit unit-<%= unit.type.toLowerCase() %> unit-color-<%= unit.color %>" data-id="<%= unit.id %>" data-player-id="<%= unit.playerId %>" style="<%= info.preCSS %>transform: translate(<%= unit.x * view.squareSize %>px, <%= unit.y * view.squareSize %>px);">
+		&nbsp;
+		<div class="level-bar">&nbsp;</div>
+		<div class="wisp-aura">&nbsp;</div>
+		<div class="delta-health js-delta-health">&nbsp;</div>
+		<div class="js-health unit-health"><%= unit.health %></div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="build">
+
+	<% if (build.type === 'farm') { %>
+	<div class="build build-<%= build.type %>" data-xy="x<%= build.x %>y<%= build.y %>" data-x="<%= build.x %>" data-y="<%= build.y %>" style="left: <%= build.x * view.squareSize %>px; top: <%= build.y * view.squareSize %>px;">
+		&nbsp;
+	</div>
+	<% }; %>
+
+	<% if (build.type === 'castle') { %>
+	<div class="build build-<%= build.type %>" data-xy="x<%= build.x %>y<%= build.y %>" data-x="<%= build.x %>" data-y="<%= build.y %>" style="height: <%= view.squareSize * 2 %>px; left: <%= build.x * view.squareSize %>px; top: <%= (build.y - 1) * view.squareSize %>px;">
+		&nbsp;
+	</div>
+	<% }; %>
+
+</script>
+
+<script type="text/x-template" data-name="store">
+
+	<div class="store-wrapper js-store-wrapper clear-fix transform-0">
+
+		<div class="store-units-wrapper transform-0">
+			<% unitInfo.unitList.forEach(function(name){ %>
+
+			<% if (unitInfo[name].notInStore) { %>
+			<% return; %>
+			<% }; %>
+
+			<div class="unit-card js-unit-card clear-fix" data-name="<%= name %>">
+
+				<div class="unit-card-header"><%= unitInfo[name].info.name %></div>
+				<span class="js-count-buy-unit count-buy-unit"></span>
+
+				<% if ( map.type === 'mission' && (map.availableUnits || []).indexOf(name) === -1 ) { %>
+
+				<div data-name="<%= name %>" class="buy-unit">
+					<div class="store-unit-icon unit-color-<%= color %> unit-<%= name %>">&nbsp;</div>
+
+					<div class="store-unit-short-info">
+						atk: <%= unitInfo[name].atk %><br>
+						def: <%= unitInfo[name].def %><br>
+						mov: <%= unitInfo[name].mov %>
+					</div>
+					<div class="buy-unit-cost opacity0">BUY<br><%= unitInfo[name].cost %></div>
+				</div>
+
+				<% } else { %>
+
+				<div data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">
+					<div class="store-unit-icon unit-color-<%= color %> unit-<%= name %>">&nbsp;</div>
+
+					<div class="store-unit-short-info">
+						atk: <%= unitInfo[name].atk %><br>
+						def: <%= unitInfo[name].def %><br>
+						mov: <%= unitInfo[name].mov %>
+					</div>
+					<div class="buy-unit-cost">BUY<br><%= unitInfo[name].cost %></div>
+				</div>
+
+				<% }; %>
+
+				<div data-name="<%= name %>" class="js-get-unit-info store-get-unit-info">[i]</div>
+				<div class="clear"></div>
+				<div data-name="<%= name %>" class="unit-description js-unit-description hidden">
+					<%= unitInfo[name].info.description %>
+				</div>
+			</div>
+			<% }); %>
+
+			<div class="clear"></div>
+
+		</div>
+		<div class="clear"></div>
+		<div class="store-wrapper-back-fade js-store-wrapper-back-fade"></div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="create-map">
+
+	<div class="create-map js-create-map">
+
+		<div class="js-layers-wrapper layers-wrapper clear-fix">
+
+			<div class="units-layer js-units-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-unit-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+			<div class="buildings-layer js-buildings-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-building-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+			<div class="js-background-layer background-layer">
+				<% util.fromTo(function(i){ %>
+				<div class="square-line">
+					<% util.fromTo(function(j){ %>
+					<div class="square js-map-handler-square" data-xy="x<%= j %>y<%= i %>" data-x="<%= j %>" data-y="<%= i %>">&nbsp;</div>
+					<% }, size.width); %>
+				</div>
+				<% }, size.height); %>
+			</div>
+
+		</div>
+
+		<div class="buttons-wrapper">
+
+			<div class="js-create-map-from-html">create map</div>
+			<div class="js-eraser">erase</div>
+
+			<hr class="clear"/>
+
+			<% APP.map.buildingsTypes.forEach(function(building){ %>
+			<div class="js-set-active-paint set-active-paint" data-layer="buildings" data-layer-type="build" data-type="<%= building %>"><%= building %></div>
+			<% }); %>
+
+			<hr class="clear"/>
+
+			<% APP.units.info.unitList.forEach(function(unit){ %>
+			<div class="js-set-active-paint set-active-paint" data-layer="units" data-layer-type="unit" data-type="<%= unit %>"><%= unit %></div>
+			<% }); %>
+
+			<hr class="clear"/>
+
+			<% APP.map.terrainTypes.forEach(function(terrain){ %>
+			<div class="js-set-active-paint set-active-paint" data-layer="background" data-layer-type="terrain" data-type="<%= terrain %>"><%= terrain %></div>
+			<% }); %>
+
+		</div>
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="battle-menu">
+
+	<div class="battle-menu-wrapper js-battle-menu-wrapper js-no-scroll">
+
+		<div class="table table-battle-menu-wrapper js-table-battle-menu-wrapper">
+
+			<div class="table-row">
+
+				<div class="table-cell">
+
+					<div class="js-back battle-menu-fade"></div>
+
+					<div class="menu-form-wrapper">
+
+						<div class="js-back battle-menu-close">X</div>
+
+						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state hidden-data-state">[+]</span>objective</div>
+						<div class="battle-menu-added-data hidden" data-block="objective">
+							<% objective.split('%%%%').forEach(function(part){ %>
+							<div class="text-part text-indent-with-margin-3"><%= part %></div>
+							<% }); %>
+						</div>
+
+						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
+						<div class="battle-menu-added-data hidden" data-block="settings">
+							<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
+							<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
+						</div>
+
+						<div class="battle-menu-item-button" data-show="restart-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>restart</div>
+						<div class="battle-menu-added-data hidden" data-block="restart-mission">
+
+							<div class="confirm-wrapper">
+								<p class="confirm-message">Are you sure?</p>
+								<div class="confirm-buttons-wrapper clear-fix">
+									<div class="confirm-button js-restart-mission">yes</div>
+									<div class="confirm-button" data-hide-show="restart-mission">no</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="battle-menu-item-button" data-show="quit-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>quit</div>
+						<div class="battle-menu-added-data hidden" data-block="quit-mission">
+							<div class="confirm-wrapper">
+								<p class="confirm-message">Are you sure?</p>
+								<div class="confirm-buttons-wrapper clear-fix">
+									<div class="confirm-button js-quit-mission">yes</div>
+									<div class="confirm-button" data-hide-show="quit-mission">no</div>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="end-game-message">
+
+	<div class="end-game-message-wrapper">
+
+		<div class="table end-game-message-table">
+
+			<div class="table-row">
+
+				<div class="table-cell">
+
+					<div class="menu-form-wrapper end-game-menu-form-wrapper">
+
+						<div class="end-game-message"><%= message %></div>
+						<% if ( obj.nextMissionNumber ) { %>
+							<div class="end-game-message-button js-next-mission" data-next-mission-number="<%= nextMissionNumber %>">next mission</div>
+						<% }; %>
+						<div class="end-game-message-button js-end-game-restart">restart</div>
+						<div class="end-game-message-button js-end-game-quit">quit</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="n-banner">
+
+	<div class="notification-banner">
+
+		<div class="n-text clear-fix">
+			<% if ( obj.image ) { %>
+			<img src="<%= obj.image.url %>" class="n-image left <%= obj.image.cssClass || '' %>" alt=""/>
+			<% }; %>
+			<% if ( obj.header ) { %>
+			<h3 class="notification-banner-header <%= obj.headerCssClass || '' %>"> <%= obj.header %> </h3>
+			<% }; %>
+			<% text.split('%%%%').forEach(function(part){ %>
+				<div class="text-part <%= obj.textCssClass || '' %>"><%= part %></div>
+			<% }); %>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="n-turn">
+
+	<div class="n-turn">
+
+		<div class="n-text clear-fix">
+			<div class="unit unit-knight unit-color-<%= color %> left"></div>
+			<div class="unit unit-soldier unit-color-<%= color %> right"></div>
+			<div><%= text %> turn!</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="notification-wrapper">
+
+	<div class="notification-wrapper js-notification-wrapper js-no-scroll clear-fix">
+		<div class="notification-container js-notification-container"></div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="notification-alert-wrapper">
+
+	<div class="table notification-alert-wrapper-table js-notification-wrapper js-no-scroll clear-fix">
+		<div class="table-row">
+			<div class="table-cell">
+
+				<div class="notification-alert-wrapper <%= obj.bannerCssClass || '' %>">
+					<div class="notification-container js-notification-container <%= obj.bannerCssClass || '' %>"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+</script>
+
+</body>
+</html>

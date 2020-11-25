@@ -1,0 +1,189 @@
+.fight-animation-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	background-color: rgba(255, 125, 84, 0.56);
+}
+
+.fighters-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding-bottom: 3rem;
+}
+
+.fighter-wrapper-attacker,
+.fighter-wrapper-defender {
+	width: 50%;
+	height: 100%;
+	position: relative;
+	float: left;
+	opacity: 0.5;
+}
+
+.fighter-wrapper-defender {
+	-webkit-transform: scaleX(-1);
+}
+
+.fighter-terrain {
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+.fighter-unit {
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.fighter-wrapper-<%= data.fullCount %>-<%= index %>*/
+
+.fighter-wrapper-1-1 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.fighter-wrapper-3-1 {
+	position: absolute;
+	width: 100%;
+	height: 33.333333%;
+	top: 0;
+	left: 0;
+}
+
+.fighter-wrapper-3-2 {
+	position: absolute;
+	width: 100%;
+	height: 33.333333%;
+	top: 33.333333%;
+	left: 0;
+}
+
+.fighter-wrapper-3-3 {
+	position: absolute;
+	width: 100%;
+	height: 33.333333%;
+	top: 66.666666%;
+	left: 0;
+}
+
+.fighter-wrapper-5-1 {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	top: 0;
+	left: 0;
+}
+
+.fighter-wrapper-5-2 {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	top: 0;
+	right: 0;
+}
+
+.fighter-wrapper-5-3 {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	bottom: 0;
+	left: 0;
+}
+
+.fighter-wrapper-5-4 {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	bottom: 0;
+	right: 0;
+}
+
+.fighter-wrapper-5-5 {
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	top: 25%;
+	left: 25%;
+}
+
+
+
+
+
+
+
+
+
+.fighter-terrain-terra {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-road {
+	background-image: url(../i/big-terrain/road.png);
+}
+
+.fighter-terrain-bridge {
+	background-image: url(../i/big-terrain/bridge-1.png);
+}
+
+.fighter-terrain-hill {
+	background-image: url(../i/big-terrain/hill-1.png);
+}
+
+.fighter-terrain-forest {
+	background-image: url(../i/big-terrain/forest-1.png);
+}
+
+.fighter-terrain-stone {
+	background-image: url(../i/big-terrain/stone-1.png);
+}
+
+.fighter-terrain-water {
+	background-image: url(../i/big-terrain/water.png);
+}
+
+.fighter-terrain-building {
+	background-image: url(../i/big-terrain/building-1.png);
+}
+
+
+
+
+
+

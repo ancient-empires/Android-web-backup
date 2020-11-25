@@ -1,0 +1,538 @@
+<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>
+
+                               Ancient Empires
+                               FAQ/Walkthrough
+                                 Version 1.0
+                            For the Mobile Phones
+                         Skye7707 aKa Devon Kerkhove
+
+           _______________________________________________________
+          / _____________________________________________________ \
+         /_|                                          |          |_\
+          |     Mobile Games Completetion Project     |   MGCP    |
+          |                                           |           |
+          |     Third guide of the MGCP               |           |
+         \�|__________________________________________|__________|�/
+          \_______________________________________________________/
+
+<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>==**==<<<>>>
+
+                                 Table of Contents
+
+           _______________________________________________________
+          / _____________________________________________________ \
+         /_|                                          |          |_\
+          |  01.  Legal Disclaimer                    | [LEGAL]   |
+          |  02.  Introduction                        | [INTRO]   |
+          |  03.  How to play                         | [HPLAY]   |
+          |  04.  Units                               | [UNITS]   |
+          |  05.  Terrain                             | [TERRA]   |
+          |  06.  Hints & Tips                        | [HANDT]   |
+          |  07.  Walkthrough                         | [WALKT]   |
+          |  08.  Game Script                         | [SCRPT]   |
+          |  09.  Credits                             | [CREDS]   |
+         \�|__________________________________________|__________|�/
+          \_______________________________________________________/
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                           01. Legal Disclaimer              [LEGAL]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+This guide is complete as it is marked final, if you have some extra
+information, strategies, items, ... you can mail me at:
+
+skye7707     @    gmail   .    com
+
+This may be not be reproduced under any circumstances except for personal,
+private use. It may not be placed on any web site or otherwise distributed
+publicly without advance written permission. Use of this guide on any other
+web site or as a part of any public display is strictly prohibited, and a
+violation of copyright.
+Copyright (c) 2005 Devon Kerkhove
+All rights reserved.
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                               02. Introduction              [INTRO]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+Version History
+------------------------------------------------------------------------------
+
+1.0   April 9, 2005           Completed the battles.
+0.3   April 6, 2005           Started the guide, added several things.
+
+------------------------------------------------------------------------------
+
+Welcome to another guide of a splendid mobile game! If you look for ratings
+of the game you'l probably see none below 8! This game is kinda Advance Wars
+remade for a java mobile device. Mobile Wars :). Pretty good game and it's
+worth the 4 euros (about 5 USD) that the game costs.
+
+------------------------------------------------------------------------------
+   Overview
+------------------------------------------------------------------------------
+
+Welcome to the world of Ancient Empires - the action packed strategy game
+that that brings new levels of depth and game play to your mobile. In this
+epic battle between good and evil, strategy, planning and nerves of steel
+are essential.
+
+------------------------------------------------------------------------------
+   Story
+------------------------------------------------------------------------------
+
+It is a dark time for King Galamar and the Kingdom of Thorin.
+Galamar's twin brother Valadorn has turned against him and is on the verge
+of capturing the kingdom for himself.
+
+For Galamar, it is a battle for survival as he must conquer Valadorn's
+evil forces to save the kingdom of Thorin. Can Galamar and his troops triumph
+against the evil wizards, giant spiders and soldiers that make up Valadorn's
+fearsome Red legion?
+
+Create and control your army for the final battle against the dark forces
+of Valadorn!
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                                03. How to play              [HPLAY]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+Getting Started
+------------------------------------------------------------------------------
+
+The first thing you need to do to play Ancient Empires is to get hold of the
+game. Download it to a compatible phone from your local service provider.
+Once downloaded, the game is in the 'games' section of your mobile.
+
+------------------------------------------------------------------------------
+   Game Modes
+------------------------------------------------------------------------------
+
+Ancient Empires can be played in two modes - story mode and skirmish mode.
+
+   Story mode
+
+This mode puts you in the boots of King Galamar at the outskirts of his
+kingdom, where you must guide your loyal blue guards to secure new allies and
+fight increasingly difficult battles. Your enemy is the dreaded red legion led
+by your treacherous twin brother, Valadorn. The story mode also contains
+helpful hints on how to play the game and control the troops.
+
+   Skirmish mode
+
+This mode lets you practice your skills by fighting a custom battle either by
+yourself or against a friend.
+
+------------------------------------------------------------------------------
+   Controls
+------------------------------------------------------------------------------
+
+Ancient Empires has a 'point and click' interface.
+
+- 2, 4, 6, 8 move the cursor
+- 5 selects a unit, menu item or destination
+- 7 shows unit or terrain details
+
+
+------------------------------------------------------------------------------
+   Movement
+------------------------------------------------------------------------------
+
+Select and move units by pressing 5 and then pressing 5 again on the selected
+destination square. A unit can move and attack once per turn.
+The flashing white border marks the movement range of a unit. A unit's range
+is determined by its type and the terrain it is on.
+
+Different types of terrain affect a unit's ability to move, attack and defend.
+For example, mountains add defence points but slow units down. When you move
+the cursor these terrain features appear at the bottom of the screen.
+
+When a unit has completed a move, an 'E' appears next to it. This means that
+it cannot be used again until your next turn. You can move each unit only once
+each turn. When you have finished moving your units bring up the menu and
+choose 'end turn'.
+
+You can view the attack range of any unit by pressing '0' when it is selected.
+To attack an enemy unit, move your unit within range and select 'attack'.
+If there is more than one enemy in range, select which unit to attack.
+The success of your attack is determined by unit characteristics and terrain.
+
+Occupying buildings and purchasing new units
+Only a king can occupy a castle. When stationed in a castle, the king can
+purchase new units with gold.
+
+You can earn gold by occupying buildings. This is done by moving a soldier
+onto it and selecting 'occupy'. Once a building is occupied, it changes colour
+Once a building has been occupied, it earns gold. The more buildings you
+occupy, the more you earn.
+
+Units can also be healed by stationing them in an occupied building.
+The longer a unit stays, the more life it regains.
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                                  04. Units                  [UNITS]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+Type      Att.  Def.  Mov.   Cost   Description
+
+Soldier   5     1     4      150G   Hardworking and brave, soldiers form the
+                                    backbone of any army. They are also the
+                                    only unit that can capture towns to earn
+                                    gold.
+
+Archer    5     1     4      250G   With their powerful bows archers can
+                                    attack from a distance and are especially
+                                    powerful against airborne enemies.
+
+Lizard    5     0+2   3+3    300G   Descendants of the ancient amphibian
+                                    empire spanning the marshlands in the east
+                                    Lizards are proud warriors. They are
+                                    immensely mobile (+3) and stronger in
+                                    defence (+2) when in water.
+
+Wizard    4     1     4      400G   The ancient guild of wizards are weak at
+                                    close combat, but immensely useful as they
+                                    can summon fighting skeletons from dead
+                                    troops.
+
+Wisp      3     2     4      500G   These mystical beings of pure light
+                                    radiate an aura which adds attack points
+                                    to nearby friendly units. In close combat
+                                    they are especially deadly against
+                                    skeletons.
+
+Эти мифические существа из чистого света излучают ауру, которая добавляет очков атаки дружественным юнитам. В ближнем бою они особенно смертельны против скелетов.
+
+Spider    6     2     5      600G   Spiders are dangerous creatures whose
+                                    natural habitat spans the unforgiving dark
+                                    forests of the west. In addition to being
+                                    highly mobile, spiders use a poisoned
+                                    attack to weaken their opponents for one
+                                    turn.
+
+Skeleton  5     1     4             Summoned by Wizards, these lifeless
+                                    warriors are as strong as soldiers and
+                                    deadly opponents on any battlefield.
+
+Golem     6     4     4             Forged out of living rock by the dwarf
+                                    tribes of the Lost Mountains, Golems are
+                                    slow but immensely strong in defence.
+                                    A golem stationed in a building or a
+                                    well defended mountain is very difficult
+                                    to defeat.
+
+Catapult  7     2     3             Catapults bring devastation wherever they
+                                    go with their enormous attack range.
+                                    However, their relative immobility and
+                                    inability to attack up close make them
+                                    vulnerable so guard them well. Catapults
+                                    can either move or attack during a turn,
+                                    but not do both.
+
+Wyvern    8     3      7            These majestic flying beasts have ruled
+                                    over the mountains of mist since ancient
+                                    times. They are extremely mobile as well
+                                    as deadly in attack on land, air and sea.
+
+King      5     3      4            The heartbeat of the army, a King is very
+                                    strong in attack and defence. Kings do
+                                    usually not take part in battles, as they
+                                    are the only units capable to buy new
+                                    troops when stationed in a castle.
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                                 05. Terrain                 [TERRA]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+Type                 Defence
+
+Road                 0
+Water                0
+Bridge               0
+Grass                1
+Forest               2
+Hill                 2
+Village              3
+Mountain             3
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                              06. Hints & Tips               [HANDT]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+   Use the terrain
+------------------------------------------------------------------------------
+
+
+Different terrain types offer different degree of protection against enemy
+attacks. Always station your units on terrain that offers the maximum
+protection, such as hills or villages. Avoid attacking units which are well
+protected by the terrain.
+
+------------------------------------------------------------------------------
+   Save often
+------------------------------------------------------------------------------
+
+Save the game after every few turns to ensure that you can easily load the
+saved game if you realise you made a mistake. You can save the game at any
+time by pressing the left soft key and choosing "save" from the menu.
+
+------------------------------------------------------------------------------
+   Conquer and protect your villages
+------------------------------------------------------------------------------
+
+Gold is the life blood of your army. Ultimately if you control more villages
+than your enemy, you will be able to produce more troops and win the battle
+more easily.
+
+------------------------------------------------------------------------------
+   Keep your units alive
+------------------------------------------------------------------------------
+
+Dead units can't fight battles, so it is best not to get into battles that you
+will not win. Remember that you can heal your units by moving them onto
+occupied villages - where the will gain hit points every turn.
+
+------------------------------------------------------------------------------
+   Using Wisps
+------------------------------------------------------------------------------
+
+Despite being slow and relatively weak in attack, wisps grant formidable
+attack and defence bonuses to nearby units through the aura that they emit.
+Use them to fortify your troops, and destroy them first in enemy formations.
+
+------------------------------------------------------------------------------
+   Using Catapults
+------------------------------------------------------------------------------
+
+While being deadly at a very long range, catapults are vulnerable up close.
+When an enemy catapult is terrorizing your units, use highly mobile units such
+as spiders, skeletons or wyverns to attack the catapults. When it is your
+catapult that is wrecking havoc with the enemy, remember to protect it well.
+Remember also that a catapult can only ever either move or attack during a
+turn, never do both.
+
+------------------------------------------------------------------------------
+   Using Wyverns
+------------------------------------------------------------------------------
+
+Wyverns are extremely mobile and strong in attack and defence. They are,
+however, vulnerable against archers and other wyverns. Wyverns are best slain
+by using a combination of archers, wyverns and a catapult. Wyverns are best
+protected by keeping them out of range of enemy archer attacks.
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                               07. Walkthrough               [WALKT]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+The kingdom of Thorn is divided. Betrayed by his own twin brother Valadorn.
+King Galamarhas fled into the borderlands of the east. Only the Blue guard,
+Galamar's personal troops, have remained loyal and stand ready to reclaim the
+land...
+
+Your soldiers are tired of the battle they fought last night, get to the
+abandoned castle to the south east.
+
+------------------------------------------------------------------------------
+                             MISSION 1 - REGROUP
+
+         King Galamar must occupy castle, keep 75% of troops alive.
+
+         Your troops         King, Soldier (2), Archer
+        Enemy troops         Soldier (2)
+------------------------------------------------------------------------------
+
+Well nothing you can do at the moment, this is the tutorial, no enemies are
+located on the map. Just head to the castle with the king. Oh wait, as soon as
+you try to cross the bridge two soldiers of the Red Legion appear. Make sure
+the king doesn't die, and kill the stupid guys! The first soldier will proably
+be killed as the Red Legion can attack first, the battle system is similar to
+Advance wars, one soldier unit exists of 10 soldiers, based on their attack
+some of the other unit's troops will be killed too. Also be careful because
+the enemy can cross the river not only the bridge. Put your soldier in the
+front row along with your king, the archer should be in the second one.
+Don't worry about the King, he's got enough defense. The only thing left to do
+is lead the king into the castle and select occupy.
+
+                               MISSION COMPLETE
+
+Well, this one battle isn't enough to get back Galamar's kingdom, well duh!
+Else the game would be a little too short. Your forces are going to a village
+to have a rest but, as suspected, Red Legion forces show up to make some
+trouble!
+
+------------------------------------------------------------------------------
+                             MISSION 2 - FRIENDS AND ENEMIES
+
+    Occupy the castle and villages, produce at least one new unit of troops.
+
+         Your troops         King, Soldier (2), Archer, Lizard (2)
+        Enemy troops         Spider (3)
+------------------------------------------------------------------------------
+
+A reminder for that you occupied a building already is that it changes color.
+First, let's move your force east, occupy the first two buildings.
+Occupied buildings give gold so the King can buy new recruits and have the
+ability to heal soldiers. Oh this game is sooooo Advance Wars-like!
+
+Continue by capturing the 3 remaining buildings on the map, when you've done
+that, two lizards will come out of the castle and inform you that spiders are
+attacking their forces in the woods to the left. On your battlefield three
+will appear. Don't rush to them, but attack them in a group as they have a
+high attack, and they could kill you easily. Keep the king on the castle, and
+use the money from the buildings you've captured to create some new units.
+It's recommend you buy lizards as they can form a wall on the water for your
+archer and soldiers who can attack them from above and below.
+
+                               MISSION COMPLETE
+
+Now the lizards are on our side let's head to the wizards of the Grey Tower.
+As soon as you head west the bridge collapses, it's a trap of that creep
+Valadorn! Find another way!
+
+------------------------------------------------------------------------------
+                             MISSION 3 - ESCORT THE LIZARD CHIEF
+
+               Galamar and the lizard chief must reach the Grey Tower.
+
+         Your troops         King, Soldier (2), Archer, Lizard Chief
+        Enemy troops         Spider, Wizard, Archer, Soldier (2), Skeleton
+------------------------------------------------------------------------------
+
+You're outnumbered! quickly head north but form a group in the middle,
+the enemies will come down, and the spider from the left will come over the
+water. Use your lizard to attack from the water. The soldiers on land and the
+archer in the second row. When the enemies from the north are dead, wait for
+the spider to reach your troops. Because those are on the water their movement
+is limited, wait for them to be in range and attack them with all your forces.
+Now head left and defeat the wizard. Occupy the tower with the King to win
+this battle.
+
+                               MISSION COMPLETE
+
+Maybe your soldiers thought they could rest for a while in the grey tower but
+nope, a messenger told the King there is an suprise attack on
+the city of Var Telan. So prepare for another battle.
+
+------------------------------------------------------------------------------
+                             MISSION 4 - REINFORCEMENTS
+
+                      Save the city: destroy all enemy units!
+
+         Your troops         King, Soldier , Archer, Lizard, Wizard, Wisp
+        Enemy troops         Catapult, Spider, Wisp, Soldier, Archer, Wizard
+                             Golem, Valadorn
+------------------------------------------------------------------------------
+
+First, use your soldier to occupy the nearby building. There are several
+things you can do now, I waited for the enemy troops to come to me and attack
+them with all my forces while the king bought new units. But you have to
+be careful of the catapult, it's really a pain in the ass. And to make it
+even worse, the King's evil brother shows up, yes! He turned the city against
+you and is ready to defeat you once and for all! Now you have a wizard you
+don't have to fear dead of your troops because they can raise them into
+skeletons which are much stronger than your current troops. But on the other
+hand you should hurry because Valadorn can also buy units! Make an army and
+capture as much buildings as you can so Valadorn doesn't get money from them
+anymore. Defeat Valadorn and you will win the battle.
+
+                               MISSION COMPLETE
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                                08. Game Script              [SCRPT]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+The kingdom of Thorn is divided. Betrayed by his own twin brother Valadorn.
+King Galamar has fled into the borderlands of the east. Only the Blue guard,
+Galamar's personal troops, have remained loyal and stand ready to reclaim the
+land...
+
+Sire, your troops are weary after last night's battle. It would be wise to
+regroup at the abandoned castle.
+
+Sound advice, captain. Ready the troops - we should not let the enemy catch us
+unprepared.
+
+Valadorn's army should be easy to spot with their red uniforms.
+
+His Red legion must know where we are! Quickly, protect the king!
+
+King Galamar has survived Valadorn's attack. However, before Galamar can try
+to reclaim his kingdom he must firt strengthen his forces. TO the north a
+village where his troops can rest, and perhaps find some new recruits.
+
+Forward, troops. We can rest once we reach the village.
+
+A scout of the Lizard people of the north are under attack
+
+Then we must act quickly! The lizard chief is an old ally, and he will be sure
+to help us if we can save him.
+
+Sire, these lizards bring news from their village. They are under attack from
+forest spiders!
+
+Spiders? Then we will have to use the terrain to our  advantage - rushing to
+attack would be foolish.
+
+Be careful your majesty - the spiders attack is poisonous!
+
+Lizards are amphibious, giving them increased movement and defence when in
+water.
+
+A spider attack is poisonous. A poisoned unit is slow and weak for its next
+turn.
+
+The lizard chief agrees to join Galamar's forces. Now Galamar's thoughts turn
+to the wizards of the Grey Tower. If the lizard chief can persuade them to
+help, their magic would be a great asset to his growing forces.
+
+Sire, the bridge has been destroyed!
+
+Valadorn must be expecting us - we must find another way across. This could be
+a trap.
+
+Troops! Keep your eyes open and protect the lizard chief at all cost.
+
+Having reached the Grey Tower, the High Wizard agres to help Galamar.
+However, Galamar's troops have no time to rest, as a message arrives from the
+nearby city of Var Telan, telling of a suprise attack by Valadorn's Red Legion
+
+Your majesty, the Red legion are approaching from the South: we had better
+move quickly!
+
+What is this treachery! The city has turned against us!
+
+Ha ha ha! As predictable as ever, brother! I have you now!
+
+  --------------------------------------------------------------------------
+ /                                                                          \
+|                                 09. Credits                 [CREDS]        |
+ \                                                                          /
+  --------------------------------------------------------------------------
+
+Thanks go to:
+
+CJayC.................For the same as always
+You...................For reading
+Macrospace............For some pretty good games (even Square-Enix ones!)
+
+Thanks for reading!
+
+- Devon Kerkhove

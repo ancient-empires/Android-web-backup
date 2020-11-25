@@ -1,0 +1,18 @@
+.create-map .square {
+	width: 32px;
+	height: 32px;
+	background-color: rgba(255, 255, 255, 0.5);
+	background-size: cover;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+
+.buttons-wrapper {
+	position: fixed;
+	bottom: 20px;
+}
+
+.set-active-paint{
+	padding: 10px;
+	float: left;
+}

@@ -1,0 +1,12 @@
+.android .smoke-wrapper {
+	/*display: none;*/
+}
+
+.android .unit-image,
+.android .active-square-mark,
+.android .unit-under-attack,
+.android .raise-skeleton {
+	/*-webkit-animation: none;*/
+	/*animation: none;*/
+}
+
