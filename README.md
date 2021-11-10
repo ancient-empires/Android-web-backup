@@ -20,14 +20,29 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
 1. **Install Node.js.**
 
     You may visit https://nodejs.org/en/download/ to download and install the Node.js that is suitable for your operating system.
-    * For example, in Ubuntu, the most convenient version is the snap version, which can be installed using ```sudo snap install node --classic```.
+    * For example, in Ubuntu, the most convenient version is the snap version, which can be installed using
+        ```shell
+        sudo snap install node --classic
+        ```
 2. **Install NPM packages.**
 
-    You may run `npm install` in this directory to install all the NPM packages needed.
+    You may run
+    ```shell
+    npm install
+    ```
+    in this directory to install all the NPM packages needed.
 3. **Run HTTP server.**
 
-    Run `npx http-server -c-1` to start the server.
-    * `-c-1` means disable caching.
+    * For Ancient Empires 1, run:
+        ```shell
+        npx http-server AE1/www -c-1
+        ```
+    * For Ancient Empires 2, run:
+        ```shell
+        npx http-server AE2/www -c-1
+        ```
+
+    Here `-c-1` disables caching.
 
     After starting the server, there will be a list of servers available in the console, such as http://127.0.0.1:8080 or http://100.65.0.235:8080.
     * In order to save your progress, you must launch the game using the *same server address* every time.
