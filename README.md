@@ -44,7 +44,7 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
 
     Here `-c-1` disables caching.
 
-    After starting the server, there will be a list of servers available in the console, such as http://127.0.0.1:8080 or http://100.65.0.235:8080.
+    After starting the server, there will be a list of servers available in the console, such as http://127.0.0.1:8080 (same on every computer) or http://100.65.0.235:8080 (may be different across different computers).
     * In order to save your progress, you must launch the game using the *same server address* every time.
 4. **Start browser.**
 
