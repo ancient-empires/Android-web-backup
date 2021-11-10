@@ -52,4 +52,4 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
 
     Then click on "**User-Agent Switcher and Manager**", select one of the Android user agents.
 
-    After that, copy and paste the server address you saw in the console to launch the game.
+    After that, copy and paste the server address you saw in the console into the browser address bar to launch the game.
