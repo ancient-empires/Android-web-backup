@@ -35,11 +35,11 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
 
     * For Ancient Empires 1, run:
         ```shell
-        npx http-server AE1/www -c-1
+        npm run AE1
         ```
     * For Ancient Empires 2, run:
         ```shell
-        npx http-server AE2/www -c-1
+        npm run AE2
         ```
 
     Here `-c-1` disables caching.
