@@ -33,6 +33,7 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
     in this directory to install all the NPM packages needed.
 3. **Run HTTP server.**
 
+    The two scripts below use the [`http-server`](https://npmjs.com/package/http-server) package.
     * For Ancient Empires 1, run:
         ```shell
         npm run AE1
@@ -41,8 +42,6 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
         ```shell
         npm run AE2
         ```
-
-    Here `-c-1` disables caching.
 
     After starting the server, there will be a list of servers available in the console, such as http://127.0.0.1:8080 (same on every computer) or http://100.65.0.235:8080 (may be different across different computers).
     * In order to save your progress, you must launch the game using the *same server address* every time.
