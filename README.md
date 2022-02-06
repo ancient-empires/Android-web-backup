@@ -45,8 +45,11 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
         npm run AE2
         ```
 
-    After starting the server, there will be a list of servers available in the console, such as http://127.0.0.1:8080 (same on every computer) or http://100.65.0.235:8080 (may be different across different computers).
-    * In order to save your progress, you must launch the game using the *same server address* every time.
+    After starting the server, there will be a list of servers available as shown in the console.
+    * https://127.0.0.1:8080 refers to localhost. *You are advised to use this address to start the game.*
+    * If you have connected to WiFi or Ethernet to access the Internet, the IP address of your PC will also be displayed in the list. *However these addresses are not recommended for use as they are unstable.*
+    * In order to save your progress, you must launch the game using the **same server address and port number** every time.
+    * If https://127.0.0.1:8080 is occupied, the server will be started on port 8081, 8082, …, etc. But you will not retrieve your existing progress. *So it is recommended that you ensure that the port 8080 on your PC is ready for use.*
 4. **Start browser to play the game.**
 
     Open Google Chrome.
