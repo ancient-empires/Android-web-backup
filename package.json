@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "AE": "npx http-server -c-1",
     "AE1": "npx http-server -c-1 AE1/www",
     "AE2": "npx http-server -c-1 AE2/www"
   },
