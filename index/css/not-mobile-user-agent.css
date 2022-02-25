@@ -1,4 +1,10 @@
-.not-mobile-user-agent__header {
-    font-size: 28px;
-    margin: 0.5em 0;
+.not-mobile-user-agent__popup {
+    text-align: center;
+}
+
+.not-mobile-user-agent__setup-steps {
+    max-width: 600px;
+    margin: auto;
+
+    text-align: start;
 }

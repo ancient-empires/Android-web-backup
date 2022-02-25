@@ -49,10 +49,33 @@
 
     <!-- Popup if the user agent is not mobile -->
     <div id="not-mobile-user-agent" class="full-page-cover no-show">
-        <div class="full-page-cover__popup">
+        <div class="full-page-cover__popup not-mobile-user-agent__popup">
             <h1 class="full-page-cover__popup-header">Hmm… Seems like you are not running the game using a mobile user
                 agent.
             </h1>
+
+            <h2 class="full-page-cover__popup-subheader">How do I set it up?</h2>
+
+            <ol class="not-mobile-user-agent__setup-steps">
+                <li>Make sure that you are running <a href="https://chrome.com" target="_blank">Google Chrome</a>.</li>
+                <li>Install <a
+                        href="https://chrome.google.com/webstore/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg"
+                        target="_blank"><strong>User Agent Switcher and Manager</strong></a> from the Google Chrome Web
+                    Store.</li>
+                <li>Open <strong>User Agent Switcher and Manager</strong>, select <strong>Chrome</strong> as the
+                    browser, and select either <strong>Android</strong> or <strong>iOS</strong> as the platform.</li>
+                <li>Open <strong>User Agent Switcher and Manager</strong>, select <strong>Chrome</strong> as the
+                    browser, and select either <strong>Android</strong> or <strong>iOS</strong> as the platform.</li>
+                <li>Click on "<strong>Apply (active window)</strong>" or "<strong>Apply (all windows)</strong>" to
+                    activate the mobile user agent.
+                    <p>
+                        <img class="screenshot" src="index/images/user-agent-switcher.png"
+                            alt="User Agent Switcher screenshot" />
+                    </p>
+                </li>
+                <li><a href=".">Refresh this page</a>. If you don't see this popup showing up again, then you are done!
+                </li>
+            </ol>
         </div>
     </div>
 

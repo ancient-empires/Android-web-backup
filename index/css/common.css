@@ -3,3 +3,7 @@
 .no-show {
     display: none;
 }
+
+.screenshot {
+    max-width: 100%;
+}

@@ -24,6 +24,13 @@ time, mark, audio, video {
     vertical-align: baseline;
     box-sizing: border-box;
 }
+ol, ul {
+    padding-inline-start: 2em;
+}
+li {
+    padding-block: 0.25em;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -35,9 +42,6 @@ html {
 }
 body {
     line-height: 1;
-}
-ol, ul {
-    list-style: none;
 }
 blockquote, q {
     quotes: none;

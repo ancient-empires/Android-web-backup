@@ -16,10 +16,10 @@ const checkWebSqlSupport = () => {
 }
 
 const isMobile = () => {
-    const userAgent = window.navigator.userAgent;
-
     const ANDROID_USER_AGENT = /Android/;
     const IOS_USER_AGENT = /CriOS/;
+
+    const userAgent = window.navigator.userAgent;
 
     return Boolean(userAgent.match(ANDROID_USER_AGENT) || userAgent.match(IOS_USER_AGENT));
 }
