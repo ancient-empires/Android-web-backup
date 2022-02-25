@@ -1,14 +1,14 @@
 import { NO_SHOW } from "./common_classes.js";
 
 const WEB_SQL_UNSUPPORTED_COVER_ID = "web-sql-unsupported";
-const NOT_MOBILE_COVER_ID = "not-mobile-user-agent";
+const NOT_MOBILE_USER_AGENT_ID = "not-mobile-user-agent";
 
 const hasWebSqlSupport = () => Boolean(window.openDatabase);
 
 const checkWebSqlSupport = () => {
     if (!hasWebSqlSupport()) {
         const cover = document.getElementById(WEB_SQL_UNSUPPORTED_COVER_ID);
-        cover.classList.remove(NO_SHOW);
+        cover.setAttribute("open", true);
 
         return false;
     }
@@ -26,8 +26,8 @@ const isMobile = () => {
 
 const checkMobileUserAgent = () => {
     if (!isMobile()) {
-        const cover = document.getElementById(NOT_MOBILE_COVER_ID);
-        cover.classList.remove(NO_SHOW);
+        const cover = document.getElementById(NOT_MOBILE_USER_AGENT_ID);
+        cover.setAttribute("open", true);
 
         return false;
     }

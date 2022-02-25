@@ -1,7 +1,2 @@
 @import url("common.css");
-
-@import url("full-page-cover.css");
-
-.no-show {
-    display: none;
-}
+@import url("full-page-popup.css");

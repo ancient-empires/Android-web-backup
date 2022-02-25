@@ -1,19 +1,19 @@
 @import url("not-mobile-user-agent.css");
 @import url("web-sql-unsupported.css");
 
-.full-page-cover {
+.full-page-popup {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    overflow: auto;
     padding: 2em;
+    overflow: auto;
 
     background-color: rgba(0, 0, 0, 80%);
 }
 
-.full-page-cover__popup {
+.full-page-popup__content {
     width: 100%;
     max-width: 800px;
     height: 100%;
@@ -24,13 +24,13 @@
     background-color: lightgray;
 }
 
-.full-page-cover__popup-header {
+.full-page-popup__header {
     font-size: 32px;
     margin: 0.5em 0;
     text-align: center;
 }
 
-.full-page-cover__popup-subheader {
+.full-page-popup__subheader {
     font-size: 24px;
     margin: 1em 0;
 }
