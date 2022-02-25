@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Game</title>
+    <link rel="stylesheet" href="index/css/index.css" />
+</head>
+
+<body>
+    <main>
+        <ul>
+            <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
+            <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
+        </ul>
+    </main>
+
+    <!-- Popup if Web SQL is not supported -->
+    <div id="web-sql-unsupported" class="full-page-cover no-show">
+        <div class="full-page-cover__popup web-sql-unsupported__popup">
+            <h1 class="full-page-cover__popup-header">Unfortunately, your browser does not support Web SQL to run the
+                games.
+            </h1>
+
+            <h2 class="full-page-cover__popup-subheader">What can I do?</h2>
+            <div class="web-sql-unsupported__available-actions">
+                <a class="web-sql-unsupported__action-link" target="_blank" href="https://chrome.com">
+                    <img class="web-sql-unsupported__action-icon" alt="Google Chrome logo"
+                        src="index/icons/chrome-logo.svg" class="web-sql-unsupported__action-text" /><span
+                        class="web-sql-unsupported__action-text"><strong>Download
+                            Google Chrome <em>(with Web
+                                SQL
+                                support)</em></strong></span>
+                </a>
+                <a class="web-sql-unsupported__action-link" target="_blank" href="https://www.w3.org/TR/webdatabase/">
+                    <img class="web-sql-unsupported__action-icon" alt="W3C logo" src="index/icons/w3c-home.svg" />
+                    <span class="web-sql-unsupported__action-text">Learn about the W3C standard for Web SQL
+                        <em>(deprecated)</em></span>
+                </a>
+                <a class="web-sql-unsupported__action-link" target="_blank" href="https://caniuse.com/sql-storage">
+                    <img class="web-sql-unsupported__action-icon" alt="Can I use" src="index/icons/can-i-use.png" />
+                    <span class="web-sql-unsupported__action-text">In which browser can I use Web SQL?</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup if the user agent is not mobile -->
+    <div id="not-mobile-user-agent" class="full-page-cover no-show">
+        <div class="full-page-cover__popup">
+            <h1 class="full-page-cover__popup-header">Hmm… Seems like you are not running the game using a mobile user
+                agent.
+            </h1>
+        </div>
+    </div>
+
+    <script type="module" src="index/js/index.js"></script>
+</body>
+
+</html>
