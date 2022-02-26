@@ -28,7 +28,7 @@
 }
 
 .web-sql-unsupported__action-link:hover, .web-sql-unsupported__action-link:focus {
-    background-color: beige;
+    background-color: azure;
 }
 
 .web-sql-unsupported__action-icon {
