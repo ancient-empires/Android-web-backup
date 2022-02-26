@@ -11,17 +11,25 @@ const browserSupportProxy = new Proxy({
                 default:
                     return false;
                 case "hasWebSqlSupport":
-                    if (!value) {
-                        const cover = document.getElementById(WEB_SQL_UNSUPPORTED_COVER_ID);
-                        cover.setAttribute("open", true);
+                    {
+                        const dialog = document.getElementById(WEB_SQL_UNSUPPORTED_COVER_ID);
+                        if (!value) {
+                            dialog.setAttribute("open", true);
+                        } else {
+                            dialog.removeAttribute("open");
+                        }
+                        return true;
                     }
-                    return true;
                 case "isMobile":
-                    if (!value) {
-                        const cover = document.getElementById(NOT_MOBILE_USER_AGENT_ID);
-                        cover.setAttribute("open", true);
+                    {
+                        const dialog = document.getElementById(NOT_MOBILE_USER_AGENT_ID);
+                        if (!value) {
+                            dialog.setAttribute("open", true);
+                        } else {
+                            dialog.removeAttribute("open");
+                        }
+                        return true;
                     }
-                    return true;
             }
         })() && (() => {
             target[prop] = value;
