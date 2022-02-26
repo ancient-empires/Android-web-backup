@@ -1,5 +1,3 @@
-import { NO_SHOW } from "./common_classes.js";
-
 const WEB_SQL_UNSUPPORTED_COVER_ID = "web-sql-unsupported";
 const NOT_MOBILE_USER_AGENT_ID = "not-mobile-user-agent";
 
