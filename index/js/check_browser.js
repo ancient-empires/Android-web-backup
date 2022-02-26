@@ -17,8 +17,8 @@ const browserSupportProxy = new Proxy({
                         } else {
                             dialog.removeAttribute("open");
                         }
-                        return true;
                     }
+                    return true;
                 case "isMobile":
                     {
                         const dialog = document.getElementById(NOT_MOBILE_USER_AGENT_DIALOG_ID);
@@ -27,8 +27,8 @@ const browserSupportProxy = new Proxy({
                         } else {
                             dialog.removeAttribute("open");
                         }
-                        return true;
                     }
+                    return true;
             }
         })() && (() => {
             target[prop] = value;
