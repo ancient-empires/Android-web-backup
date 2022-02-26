@@ -1,5 +1,4 @@
-const WEB_SQL_UNSUPPORTED_COVER_ID = "web-sql-unsupported";
-const NOT_MOBILE_USER_AGENT_ID = "not-mobile-user-agent";
+import { WEB_SQL_UNSUPPORTED_COVER_ID, NOT_MOBILE_USER_AGENT_ID } from "./key_element_ids.js";
 
 const browserSupportProxy = new Proxy({
     "hasWebSqlSupport": false,
