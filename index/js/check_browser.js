@@ -6,29 +6,35 @@ const browserSupportProxy = new Proxy({
     "isMobile": false
 }, {
     set: (target, prop, value) => {
-        switch (prop) {
-            default:
-                return false;
-            case "hasWebSqlSupport":
-                if (!value) {
-                    const cover = document.getElementById(WEB_SQL_UNSUPPORTED_COVER_ID);
-                    cover.setAttribute("open", true);
-                }
-                return true;
-            case "isMobile":
-                if (!value) {
-                    const cover = document.getElementById(NOT_MOBILE_USER_AGENT_ID);
-                    cover.setAttribute("open", true);
-                }
-                return true;
-        }
+        return (() => {
+            switch (prop) {
+                default:
+                    return false;
+                case "hasWebSqlSupport":
+                    if (!value) {
+                        const cover = document.getElementById(WEB_SQL_UNSUPPORTED_COVER_ID);
+                        cover.setAttribute("open", true);
+                    }
+                    return true;
+                case "isMobile":
+                    if (!value) {
+                        const cover = document.getElementById(NOT_MOBILE_USER_AGENT_ID);
+                        cover.setAttribute("open", true);
+                    }
+                    return true;
+            }
+        })() && (() => {
+            target[prop] = value;
+            return true;
+        })();
     }
 });
 
 const hasWebSqlSupport = () => Boolean(window.openDatabase);
 
 const checkWebSqlSupport = () => {
-    return browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
+    browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
+    return browserSupportProxy.hasWebSqlSupport;
 }
 
 const isMobile = () => {
@@ -41,7 +47,8 @@ const isMobile = () => {
 }
 
 const checkMobileUserAgent = () => {
-    return browserSupportProxy.isMobile = isMobile();
+    browserSupportProxy.isMobile = isMobile();
+    return browserSupportProxy.isMobile;
 }
 
 const checkBrowserSupport = () => {
