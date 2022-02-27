@@ -42,9 +42,3 @@ ol, ul {
 li {
     padding-block: 0.25em;
 }
-
-dialog {
-    width: auto;
-    height: auto;
-    border: none;
-}

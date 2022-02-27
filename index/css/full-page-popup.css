@@ -1,7 +1,7 @@
 @import url("not-mobile-user-agent.css");
 @import url("web-sql-unsupported.css");
 
-.full-page-popup {
+.full-page-popup__backdrop {
     padding: 2em;
 
     background-color: rgba(0, 0, 0, 80%);
