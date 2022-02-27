@@ -35,10 +35,9 @@ h6 {
 }
 
 ol, ul {
-    padding-block: 0.5em;
-    padding-inline-start: 2em;
+    padding: 0.5em 0 0.5em 2em;
 }
 
 li {
-    padding-block: 0.25em;
+    padding: 0.25em 0;
 }
