@@ -1,6 +1,12 @@
 @import url("colors.css");
 
 :root {
+    --action-list-width: 90%;
+    --action-list-max-width: 600px;
+    --action-list-row-gap: 0.5em;
+
+    --action-link-padding: 0.5em;
+    --action-link-column-gap: 1em;
     --action-icon-size: 64px;
 }
 
@@ -13,19 +19,20 @@
 }
 
 .web-sql-unsupported__available-actions {
-    max-width: 600px;
+    width: var(--action-list-width);
+    max-width: var(--action-list-max-width);
     margin: auto;
 
     display: grid;
-    grid-row-gap: 0.5em;
+    grid-row-gap: var(--action-list-row-gap);
 }
 
 .web-sql-unsupported__action-link {
-    padding: 0.5em;
+    padding: var(--action-link-padding);
 
     display: grid;
     grid-template-columns: var(--action-icon-size) auto;
-    grid-column-gap: 1em;
+    grid-column-gap: var(--action-link-column-gap);
     align-items: center;
 
     background-color: var(--link-tile-background-color);
@@ -38,7 +45,7 @@
 }
 
 .web-sql-unsupported__action-icon {
-    width: 100%;
+    width: var(--action-icon-size);
     height: var(--action-icon-size);
 }
 
