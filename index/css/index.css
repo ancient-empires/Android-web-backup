@@ -2,6 +2,18 @@
 @import url("full-page/full-page.css");
 @import url("main-ui/main-ui.css");
 
+html {
+    background-color: var(--semi-transparent-primary-background-color);
+    background-image: url("../images/home.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+
+    color: var(--primary-text-color);
+}
+
 body {
     position: relative;
 }
