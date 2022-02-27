@@ -18,6 +18,7 @@
     overflow: auto;
 
     background-color: var(--full-page-popup-background-color);
+    color: var(--full-page-popup-text-color);
 }
 
 .full-page-popup__header {
