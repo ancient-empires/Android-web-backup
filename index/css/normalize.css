@@ -46,3 +46,13 @@ ol, ul {
 li {
     padding: 0.25em 0;
 }
+
+a:link {
+    color: var(--primary-light-link-color);
+}
+a:visited {
+    color: var(--primary-light-link-visited-color);
+}
+a:hover {
+    color: var(--primary-light-link-hover-color);
+}

@@ -17,3 +17,13 @@ html {
 body {
     position: relative;
 }
+
+a:link {
+    color: var(--primary-dark-link-color);
+}
+a:visited {
+    color: var(--primary-dark-link-visited-color);
+}
+a:hover {
+    color: var(--primary-dark-link-hover-color);
+}
