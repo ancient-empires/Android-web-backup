@@ -1,4 +1,10 @@
 :root {
+    --primary-background-color: white;
+    --primary-text-color: black;
+
+    --full-page-popup-backdrop-background-color: rgba(0, 0, 0, 80%);
+    --full-page-popup-background-color: lightgray;
+
     --link-tile-background-color: white;
     --link-tile-hover-background-color: azure;
 }
