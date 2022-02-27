@@ -1,7 +1,6 @@
-@import url("common.css");
-@import url("full-page.css");
+@import url("full-page-popup.css");
 
-body {
+.full-page {
     position: fixed;
     top: 0;
     bottom: 0;
