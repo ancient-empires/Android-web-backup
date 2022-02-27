@@ -4,7 +4,7 @@
 }
 
 .not-mobile-user-agent__backdrop {
-    z-index: -2;
+    z-index: 1;
 }
 
 .not-mobile-user-agent__content {
