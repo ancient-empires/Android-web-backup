@@ -3,7 +3,7 @@
 @import url("main-ui/main-ui.css");
 
 html {
-    background-color: var(--semi-transparent-primary-background-color);
+    background-color: var(--semi-transparent-dark-background-color);
     background-image: url("../images/home.jpg");
     background-size: cover;
     background-position: center;

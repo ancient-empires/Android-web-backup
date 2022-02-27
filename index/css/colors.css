@@ -1,12 +1,12 @@
 :root {
     --primary-background-color: white;
-    --semi-transparent-primary-background-color: rgba(255, 255, 255, 80%);
+    --semi-transparent-dark-background-color: rgba(0, 0, 0, 80%);
     --primary-text-color: black;
 
-    --full-page-popup-backdrop-background-color: rgba(0, 0, 0, 80%);
-    --full-page-popup-background-color: lightgray;
+    --full-page-popup-backdrop-background-color: var(----semi-transparent-dark-background-color);
+    --full-page-popup-background-color: #dedede;
 
     --link-tile-background-color: white;
-    --link-tile-hover-background-color: azure;
+    --link-tile-hover-background-color: #bbb;
     --link-tile-text-color: black;
 }
