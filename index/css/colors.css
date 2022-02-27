@@ -1,12 +1,27 @@
 :root {
-    --primary-background-color: white;
+    /* Light theme colors */
+    --primary-light-background-color: white;
+    --primary-light-text-color: black;
+    --semi-transparent-light-background-color: rgba(255, 255, 255, 80%);
+    --primary-light-link-color: blue;
+    --primary-light-hover-color: red;
+    --primary-light-link-visited-color: purple;
+
+    /* Dark theme colors */
+    --primary-dark-background-color: black;
+    --primary-dark-text-color: white;
     --semi-transparent-dark-background-color: rgba(0, 0, 0, 80%);
-    --primary-text-color: black;
+    --primary-dark-link-color: skyblue;
+    --primary-dark-link-hover-color: yellow;
+    --primary-dark-link-visited-color: magenta;
 
-    --full-page-popup-backdrop-background-color: var(----semi-transparent-dark-background-color);
+    /* Full page popup colors */
+    --full-page-popup-backdrop-background-color: var(--semi-transparent-dark-background-color);
     --full-page-popup-background-color: #dedede;
+    --full-page-popup-text-color: var(--primary-light-text-color);
 
+    /* Link tile colors */
     --link-tile-background-color: white;
     --link-tile-hover-background-color: #bbb;
-    --link-tile-text-color: black;
+    --link-tile-text-color: var(--primary-light-text-color) ;
 }
