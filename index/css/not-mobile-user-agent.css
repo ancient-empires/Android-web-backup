@@ -1,3 +1,8 @@
+:root {
+    --setup-steps-width: 90%;
+    --setup-steps-max-width: 600px;
+}
+
 .not-mobile-user-agent__backdrop {
     z-index: -2;
 }
@@ -7,7 +12,8 @@
 }
 
 .not-mobile-user-agent__setup-steps {
-    max-width: 600px;
+    width: var(--setup-steps-width);
+    max-width: var(--setup-steps-max-width);
     margin: auto;
 
     text-align: start;
