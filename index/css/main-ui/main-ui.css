@@ -1,5 +1,6 @@
 @import url("../colors.css");
 
+@import url("main-ui__home-tab.css");
 @import url("main-ui__game-iframe.css");
 
 :root {
