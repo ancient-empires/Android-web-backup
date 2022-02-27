@@ -4,21 +4,21 @@ const mainUiProxy = new Proxy({
     "showMainUi": false
 }, {
     set: (target, prop, value) => {
-        return (() => {
-            switch (prop) {
-                default:
-                    return false;
-                case "showMainUi":
-                    {
-                        const mainUi = document.getElementById(MAIN_UI_ID);
-                        mainUi.hidden = !value;
-                    }
-                    return true;
-            }
-        })() && (() => {
-            target[prop] = value;
-            return true;
-        })();
+        return Reflect.has(target, prop)
+            && Reflect.set(target, prop, value)
+            && (() => {
+                switch (prop) {
+                    default:
+                        break;
+                    case "showMainUi":
+                        {
+                            const mainUi = document.getElementById(MAIN_UI_ID);
+                            mainUi.hidden = !value;
+                        }
+                        break;
+                }
+                return true;
+            })();
     }
 });
 

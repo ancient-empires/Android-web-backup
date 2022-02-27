@@ -5,35 +5,35 @@ const browserSupportProxy = new Proxy({
     "isMobile": false
 }, {
     set: (target, prop, value) => {
-        return (() => {
-            switch (prop) {
-                default:
-                    return false;
-                case "hasWebSqlSupport":
-                    {
-                        const dialog = document.getElementById(WEB_SQL_UNSUPPORTED_DIALOG_ID);
-                        if (!value) {
-                            dialog.setAttribute("open", true);
-                        } else {
-                            dialog.removeAttribute("open");
+        return Reflect.has(target, prop)
+            && Reflect.set(target, prop, value)
+            && (() => {
+                switch (prop) {
+                    default:
+                        break;
+                    case "hasWebSqlSupport":
+                        {
+                            const dialog = document.getElementById(WEB_SQL_UNSUPPORTED_DIALOG_ID);
+                            if (!value) {
+                                dialog.setAttribute("open", true);
+                            } else {
+                                dialog.removeAttribute("open");
+                            }
                         }
-                    }
-                    return true;
-                case "isMobile":
-                    {
-                        const dialog = document.getElementById(NOT_MOBILE_USER_AGENT_DIALOG_ID);
-                        if (!value) {
-                            dialog.setAttribute("open", true);
-                        } else {
-                            dialog.removeAttribute("open");
+                        break;
+                    case "isMobile":
+                        {
+                            const dialog = document.getElementById(NOT_MOBILE_USER_AGENT_DIALOG_ID);
+                            if (!value) {
+                                dialog.setAttribute("open", true);
+                            } else {
+                                dialog.removeAttribute("open");
+                            }
                         }
-                    }
-                    return true;
-            }
-        })() && (() => {
-            target[prop] = value;
-            return true;
-        })();
+                        break;
+                }
+                return true;
+            })();
     }
 });
 
