@@ -1,7 +1,7 @@
-import { MAIN_UI_ID } from "./key_element_ids.js";
+import { MAIN_ID } from "./key_element_ids.js";
 
 const mainUiProxy = new Proxy({
-    "showMainUi": false
+    "showMainElement": false
 }, {
     set: (target, prop, value) => {
         return Reflect.has(target, prop)
@@ -10,10 +10,10 @@ const mainUiProxy = new Proxy({
                 switch (prop) {
                     default:
                         break;
-                    case "showMainUi":
+                    case "showMainElement":
                         {
-                            const mainUi = document.getElementById(MAIN_UI_ID);
-                            mainUi.hidden = !value;
+                            const mainElement = document.getElementById(MAIN_ID);
+                            mainElement.hidden = !value;
                         }
                         break;
                 }
@@ -23,5 +23,5 @@ const mainUiProxy = new Proxy({
 });
 
 export const setMainUiVisibility = (value) => {
-    mainUiProxy.showMainUi = value;
+    mainUiProxy.showMainElement = value;
 }
