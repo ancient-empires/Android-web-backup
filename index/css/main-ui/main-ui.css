@@ -1,5 +1,3 @@
-@import url("full-page.css");
-
 .main-ui {
     display: grid;
     grid-auto-flow: column;

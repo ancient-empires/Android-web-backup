@@ -1,6 +1,6 @@
 @import url("common.css");
 @import url("full-page/full-page.css");
-@import url("main-ui.css");
+@import url("main-ui/main-ui.css");
 
 body {
     position: relative;
