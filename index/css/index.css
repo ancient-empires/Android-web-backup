@@ -1,12 +1,7 @@
 @import url("common.css");
-@import url("full-page.css");
+@import url("full-page/full-page.css");
 @import url("main-ui.css");
 
 body {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto;
+    position: relative;
 }
