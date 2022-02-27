@@ -1,4 +1,4 @@
-import { WEB_SQL_UNSUPPORTED_DIALOG_ID, NOT_MOBILE_USER_AGENT_DIALOG_ID } from "./key_element_ids.js";
+import { WEB_SQL_UNSUPPORTED_POPUP_ID, NOT_MOBILE_USER_AGENT_POPUP_ID } from "./key_element_ids.js";
 
 const browserSupportProxy = new Proxy({
     "hasWebSqlSupport": false,
@@ -13,22 +13,14 @@ const browserSupportProxy = new Proxy({
                         break;
                     case "hasWebSqlSupport":
                         {
-                            const dialog = document.getElementById(WEB_SQL_UNSUPPORTED_DIALOG_ID);
-                            if (!value) {
-                                dialog.setAttribute("open", true);
-                            } else {
-                                dialog.removeAttribute("open");
-                            }
+                            const popup = document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID);
+                            popup.hidden = Boolean(value);
                         }
                         break;
                     case "isMobile":
                         {
-                            const dialog = document.getElementById(NOT_MOBILE_USER_AGENT_DIALOG_ID);
-                            if (!value) {
-                                dialog.setAttribute("open", true);
-                            } else {
-                                dialog.removeAttribute("open");
-                            }
+                            const popup = document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID);
+                            popup.hidden = Boolean(value);
                         }
                         break;
                 }
