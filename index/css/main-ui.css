@@ -6,6 +6,19 @@
     grid-template-rows: min-content auto;
 }
 
+.main-ui__tab-switcher {
+    grid-row: 1 / 2;
+
+    padding: 0.5em;
+}
+
+.main-ui__tab-content-container {
+    grid-row: 2 / -1;
+
+    height: 100%;
+    overflow: auto;
+}
+
 .main-ui__tab-content {
     padding: 1em;
 }
