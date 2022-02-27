@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 html, body, h1, h2, h3, h4, h5, h6, div, p, ol, ul, li {
     margin: 0;
     padding: 0;
@@ -9,8 +11,8 @@ html {
     font-size: 16px;
     line-height: 1.2;
 
-    background-color: var(--primary-background-color);
-    color: var(--primary-text-color);
+    background-color: var(--primary-light-background-color);
+    color: var(--primary-light-text-color);
 }
 
 h1 {
