@@ -1,3 +1,7 @@
+.not-mobile-user-agent__backdrop {
+    z-index: -2;
+}
+
 .not-mobile-user-agent__content {
     text-align: center;
 }

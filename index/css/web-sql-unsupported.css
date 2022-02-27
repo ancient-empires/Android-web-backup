@@ -4,6 +4,10 @@
     --action-icon-size: 64px;
 }
 
+.web-sql-unsupported__backdrop {
+    z-index: -1;
+}
+
 .web-sql-unsupported__content {
     text-align: center;
 }
