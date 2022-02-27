@@ -1,6 +1,5 @@
 @import url("../colors.css");
 
-@import url("main-ui__home-tab.css");
 @import url("main-ui__game-iframe.css");
 
 :root {
@@ -36,8 +35,6 @@
     z-index: -1;
 
     padding: var(--main-ui-tab-content-padding);
-
-    background-color: var(--primary-background-color);
 }
 
 .main-ui__tab-content--default {
