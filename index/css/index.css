@@ -1,5 +1,6 @@
 @import url("common.css");
 @import url("full-page.css");
+@import url("main-ui.css");
 
 body {
     position: fixed;

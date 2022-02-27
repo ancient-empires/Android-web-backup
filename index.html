@@ -10,12 +10,22 @@
 </head>
 
 <body>
-    <main id="main-ui" hidden>
-        <h1>Welcome to Ancient Empires web version!</h1>
-        <ul>
-            <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
-            <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
-        </ul>
+    <main id="main-ui" class="full-page main-ui" hidden>
+        <div class="main-ui__tab-swicher">
+            <ul>
+                <li>Home</li>
+            </ul>
+        </div>
+        <div class="main-ui__tab-contents">
+            <!-- Home tab-->
+            <div id="main-ui-tab__home" class="main-ui__tab-content">
+                <h1>Welcome to Ancient Empires web version!</h1>
+                <ul>
+                    <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
+                    <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
+                </ul>
+            </div>
+        </div>
     </main>
 
     <!-- Popup if Web SQL is not supported -->
