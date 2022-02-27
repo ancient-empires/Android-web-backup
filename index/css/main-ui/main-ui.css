@@ -1,5 +1,7 @@
 @import url("../colors.css");
 
+@import url("game-iframe.css");
+
 .main-ui {
     display: grid;
     grid-auto-flow: column;
