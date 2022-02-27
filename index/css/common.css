@@ -1,4 +1,5 @@
 @import url("normalize.css");
+@import url("colors.css");
 
 .screenshot {
     max-width: 100%;
