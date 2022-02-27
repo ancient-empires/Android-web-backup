@@ -1,5 +1,6 @@
 :root {
     --primary-background-color: white;
+    --semi-transparent-primary-background-color: rgba(255, 255, 255, 80%);
     --primary-text-color: black;
 
     --full-page-popup-backdrop-background-color: rgba(0, 0, 0, 80%);
@@ -7,4 +8,5 @@
 
     --link-tile-background-color: white;
     --link-tile-hover-background-color: azure;
+    --link-tile-text-color: black;
 }
