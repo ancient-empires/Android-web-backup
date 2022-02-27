@@ -1,3 +1,5 @@
+@import url("../colors.css");
+
 .main-ui {
     display: grid;
     grid-auto-flow: column;
@@ -10,13 +12,20 @@
     padding: 0.5em;
 }
 
-.main-ui__tab-content-container {
+.main-ui__tab-contents {
     grid-row: 2 / -1;
 
+    position: relative;
     height: 100%;
     overflow: auto;
 }
 
 .main-ui__tab-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
     padding: 1em;
+
+    background-color: var(--primary-background-color);
 }
