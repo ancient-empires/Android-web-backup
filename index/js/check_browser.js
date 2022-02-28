@@ -6,7 +6,7 @@ const browserSupportProxy = new Proxy({
 }, {
     set: (target, prop, value) => {
         return Reflect.has(target, prop)
-            && Reflect.set(target, prop, value)
+            && Reflect.set(target, prop, Boolean(value))
             && (() => {
                 switch (prop) {
                     default:
