@@ -1,11 +1,14 @@
 import { FULLSCREEN_SETTINGS_TOGGLE_ID } from "./key_element_ids.js";
+import Observer from "./observer.js";
 
 const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
 
 export const shouldEnterFullScreenOnGameStart = () => Boolean(localStorage.getItem(FULLSCREEN_LOCAL_STORAGE_KEY));
 
 const fullscreenSettingsProxy = new Proxy({
+    /** @type { Set<Observer> } */
     observers: new Set(),
+    /** @type { boolean } */
     enterFullscreenOnGameStart: shouldEnterFullScreenOnGameStart()
 }, {
     set: (target, prop, value) => {
@@ -18,7 +21,7 @@ const fullscreenSettingsProxy = new Proxy({
                     case "enterFullscreenOnGameStart":
                         {
                             target.observers.forEach((observer) => {
-                                observer.receive(value);
+                                observer.receive(Boolean(value));
                             })
                         }
                         break;
@@ -28,16 +31,12 @@ const fullscreenSettingsProxy = new Proxy({
     }
 });
 
-class FullscreenSettingsObserver {
-    receive(value) {
-    }
-}
-
-class FullscreenLocalStorageObserver extends FullscreenSettingsObserver {
+class FullscreenLocalStorageObserver extends Observer {
     constructor() {
         super();
     }
 
+    /** @override */
     receive(value) {
         if (value) {
             localStorage.setItem(FULLSCREEN_LOCAL_STORAGE_KEY, true);
@@ -47,7 +46,7 @@ class FullscreenLocalStorageObserver extends FullscreenSettingsObserver {
     }
 }
 
-class FullscreenCheckboxObserver extends FullscreenSettingsObserver {
+class FullscreenCheckboxObserver extends Observer {
     constructor(checkbox) {
         super();
 
@@ -57,6 +56,7 @@ class FullscreenCheckboxObserver extends FullscreenSettingsObserver {
         checkbox.addEventListener("click", FullscreenCheckboxObserver.clickEventListener);
     }
 
+    /** @override */
     receive(value) {
         this.checkbox.checked = Boolean(value);
     }
