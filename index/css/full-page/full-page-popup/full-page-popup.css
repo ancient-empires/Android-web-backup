@@ -41,3 +41,13 @@
     font-size: 24px;
     margin: 1em 0;
 }
+
+.full-page-popup__content a:link {
+    color: var(--primary-light-link-color);
+}
+.full-page-popup__content a:visited {
+    color: var(--primary-light-link-visited-color);
+}
+.full-page-popup__content a:hover {
+    color: var(--primary-light-link-hover-color);
+}
