@@ -1,36 +1,9 @@
-import { FULLSCREEN_SETTINGS_TOGGLE_ID } from "./key_element_ids.js";
 import Observer from "./observer.js";
 
-const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
-
-export const shouldEnterFullScreenOnGameStart = () => Boolean(localStorage.getItem(FULLSCREEN_LOCAL_STORAGE_KEY));
+export const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
 
 /** @type { Set<Observer> } */
-const fullscreenObservers = new Set();
-
-const fullscreenSettingsProxy = new Proxy({
-    /** @type { boolean } */
-    enterFullscreenOnGameStart: shouldEnterFullScreenOnGameStart()
-}, {
-    set: /** @returns { boolean } */ (target, prop, value) => {
-        return Reflect.has(target, prop)
-            && Reflect.set(target, prop, Boolean(value))
-            && (() => {
-                switch (prop) {
-                    default:
-                        break;
-                    case "enterFullscreenOnGameStart":
-                        {
-                            fullscreenObservers.forEach((observer) => {
-                                observer.receive(Boolean(value));
-                            })
-                        }
-                        break;
-                }
-                return true;
-            })();
-    }
-});
+export const fullscreenObservers = new Set();
 
 class FullscreenLocalStorageObserver extends Observer {
     constructor() {
@@ -45,32 +18,55 @@ class FullscreenLocalStorageObserver extends Observer {
             localStorage.removeItem(FULLSCREEN_LOCAL_STORAGE_KEY);
         }
     }
-}
 
-class FullscreenCheckboxObserver extends Observer {
-    /** @param { HTMLInputElement } checkbox */
-    constructor(checkbox) {
-        super();
-
-        this.checkbox = checkbox;
-
-        checkbox.checked = fullscreenSettingsProxy.enterFullscreenOnGameStart;
-        checkbox.addEventListener("click", FullscreenCheckboxObserver.clickEventListener);
-    }
-
-    /** @override */
-    receive(value) {
-        this.checkbox.checked = Boolean(value);
-    }
-
-    static clickEventListener(e) {
-        fullscreenSettingsProxy.enterFullscreenOnGameStart = e.target.checked;
+    /** @returns { boolean } */
+    static getFullscreenStatus() {
+        return Boolean(localStorage.getItem(FULLSCREEN_LOCAL_STORAGE_KEY));
     }
 }
 
+// add local storage observer to remember if the user opts for starting game on fullscreen
 fullscreenObservers.add(new FullscreenLocalStorageObserver());
-fullscreenObservers.add(new FullscreenCheckboxObserver(document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID)));
 
-const initFullscreenSettings = () => { };
+const fullscreenSettingsProxy = new Proxy({
+    "shouldEnterFullscreenOnGameStart": FullscreenLocalStorageObserver.getFullscreenStatus()
+}, {
+    set: /** @returns { boolean } */ (target, prop, value) => {
+        return Reflect.has(target, prop)
+            && Reflect.set(target, prop, Boolean(value))
+            && (() => {
+                switch (prop) {
+                    default:
+                        break;
+                    case "shouldEnterFullscreenOnGameStart":
+                        {
+                            fullscreenObservers.forEach((observer) => {
+                                observer.receive(Boolean(value));
+                            })
+                        }
+                        break;
+                }
+                return true;
+            })();
+    }
+});
+
+/** @returns { boolean } */
+export const getFullscreenStatus = () => fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart;
+
+/** @param { boolean } value */
+export const setFullscreenStatus = (value) => {
+    fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart = value;
+}
+
+/**
+ * Initialize fullscreen settings with additional observers.
+ * @param { Observer[] additionalObservers }
+ * */
+const initFullscreenSettings = (...additionalObservers) => {
+    additionalObservers.forEach((observer) => {
+        fullscreenObservers.add(observer);
+    });
+};
 
 export default initFullscreenSettings;
