@@ -57,10 +57,7 @@ const browserSupportProxy = new Proxy({
 const hasWebSqlSupport = () => Boolean(window.openDatabase);
 
 /** @returns { boolean } */
-const checkWebSqlSupport = () => {
-    browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
-    return browserSupportProxy.hasWebSqlSupport;
-}
+const checkWebSqlSupport = () => browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
 
 /** @returns { boolean } */
 const isMobile = () => {
@@ -73,14 +70,9 @@ const isMobile = () => {
 }
 
 /** @returns { boolean } */
-const checkMobileUserAgent = () => {
-    browserSupportProxy.isMobile = isMobile();
-    return browserSupportProxy.isMobile;
-}
+const checkMobileUserAgent = () => browserSupportProxy.isMobile = isMobile();
 
 /** @returns { boolean } */
-const checkBrowserSupport = () => {
-    return checkWebSqlSupport() && checkMobileUserAgent();
-};
+const checkBrowserSupport = () => checkWebSqlSupport() && checkMobileUserAgent();
 
 export default checkBrowserSupport;
