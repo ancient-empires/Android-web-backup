@@ -4,7 +4,7 @@ import Observer from "./observer.js";
 const mainElementObservers = new Set();
 
 const mainElementProxy = new Proxy({
-    "showMainElement": false
+    "show": false
 }, {
     set: /** @returns { boolean } */ (target, prop, value) => {
         return Reflect.has(target, prop)
@@ -13,7 +13,7 @@ const mainElementProxy = new Proxy({
                 switch (prop) {
                     default:
                         break;
-                    case "showMainElement":
+                    case "show":
                         {
                             mainElementObservers.forEach((observer) => {
                                 observer.receive(Boolean(value));
@@ -27,7 +27,7 @@ const mainElementProxy = new Proxy({
 });
 
 export const setMainUiVisibility = (value) => {
-    mainElementProxy.showMainElement = Boolean(value);
+    mainElementProxy.show = Boolean(value);
 }
 
 /**
