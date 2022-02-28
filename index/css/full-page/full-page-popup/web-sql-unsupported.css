@@ -34,14 +34,6 @@
     grid-template-columns: var(--action-icon-size) auto;
     grid-column-gap: var(--action-link-column-gap);
     align-items: center;
-
-    background-color: var(--link-tile-background-color);
-    color: inherit;
-    text-decoration: none;
-}
-
-.web-sql-unsupported__action-link:hover, .web-sql-unsupported__action-link:focus {
-    background-color: var(--link-tile-hover-background-color);
 }
 
 .web-sql-unsupported__action-icon {

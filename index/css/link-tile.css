@@ -1,0 +1,13 @@
+@import url("colors.css");
+
+.link-tile {
+    background-color: var(--link-tile-background-color);
+    text-decoration: none;
+}
+.link-tile:hover {
+    background-color: var(--link-tile-hover-background-color);
+}
+
+.link-tile__text {
+    color: var(--link-tile-text-color);
+}
