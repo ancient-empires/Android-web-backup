@@ -5,9 +5,10 @@ const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
 
 export const shouldEnterFullScreenOnGameStart = () => Boolean(localStorage.getItem(FULLSCREEN_LOCAL_STORAGE_KEY));
 
+/** @type { Set<Observer> } */
+const fullscreenObservers = new Set();
+
 const fullscreenSettingsProxy = new Proxy({
-    /** @type { Set<Observer> } */
-    observers: new Set(),
     /** @type { boolean } */
     enterFullscreenOnGameStart: shouldEnterFullScreenOnGameStart()
 }, {
@@ -20,7 +21,7 @@ const fullscreenSettingsProxy = new Proxy({
                         break;
                     case "enterFullscreenOnGameStart":
                         {
-                            target.observers.forEach((observer) => {
+                            fullscreenObservers.forEach((observer) => {
                                 observer.receive(Boolean(value));
                             })
                         }
@@ -66,12 +67,9 @@ class FullscreenCheckboxObserver extends Observer {
     }
 }
 
-const fullscreenLocalStorageObserver = new FullscreenLocalStorageObserver();
-const fullscreenCheckboxObserver = new FullscreenCheckboxObserver(document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID));
+fullscreenObservers.add(new FullscreenLocalStorageObserver());
+fullscreenObservers.add(new FullscreenCheckboxObserver(document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID)));
 
-const initFullscreenSettings = () => {
-    fullscreenSettingsProxy.observers.add(fullscreenLocalStorageObserver);
-    fullscreenSettingsProxy.observers.add(fullscreenCheckboxObserver);
-}
+const initFullscreenSettings = () => { }
 
 export default initFullscreenSettings;
