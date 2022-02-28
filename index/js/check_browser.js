@@ -1,4 +1,34 @@
 import { WEB_SQL_UNSUPPORTED_POPUP_ID, NOT_MOBILE_USER_AGENT_POPUP_ID } from "./key_element_ids.js";
+import Observer from "./observer.js";
+
+class WebSqlSupportObserver extends Observer {
+    /** @param { HTMLDivElement } popup */
+    constructor(popup) {
+        super();
+        this.popup = popup;
+    }
+
+    /** @override */
+    receive(value) {
+        this.popup.hidden = Boolean(value);
+    }
+}
+
+class IsMobileObserver extends Observer {
+    /** @param { HTMLDivElement } popup */
+    constructor(popup) {
+        super();
+        this.popup = popup;
+    }
+
+    /** @override */
+    receive(value) {
+        this.popup.hidden = Boolean(value);
+    }
+}
+
+const webSqlSupportObserver = new WebSqlSupportObserver(document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
+const isMobileObserver = new IsMobileObserver(document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID));
 
 const browserSupportProxy = new Proxy({
     "hasWebSqlSupport": false,
@@ -12,16 +42,10 @@ const browserSupportProxy = new Proxy({
                     default:
                         break;
                     case "hasWebSqlSupport":
-                        {
-                            const popup = document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID);
-                            popup.hidden = Boolean(value);
-                        }
+                        webSqlSupportObserver.receive(Boolean(value));
                         break;
                     case "isMobile":
-                        {
-                            const popup = document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID);
-                            popup.hidden = Boolean(value);
-                        }
+                        isMobileObserver.receive(Boolean(value));
                         break;
                 }
                 return true;
