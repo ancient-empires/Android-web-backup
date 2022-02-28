@@ -79,8 +79,6 @@ const checkMobileUserAgent = () => {
 }
 
 /** @returns { boolean } */
-const checkBrowserSupport = () => {
+export default checkBrowserSupport = () => {
     return checkWebSqlSupport() && checkMobileUserAgent();
 }
-
-export default checkBrowserSupport;
