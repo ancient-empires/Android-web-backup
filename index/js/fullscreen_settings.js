@@ -12,7 +12,7 @@ const fullscreenSettingsProxy = new Proxy({
     /** @type { boolean } */
     enterFullscreenOnGameStart: shouldEnterFullScreenOnGameStart()
 }, {
-    set: (target, prop, value) => {
+    set: /** @returns { boolean } */ (target, prop, value) => {
         return Reflect.has(target, prop)
             && Reflect.set(target, prop, Boolean(value))
             && (() => {
@@ -48,6 +48,7 @@ class FullscreenLocalStorageObserver extends Observer {
 }
 
 class FullscreenCheckboxObserver extends Observer {
+    /** @param { HTMLInputElement } checkbox */
     constructor(checkbox) {
         super();
 
