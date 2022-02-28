@@ -62,7 +62,7 @@ export const setFullscreenStatus = (value) => {
 /**
  * Initialize fullscreen settings with additional observers.
  * @param { Observer[] additionalObservers }
- * */
+ */
 const initFullscreenSettings = (...additionalObservers) => {
     additionalObservers.forEach((observer) => {
         fullscreenObservers.add(observer);
