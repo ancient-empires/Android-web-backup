@@ -22,6 +22,8 @@ const mainUiProxy = new Proxy({
     }
 });
 
-export const setMainUiVisibility = (value) => {
-    mainUiProxy.showMainElement = value;
+const setMainUiVisibility = (value) => {
+    mainUiProxy.showMainElement = Boolean(value);
 }
+
+export default setMainUiVisibility;
