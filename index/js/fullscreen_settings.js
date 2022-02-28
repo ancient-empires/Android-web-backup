@@ -71,4 +71,6 @@ class FullscreenCheckboxObserver extends Observer {
 fullscreenObservers.add(new FullscreenLocalStorageObserver());
 fullscreenObservers.add(new FullscreenCheckboxObserver(document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID)));
 
-export default initFullscreenSettings = () => { };
+const initFullscreenSettings = () => { };
+
+export default initFullscreenSettings;
