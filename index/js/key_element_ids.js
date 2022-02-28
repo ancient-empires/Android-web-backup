@@ -4,3 +4,4 @@ export const NOT_MOBILE_USER_AGENT_POPUP_ID = "not-mobile-user-agent";
 
 // Main UI
 export const MAIN_ID = "main";
+export const FULLSCREEN_SETTINGS_TOGGLE_ID = "fullscreen-settings-toggle";

@@ -1,7 +1,16 @@
 import checkBrowserSupport from "./check_browser.js";
-import { setMainUiVisibility } from "./main_ui.js";
+import setMainUiVisibility from "./main_ui.js";
+import initFullscreenSettings from "./fullscreen_settings.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    const browserIsSupported = checkBrowserSupport();
-    setMainUiVisibility(browserIsSupported);
-});
+const init = () => {
+    (() => {
+        const browserIsSupported = checkBrowserSupport();
+        setMainUiVisibility(browserIsSupported);
+        return browserIsSupported;
+    })() && (() => {
+        initFullscreenSettings();
+        return true;
+    })();
+};
+
+document.addEventListener("DOMContentLoaded", init);
