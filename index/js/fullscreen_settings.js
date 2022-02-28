@@ -1,9 +1,9 @@
 import Observer from "./observer.js";
 
-export const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
+const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
 
 /** @type { Set<Observer> } */
-export const fullscreenObservers = new Set();
+const fullscreenObservers = new Set();
 
 class FullscreenLocalStorageObserver extends Observer {
     constructor() {
