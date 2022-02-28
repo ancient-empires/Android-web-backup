@@ -50,7 +50,11 @@ class FullscreenLocalStorageObserver extends FullscreenSettingsObserver {
 class FullscreenCheckboxObserver extends FullscreenSettingsObserver {
     constructor(checkbox) {
         super();
+
         this.checkbox = checkbox;
+
+        checkbox.checked = fullscreenSettingsProxy.enterFullscreenOnGameStart;
+        checkbox.addEventListener("click", FullscreenCheckboxObserver.clickEventListener);
     }
 
     receive(value) {
@@ -62,13 +66,12 @@ class FullscreenCheckboxObserver extends FullscreenSettingsObserver {
     }
 }
 
-const initFullscreenSettings = () => {
-    const fullscreenToggleCheckbox = document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID);
-    fullscreenToggleCheckbox.checked = fullscreenSettingsProxy.enterFullscreenOnGameStart;
-    fullscreenToggleCheckbox.addEventListener("click", FullscreenCheckboxObserver.clickEventListener);
+const fullscreenLocalStorageObserver = new FullscreenLocalStorageObserver();
+const fullscreenCheckboxObserver = new FullscreenCheckboxObserver(document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID));
 
-    fullscreenSettingsProxy.observers.add(new FullscreenCheckboxObserver(fullscreenToggleCheckbox));
-    fullscreenSettingsProxy.observers.add(new FullscreenLocalStorageObserver());
+const initFullscreenSettings = () => {
+    fullscreenSettingsProxy.observers.add(fullscreenLocalStorageObserver);
+    fullscreenSettingsProxy.observers.add(fullscreenCheckboxObserver);
 }
 
 export default initFullscreenSettings;
