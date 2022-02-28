@@ -4,7 +4,7 @@
     --primary-light-text-color: black;
     --semi-transparent-light-background-color: rgba(255, 255, 255, 80%);
     --primary-light-link-color: blue;
-    --primary-light-hover-color: red;
+    --primary-light-link-hover-color: red;
     --primary-light-link-visited-color: purple;
 
     /* Dark theme colors */

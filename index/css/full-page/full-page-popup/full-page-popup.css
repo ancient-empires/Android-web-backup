@@ -21,6 +21,16 @@
     color: var(--full-page-popup-text-color);
 }
 
+.full-page-popup__content a:link {
+    color: var(--primary-light-link-color);
+}
+.full-page-popup__content a:visited {
+    color: var(--primary-light-link-visited-color);
+}
+.full-page-popup__content a:hover {
+    color: var(--primary-light-link-hover-color);
+}
+
 .full-page-popup__header {
     font-size: 32px;
     margin: 0.5em 0;
