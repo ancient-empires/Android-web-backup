@@ -17,11 +17,11 @@
 
     /* Full page popup colors */
     --full-page-popup-backdrop-background-color: var(--semi-transparent-dark-background-color);
-    --full-page-popup-background-color: #bbb;
+    --full-page-popup-background-color: #c0c0c0;
     --full-page-popup-text-color: var(--primary-light-text-color);
 
     /* Link tile colors */
-    --link-tile-background-color: #ddd;
-    --link-tile-hover-background-color: #eee;
+    --link-tile-background-color: #e0e0e0;
+    --link-tile-hover-background-color: #efefef;
     --link-tile-text-color: var(--primary-light-text-color) ;
 }
