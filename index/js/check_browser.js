@@ -4,7 +4,7 @@ const browserSupportProxy = new Proxy({
     "hasWebSqlSupport": false,
     "isMobile": false
 }, {
-    set: (target, prop, value) => {
+    set: /** @returns { boolean } */ (target, prop, value) => {
         return Reflect.has(target, prop)
             && Reflect.set(target, prop, Boolean(value))
             && (() => {
@@ -29,13 +29,16 @@ const browserSupportProxy = new Proxy({
     }
 });
 
+/** @returns { boolean } */
 const hasWebSqlSupport = () => Boolean(window.openDatabase);
 
+/** @returns { boolean } */
 const checkWebSqlSupport = () => {
     browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
     return browserSupportProxy.hasWebSqlSupport;
 }
 
+/** @returns { boolean } */
 const isMobile = () => {
     const ANDROID_USER_AGENT = /Android/;
     const IOS_USER_AGENT = /CriOS/;
@@ -45,11 +48,13 @@ const isMobile = () => {
     return Boolean(userAgent.match(ANDROID_USER_AGENT) || userAgent.match(IOS_USER_AGENT));
 }
 
+/** @returns { boolean } */
 const checkMobileUserAgent = () => {
     browserSupportProxy.isMobile = isMobile();
     return browserSupportProxy.isMobile;
 }
 
+/** @returns { boolean } */
 const checkBrowserSupport = () => {
     return checkWebSqlSupport() && checkMobileUserAgent();
 }
