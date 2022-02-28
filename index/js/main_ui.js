@@ -3,7 +3,7 @@ import { MAIN_ID } from "./key_element_ids.js";
 const mainUiProxy = new Proxy({
     "showMainElement": false
 }, {
-    set: (target, prop, value) => {
+    set: /** @returns { boolean } */ (target, prop, value) => {
         return Reflect.has(target, prop)
             && Reflect.set(target, prop, Boolean(value))
             && (() => {
