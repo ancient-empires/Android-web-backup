@@ -1,6 +1,9 @@
-import { MAIN_ID } from "./key_element_ids.js";
+import Observer from "./observer.js";
 
-const mainUiProxy = new Proxy({
+/** @type { Set<Observer> } */
+const mainElementObservers = new Set();
+
+const mainElementProxy = new Proxy({
     "showMainElement": false
 }, {
     set: /** @returns { boolean } */ (target, prop, value) => {
@@ -12,8 +15,9 @@ const mainUiProxy = new Proxy({
                         break;
                     case "showMainElement":
                         {
-                            const mainElement = document.getElementById(MAIN_ID);
-                            mainElement.hidden = !value;
+                            mainElementObservers.forEach((observer) => {
+                                observer.receive(Boolean(value));
+                            })
                         }
                         break;
                 }
@@ -22,8 +26,20 @@ const mainUiProxy = new Proxy({
     }
 });
 
-const setMainUiVisibility = (value) => {
-    mainUiProxy.showMainElement = Boolean(value);
+export const setMainUiVisibility = (value) => {
+    mainElementProxy.showMainElement = Boolean(value);
 }
 
-export default setMainUiVisibility;
+/**
+ * @param { boolean } visibility
+ * @param { Observer[] } observers
+ */
+const initMainUi = (visibility, ...observers) => {
+    observers.forEach((observer) => {
+        mainElementObservers.add(observer);
+    })
+
+    setMainUiVisibility(visibility);
+}
+
+export default initMainUi;
