@@ -7,8 +7,7 @@ const mainElementProxy = new Proxy(Object.seal({
   "show": false
 }), {
   set: /** @returns { boolean } */ (target, prop, value) => {
-    return Reflect.has(target, prop)
-      && Reflect.set(target, prop, Boolean(value))
+    return Reflect.set(target, prop, Boolean(value))
       && (() => {
         switch (prop) {
           default:
