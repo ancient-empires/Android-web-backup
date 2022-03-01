@@ -16,7 +16,7 @@ const mainElementProxy = new Proxy(Object.seal({
             {
               mainElementObservers.forEach((observer) => {
                 observer.receive(Boolean(value));
-              })
+              });
             }
             break;
         }
