@@ -1,6 +1,11 @@
-import { WEB_SQL_UNSUPPORTED_POPUP_ID, NOT_MOBILE_USER_AGENT_POPUP_ID } from "./key_element_ids.js";
-import Observer from "./observer.js";
+import {WEB_SQL_UNSUPPORTED_POPUP_ID,
+  NOT_MOBILE_USER_AGENT_POPUP_ID} from './key_element_ids.js';
+import Observer from './observer.js';
 
+/**
+ * Check if the browser supports Web SQL,
+ * and show the popup if not.
+ */
 class WebSqlSupportObserver extends Observer {
   /** @param { HTMLDivElement } popup */
   constructor(popup) {
@@ -14,6 +19,10 @@ class WebSqlSupportObserver extends Observer {
   }
 }
 
+/**
+ * Check if the browser is running with mobile user agent,
+ * and show the popup if not.
+ */
 class IsMobileObserver extends Observer {
   /** @param { HTMLDivElement } popup */
   constructor(popup) {
@@ -27,52 +36,60 @@ class IsMobileObserver extends Observer {
   }
 }
 
-const webSqlSupportObserver = new WebSqlSupportObserver(document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
-const isMobileObserver = new IsMobileObserver(document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID));
+/** @type { ?WebSqlSupportObserver } */
+const webSqlSupportObserver = new WebSqlSupportObserver(
+    document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
 
-const browserSupportProxy = new Proxy({
-  "hasWebSqlSupport": false,
-  "isMobile": false
-}, {
+/** @type { ?IsMobileObserver } */
+const isMobileObserver = new IsMobileObserver(
+    document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID));
+
+const browserSupportProxy = new Proxy(Object.seal({
+  'hasWebSqlSupport': false,
+  'isMobile': false,
+}), {
   set: /** @returns { boolean } */ (target, prop, value) => {
-    return Reflect.has(target, prop)
-      && Reflect.set(target, prop, Boolean(value))
-      && (() => {
+    return Reflect.set(target, prop, Boolean(value)) &&
+      (() => {
         switch (prop) {
           default:
             break;
-          case "hasWebSqlSupport":
+          case 'hasWebSqlSupport':
             webSqlSupportObserver.receive(Boolean(value));
             break;
-          case "isMobile":
+          case 'isMobile':
             isMobileObserver.receive(Boolean(value));
             break;
         }
         return true;
       })();
-  }
+  },
 });
 
-/** @returns { boolean } */
+/** @return { boolean } */
 const hasWebSqlSupport = () => Boolean(window.openDatabase);
 
-/** @returns { boolean } */
-const checkWebSqlSupport = () => browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
+/** @return { boolean } */
+const checkWebSqlSupport = () =>
+  browserSupportProxy.hasWebSqlSupport = hasWebSqlSupport();
 
-/** @returns { boolean } */
+/** @return { boolean } */
 const isMobile = () => {
   const ANDROID_USER_AGENT = /Android/;
   const IOS_USER_AGENT = /CriOS/;
 
   const userAgent = window.navigator.userAgent;
 
-  return Boolean(userAgent.match(ANDROID_USER_AGENT) || userAgent.match(IOS_USER_AGENT));
-}
+  return Boolean(userAgent.match(ANDROID_USER_AGENT) ||
+      userAgent.match(IOS_USER_AGENT));
+};
 
-/** @returns { boolean } */
-const checkMobileUserAgent = () => browserSupportProxy.isMobile = isMobile();
+/** @return { boolean } */
+const checkMobileUserAgent = () =>
+  browserSupportProxy.isMobile = isMobile();
 
-/** @returns { boolean } */
-const checkBrowserSupport = () => checkWebSqlSupport() && checkMobileUserAgent();
+/** @return { boolean } */
+const checkBrowserSupport = () =>
+  checkWebSqlSupport() && checkMobileUserAgent();
 
 export default checkBrowserSupport;

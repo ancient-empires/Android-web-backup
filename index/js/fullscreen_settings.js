@@ -1,15 +1,12 @@
-import Observer from "./observer.js";
+import Observer from './observer.js';
 
-const FULLSCREEN_LOCAL_STORAGE_KEY = "enter-fullscreen-on-game-start";
+const FULLSCREEN_LOCAL_STORAGE_KEY = 'enter-fullscreen-on-game-start';
 
 /** @type { Set<Observer> } */
 const fullscreenObservers = new Set();
 
+/** Observer to observe fullscreen settings in local storage. */
 class FullscreenLocalStorageObserver extends Observer {
-  constructor() {
-    super();
-  }
-
   /** @override */
   receive(value) {
     if (value) {
@@ -19,44 +16,47 @@ class FullscreenLocalStorageObserver extends Observer {
     }
   }
 
-  /** @returns { boolean } */
+  /** @return { boolean } */
   static getFullscreenStatus() {
     return Boolean(localStorage.getItem(FULLSCREEN_LOCAL_STORAGE_KEY));
   }
 }
 
-// add local storage observer to remember if the user opts for starting game on fullscreen
+// add local storage observer to remember if the user
+// opts for starting game on fullscreen.
 fullscreenObservers.add(new FullscreenLocalStorageObserver());
 
 const fullscreenSettingsProxy = new Proxy(Object.seal({
-  "shouldEnterFullscreenOnGameStart": FullscreenLocalStorageObserver.getFullscreenStatus()
+  'shouldEnterFullscreenOnGameStart':
+      FullscreenLocalStorageObserver.getFullscreenStatus(),
 }), {
   set: /** @returns { boolean } */ (target, prop, value) => {
-    return Reflect.set(target, prop, Boolean(value))
-      && (() => {
+    return Reflect.set(target, prop, Boolean(value)) &&
+      (() => {
         switch (prop) {
           default:
             break;
-          case "shouldEnterFullscreenOnGameStart":
+          case 'shouldEnterFullscreenOnGameStart':
             {
               fullscreenObservers.forEach((observer) => {
                 observer.receive(Boolean(value));
-              })
+              });
             }
             break;
         }
         return true;
       })();
-  }
+  },
 });
 
-/** @returns { boolean } */
-export const getFullscreenStatus = () => fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart;
+/** @return { boolean } */
+export const getFullscreenStatus = () =>
+  fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart;
 
 /** @param { boolean } value */
 export const setFullscreenStatus = (value) => {
   fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart = value;
-}
+};
 
 /**
  * Initialize fullscreen settings with additional observers.

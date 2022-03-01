@@ -1,18 +1,18 @@
-import Observer from "./observer.js";
+/** @typedef { import("./observer.js").default } Observer */
 
 /** @type { Set<Observer> } */
 const mainElementObservers = new Set();
 
 const mainElementProxy = new Proxy(Object.seal({
-  "show": false
+  'show': false,
 }), {
   set: /** @returns { boolean } */ (target, prop, value) => {
-    return Reflect.set(target, prop, Boolean(value))
-      && (() => {
+    return Reflect.set(target, prop, Boolean(value)) &&
+      (() => {
         switch (prop) {
           default:
             break;
-          case "show":
+          case 'show':
             {
               mainElementObservers.forEach((observer) => {
                 observer.receive(Boolean(value));
@@ -22,12 +22,12 @@ const mainElementProxy = new Proxy(Object.seal({
         }
         return true;
       })();
-  }
+  },
 });
 
 export const setMainUiVisibility = (value) => {
   mainElementProxy.show = Boolean(value);
-}
+};
 
 /**
  * @param { boolean } visibility
@@ -39,6 +39,6 @@ const initMainUi = (visibility, ...observers) => {
   });
 
   setMainUiVisibility(visibility);
-}
+};
 
 export default initMainUi;
