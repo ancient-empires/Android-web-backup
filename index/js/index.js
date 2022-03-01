@@ -7,6 +7,7 @@ import initMainUi from './main_ui.js';
 import initFullscreenSettings, {getFullscreenStatus,
   setFullscreenStatus} from './fullscreen_settings.js';
 
+import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
   NOT_MOBILE_USER_AGENT_POPUP_ID, FULLSCREEN_SETTINGS_TOGGLE_ID}
   from './key_element_ids.js';

@@ -51,14 +51,14 @@
   </main>
 
   <!-- Popup if Web SQL is not supported -->
-  <div id="web-sql-unsupported" class="full-page full-page-popup__backdrop web-sql-unsupported__backdrop" hidden>
-    <div class="full-page-popup__content web-sql-unsupported__content">
-      <h1 class="full-page-popup__header">Unfortunately, your browser does not support Web SQL to run the
+  <full-page id="web-sql-unsupported" class="backdrop web-sql-unsupported__backdrop" hidden>
+    <full-page-popup class="web-sql-unsupported__content">
+      <h1 class="header">Unfortunately, your browser does not support Web SQL to run the
         games.
       </h1>
 
-      <h2 class="full-page-popup__subheader">What can I do?</h2>
-      <div class="web-sql-unsupported__available-actions">
+      <h2 class="subheader">What can I do?</h2>
+      <div class="web-sql-unsupported__action-list">
         <a class="web-sql-unsupported__action-link link-tile" target="_blank" href="https://chrome.com">
           <img class="web-sql-unsupported__action-icon" alt="Google Chrome logo" src="index/icons/chrome-logo.svg" />
           <span class="web-sql-unsupported__action-text link-tile__text"><strong>Download
@@ -77,16 +77,16 @@
             SQL?</span>
         </a>
       </div>
-    </div>
-  </div>
+    </full-page-popup>
+  </full-page>
 
   <!-- Popup if the user agent is not mobile -->
-  <div id="not-mobile-user-agent" class="full-page full-page-popup__backdrop not-mobile-user-agent__backdrop" hidden>
-    <div class="full-page-popup__content not-mobile-user-agent__content">
-      <h1 class="full-page-popup__header">Hmm… Seems like you are not running the game using a mobile user agent.
+  <full-page id="not-mobile-user-agent" class="backdrop not-mobile-user-agent__backdrop" hidden>
+    <full-page-popup class="not-mobile-user-agent__content">
+      <h1 class="header">Hmm… Seems like you are not running the game using a mobile user agent.
       </h1>
 
-      <h2 class="full-page-popup__subheader">How do I set it up?</h2>
+      <h2 class="subheader">How do I set it up?</h2>
 
       <ol class="not-mobile-user-agent__setup-steps">
         <li>Make sure that you are running <a href="https://chrome.com" target="_blank"><strong>Google
@@ -110,8 +110,8 @@
           good to go!
         </li>
       </ol>
-    </div>
-  </div>
+    </full-page-popup>
+  </full-page>
 
   <script type="module" src="index/js/index.js"></script>
 </body>
