@@ -28,13 +28,13 @@ export const createShadow = (element, mode, template) => {
   const domParser = new DOMParser();
   const templateDoc = domParser.parseFromString(template, 'text/html');
 
-  // Extract internal styles, external stylesheets, and body.
-  const internalStyles = getInternalStyles(templateDoc);
+  // Extract external stylesheets, internal styles, and body.
   const externalStylesheets = getExternalStylesheets(templateDoc);
+  const internalStyles = getInternalStyles(templateDoc);
   const body = templateDoc.body;
 
-  shadowRoot.append(...internalStyles);
   shadowRoot.append(...externalStylesheets);
+  shadowRoot.append(...internalStyles);
   shadowRoot.append(...body.childNodes);
 
   return shadowRoot;
