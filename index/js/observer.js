@@ -1,4 +1,4 @@
 export default class Observer {
-    receive(value) {
-    }
+  receive(value) {
+  }
 }

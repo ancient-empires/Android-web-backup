@@ -13,50 +13,50 @@ import { MAIN_ID, FULLSCREEN_SETTINGS_TOGGLE_ID } from "./key_element_ids.js";
  * @returns { boolean }
  */
 const initIndexUi = () => {
-    // check browser support
-    const browserIsSupported = checkBrowserSupport();
+  // check browser support
+  const browserIsSupported = checkBrowserSupport();
 
-    // if browser is supported, then show main element
-    // otherwise, hide the main element
-    const mainElement = document.getElementById(MAIN_ID);
-    const mainElementObserver = new class MainElementObserver extends Observer {
-        /** @param { HTMLElement } mainElement */
-        constructor(mainElement) {
-            super();
-            this.mainElement = mainElement;
-        }
-
-        /** @override */
-        receive(value) {
-            mainElement.hidden = !value;
-        }
-    }(mainElement);
-
-    initMainUi(browserIsSupported, mainElementObserver);
-
-    return browserIsSupported;
-};
-
-class FullscreenCheckboxObserver extends Observer {
-    /** @param { HTMLInputElement } checkbox */
-    constructor(checkbox) {
-        super();
-
-        this.checkbox = checkbox;
-
-        checkbox.checked = getFullscreenStatus();
-        checkbox.addEventListener("input", FullscreenCheckboxObserver.inputListener);
+  // if browser is supported, then show main element
+  // otherwise, hide the main element
+  const mainElement = document.getElementById(MAIN_ID);
+  const mainElementObserver = new class MainElementObserver extends Observer {
+    /** @param { HTMLElement } mainElement */
+    constructor(mainElement) {
+      super();
+      this.mainElement = mainElement;
     }
 
     /** @override */
     receive(value) {
-        this.checkbox.checked = Boolean(value);
+      mainElement.hidden = !value;
     }
+  }(mainElement);
 
-    /** @param { Event } e */
-    static inputListener(e) {
-        setFullscreenStatus(Boolean(e.target.checked));
-    }
+  initMainUi(browserIsSupported, mainElementObserver);
+
+  return browserIsSupported;
+};
+
+class FullscreenCheckboxObserver extends Observer {
+  /** @param { HTMLInputElement } checkbox */
+  constructor(checkbox) {
+    super();
+
+    this.checkbox = checkbox;
+
+    checkbox.checked = getFullscreenStatus();
+    checkbox.addEventListener("input", FullscreenCheckboxObserver.inputListener);
+  }
+
+  /** @override */
+  receive(value) {
+    this.checkbox.checked = Boolean(value);
+  }
+
+  /** @param { Event } e */
+  static inputListener(e) {
+    setFullscreenStatus(Boolean(e.target.checked));
+  }
 }
 
 /**
@@ -64,16 +64,16 @@ class FullscreenCheckboxObserver extends Observer {
  * @returns { boolean }
  */
 const initFullscreen = () => {
-    // use the checkbox on the page to set fullscreen status
-    const checkbox = document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID);
-    // add a checkbox observer to sync with the page's fullscreen settings
-    const checkboxObserver = new FullscreenCheckboxObserver(checkbox);
+  // use the checkbox on the page to set fullscreen status
+  const checkbox = document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID);
+  // add a checkbox observer to sync with the page's fullscreen settings
+  const checkboxObserver = new FullscreenCheckboxObserver(checkbox);
 
-    initFullscreenSettings(checkboxObserver);
+  initFullscreenSettings(checkboxObserver);
 
-    return true;
+  return true;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    return initIndexUi() && initFullscreen();
+  return initIndexUi() && initFullscreen();
 });
