@@ -6,5 +6,9 @@
   },
   "dependencies": {
     "http-server": "^14.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
