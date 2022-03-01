@@ -2,122 +2,118 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ancient Empires</title>
-    <link rel="stylesheet" href="index/css/index.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ancient Empires</title>
+  <link rel="stylesheet" href="index/css/index.css" />
 </head>
 
 <body>
-    <main id="main" hidden>
-        <!-- Main UI, with tabbed pages -->
-        <div class="full-page main-ui">
-            <!-- Tab switcher -->
-            <div class="main-ui__tab-switcher">
-                <ul>
-                    <li>Home</li>
-                </ul>
-            </div>
+  <main id="main" hidden>
+    <!-- Main UI, with tabbed pages -->
+    <div class="full-page main-ui">
+      <!-- Tab switcher -->
+      <div class="main-ui__tab-switcher">
+        <ul>
+          <li>Home</li>
+        </ul>
+      </div>
 
-            <!-- Tab contents -->
-            <div class="main-ui__tab-contents">
-                <!-- Home tab-->
-                <div id="homepage" class="main-ui__tab-content main-ui__tab-content--default">
-                    <h1>Welcome to Ancient Empires web version!</h1>
+      <!-- Tab contents -->
+      <div class="main-ui__tab-contents">
+        <!-- Home tab-->
+        <div id="homepage" class="main-ui__tab-content main-ui__tab-content--default">
+          <h1>Welcome to Ancient Empires web version!</h1>
 
-                    <h2>Start game</h2>
-                    <ul>
-                        <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
-                        <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
-                    </ul>
-                    <p>
-                        <input type="checkbox" id="fullscreen-settings-toggle" /> <label
-                            for="fullscreen-settings-toggle">Automatically enter fullscreen when starting a game</label>
-                    </p>
-                </div>
-
-                <!-- AE1 tab -->
-                <div id="ae1-game" class="main-ui__tab-content">
-                    <iframe id="ae1-game-iframe" class="main-ui__game-iframe" src="about:blank"></iframe>
-                </div>
-
-                <!-- AE2 tab -->
-                <div id="ae2-game" class="main-ui__tab-content">
-                    <iframe id="ae2-game-iframe" class="main-ui__game-iframe" src="about:blank"></iframe>
-                </div>
-            </div>
+          <h2>Start game</h2>
+          <ul>
+            <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
+            <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
+          </ul>
+          <p>
+            <input type="checkbox" id="fullscreen-settings-toggle" /> <label
+              for="fullscreen-settings-toggle">Automatically enter fullscreen when starting a game</label>
+          </p>
         </div>
-    </main>
 
-    <!-- Popup if Web SQL is not supported -->
-    <div id="web-sql-unsupported" class="full-page full-page-popup__backdrop web-sql-unsupported__backdrop" hidden>
-        <div class="full-page-popup__content web-sql-unsupported__content">
-            <h1 class="full-page-popup__header">Unfortunately, your browser does not support Web SQL to run the
-                games.
-            </h1>
-
-            <h2 class="full-page-popup__subheader">What can I do?</h2>
-            <div class="web-sql-unsupported__available-actions">
-                <a class="web-sql-unsupported__action-link link-tile" target="_blank" href="https://chrome.com">
-                    <img class="web-sql-unsupported__action-icon" alt="Google Chrome logo"
-                        src="index/icons/chrome-logo.svg" />
-                    <span class="web-sql-unsupported__action-text link-tile__text"><strong>Download
-                            Google Chrome <em>(with Web
-                                SQL
-                                support)</em></strong></span>
-                </a>
-                <a class="web-sql-unsupported__action-link link-tile" target="_blank"
-                    href="https://www.w3.org/TR/webdatabase/">
-                    <img class="web-sql-unsupported__action-icon" alt="W3C logo" src="index/icons/w3c-home.svg" />
-                    <span class="web-sql-unsupported__action-text link-tile__text">Learn about the W3C standard for Web
-                        SQL <em>(deprecated)</em></span>
-                </a>
-                <a class="web-sql-unsupported__action-link link-tile" target="_blank"
-                    href="https://caniuse.com/sql-storage">
-                    <img class="web-sql-unsupported__action-icon" alt="Can I use" src="index/icons/can-i-use.png" />
-                    <span class="web-sql-unsupported__action-text link-tile__text">In which browsers can I use Web
-                        SQL?</span>
-                </a>
-            </div>
+        <!-- AE1 tab -->
+        <div id="ae1-game" class="main-ui__tab-content">
+          <iframe id="ae1-game-iframe" class="main-ui__game-iframe" src="about:blank"></iframe>
         </div>
+
+        <!-- AE2 tab -->
+        <div id="ae2-game" class="main-ui__tab-content">
+          <iframe id="ae2-game-iframe" class="main-ui__game-iframe" src="about:blank"></iframe>
+        </div>
+      </div>
     </div>
+  </main>
 
-    <!-- Popup if the user agent is not mobile -->
-    <div id="not-mobile-user-agent" class="full-page full-page-popup__backdrop not-mobile-user-agent__backdrop" hidden>
-        <div class="full-page-popup__content not-mobile-user-agent__content">
-            <h1 class="full-page-popup__header">Hmm… Seems like you are not running the game using a mobile user agent.
-            </h1>
+  <!-- Popup if Web SQL is not supported -->
+  <div id="web-sql-unsupported" class="full-page full-page-popup__backdrop web-sql-unsupported__backdrop" hidden>
+    <div class="full-page-popup__content web-sql-unsupported__content">
+      <h1 class="full-page-popup__header">Unfortunately, your browser does not support Web SQL to run the
+        games.
+      </h1>
 
-            <h2 class="full-page-popup__subheader">How do I set it up?</h2>
-
-            <ol class="not-mobile-user-agent__setup-steps">
-                <li>Make sure that you are running <a href="https://chrome.com" target="_blank"><strong>Google
-                            Chrome</strong></a>.
-                </li>
-                <li>Install
-                    <a href="https://chrome.google.com/webstore/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg"
-                        target="_blank"><strong>User Agent Switcher and Manager</strong></a> from the Google Chrome Web
-                    Store.
-                </li>
-                <li>Open <strong>User Agent Switcher and Manager</strong>, select <strong>Chrome</strong> as the
-                    browser, and select either <strong>Android</strong> or <strong>iOS</strong> as the platform.
-                </li>
-                <li>Click on "<strong>Apply (active window)</strong>" or "<strong>Apply (all windows)</strong>" to
-                    activate the mobile user agent.
-                    <p>
-                        <img class="screenshot" src="index/images/user-agent-switcher.png"
-                            alt="User Agent Switcher screenshot" />
-                    </p>
-                </li>
-                <li><a href=".">Refresh this page</a>. If you don't see this popup showing up again, then you are
-                    good to go!
-                </li>
-            </ol>
-        </div>
+      <h2 class="full-page-popup__subheader">What can I do?</h2>
+      <div class="web-sql-unsupported__available-actions">
+        <a class="web-sql-unsupported__action-link link-tile" target="_blank" href="https://chrome.com">
+          <img class="web-sql-unsupported__action-icon" alt="Google Chrome logo" src="index/icons/chrome-logo.svg" />
+          <span class="web-sql-unsupported__action-text link-tile__text"><strong>Download
+              Google Chrome <em>(with Web
+                SQL
+                support)</em></strong></span>
+        </a>
+        <a class="web-sql-unsupported__action-link link-tile" target="_blank" href="https://www.w3.org/TR/webdatabase/">
+          <img class="web-sql-unsupported__action-icon" alt="W3C logo" src="index/icons/w3c-home.svg" />
+          <span class="web-sql-unsupported__action-text link-tile__text">Learn about the W3C standard for Web
+            SQL <em>(deprecated)</em></span>
+        </a>
+        <a class="web-sql-unsupported__action-link link-tile" target="_blank" href="https://caniuse.com/sql-storage">
+          <img class="web-sql-unsupported__action-icon" alt="Can I use" src="index/icons/can-i-use.png" />
+          <span class="web-sql-unsupported__action-text link-tile__text">In which browsers can I use Web
+            SQL?</span>
+        </a>
+      </div>
     </div>
+  </div>
 
-    <script type="module" src="index/js/index.js"></script>
+  <!-- Popup if the user agent is not mobile -->
+  <div id="not-mobile-user-agent" class="full-page full-page-popup__backdrop not-mobile-user-agent__backdrop" hidden>
+    <div class="full-page-popup__content not-mobile-user-agent__content">
+      <h1 class="full-page-popup__header">Hmm… Seems like you are not running the game using a mobile user agent.
+      </h1>
+
+      <h2 class="full-page-popup__subheader">How do I set it up?</h2>
+
+      <ol class="not-mobile-user-agent__setup-steps">
+        <li>Make sure that you are running <a href="https://chrome.com" target="_blank"><strong>Google
+              Chrome</strong></a>.
+        </li>
+        <li>Install
+          <a href="https://chrome.google.com/webstore/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg"
+            target="_blank"><strong>User Agent Switcher and Manager</strong></a> from the Google Chrome Web
+          Store.
+        </li>
+        <li>Open <strong>User Agent Switcher and Manager</strong>, select <strong>Chrome</strong> as the
+          browser, and select either <strong>Android</strong> or <strong>iOS</strong> as the platform.
+        </li>
+        <li>Click on "<strong>Apply (active window)</strong>" or "<strong>Apply (all windows)</strong>" to
+          activate the mobile user agent.
+          <p>
+            <img class="screenshot" src="index/images/user-agent-switcher.png" alt="User Agent Switcher screenshot" />
+          </p>
+        </li>
+        <li><a href=".">Refresh this page</a>. If you don't see this popup showing up again, then you are
+          good to go!
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <script type="module" src="index/js/index.js"></script>
 </body>
 
 </html>
