@@ -1,12 +1,10 @@
-import {WEB_SQL_UNSUPPORTED_POPUP_ID,
-  NOT_MOBILE_USER_AGENT_POPUP_ID} from './key_element_ids.js';
 import Observer from './observer.js';
 
 /**
  * Check if the browser supports Web SQL,
  * and show the popup if not.
  */
-class WebSqlSupportObserver extends Observer {
+export class WebSqlSupportObserver extends Observer {
   /** @param { HTMLDivElement } popup */
   constructor(popup) {
     super();
@@ -23,7 +21,7 @@ class WebSqlSupportObserver extends Observer {
  * Check if the browser is running with mobile user agent,
  * and show the popup if not.
  */
-class IsMobileObserver extends Observer {
+export class IsMobileObserver extends Observer {
   /** @param { HTMLDivElement } popup */
   constructor(popup) {
     super();
@@ -36,13 +34,12 @@ class IsMobileObserver extends Observer {
   }
 }
 
-/** @type { ?WebSqlSupportObserver } */
-const webSqlSupportObserver = new WebSqlSupportObserver(
-    document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
-
-/** @type { ?IsMobileObserver } */
-const isMobileObserver = new IsMobileObserver(
-    document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID));
+const observers = {
+  /** @type { ?WebSqlSupportObserver } */
+  'webSqlSupportObserver': null,
+  /** @type { ?IsMobileObserver } */
+  'isMobileObserver': null,
+};
 
 const browserSupportProxy = new Proxy(Object.seal({
   'hasWebSqlSupport': false,
@@ -55,10 +52,10 @@ const browserSupportProxy = new Proxy(Object.seal({
           default:
             break;
           case 'hasWebSqlSupport':
-            webSqlSupportObserver.receive(Boolean(value));
+            observers.webSqlSupportObserver?.receive(Boolean(value));
             break;
           case 'isMobile':
-            isMobileObserver.receive(Boolean(value));
+            observers.isMobileObserver?.receive(Boolean(value));
             break;
         }
         return true;
@@ -92,4 +89,19 @@ const checkMobileUserAgent = () =>
 const checkBrowserSupport = () =>
   checkWebSqlSupport() && checkMobileUserAgent();
 
-export default checkBrowserSupport;
+/**
+ * Initialize the Web SQL observer and mobile user agent observer.
+ * Check browser support.
+ *
+ * @param { WebSqlSupportObserver } [webSqlSupportObserver]
+ * @param { IsMobileObserver } [isMobileObserver]
+ * @return { boolean }
+ */
+const initCheckBrowserSupport = (webSqlSupportObserver, isMobileObserver) => {
+  observers.webSqlSupportObserver = webSqlSupportObserver;
+  observers.isMobileObserver = isMobileObserver;
+
+  return checkBrowserSupport();
+};
+
+export default initCheckBrowserSupport;

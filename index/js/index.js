@@ -1,11 +1,15 @@
 import Observer from './observer.js';
 
-import checkBrowserSupport from './check_browser.js';
+import initCheckBrowserSupport,
+{WebSqlSupportObserver, IsMobileObserver}
+  from './check_browser.js';
 import initMainUi from './main_ui.js';
 import initFullscreenSettings, {getFullscreenStatus,
   setFullscreenStatus} from './fullscreen_settings.js';
 
-import {MAIN_ID, FULLSCREEN_SETTINGS_TOGGLE_ID} from './key_element_ids.js';
+import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
+  NOT_MOBILE_USER_AGENT_POPUP_ID, FULLSCREEN_SETTINGS_TOGGLE_ID}
+  from './key_element_ids.js';
 
 /**
  * Initialize the UI for index.html.
@@ -15,7 +19,12 @@ import {MAIN_ID, FULLSCREEN_SETTINGS_TOGGLE_ID} from './key_element_ids.js';
  */
 const initIndexUi = () => {
   // check browser support
-  const browserIsSupported = checkBrowserSupport();
+  const webSqlSupportObserver = new WebSqlSupportObserver(
+      document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
+  const isMobileObserver = new IsMobileObserver(
+      document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID));
+  const browserIsSupported = initCheckBrowserSupport(
+      webSqlSupportObserver, isMobileObserver);
 
   // if browser is supported, then show main element
   // otherwise, hide the main element
