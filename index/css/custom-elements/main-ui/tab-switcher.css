@@ -1,3 +1,5 @@
+@import url('../../colors.css');
+
 main-ui tab-switcher {
   grid-row: 1 / 2;
 
@@ -5,4 +7,6 @@ main-ui tab-switcher {
 
   display: block;
   padding: 0.5em;
+
+  background-color: var(--tab-switcher-background-color);
 }
