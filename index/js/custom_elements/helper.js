@@ -33,9 +33,8 @@ export const createShadow = (element, mode, template) => {
   const internalStyles = getInternalStyles(templateDoc);
   const body = templateDoc.body;
 
-  shadowRoot.append(...externalStylesheets);
-  shadowRoot.append(...internalStyles);
-  shadowRoot.append(...body.childNodes);
+  shadowRoot.append(...externalStylesheets, ...internalStyles,
+      ...body.childNodes);
 
   return shadowRoot;
 };
