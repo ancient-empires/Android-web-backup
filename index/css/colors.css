@@ -1,27 +1,27 @@
 :root {
-    /* Light theme colors */
-    --primary-light-background-color: white;
-    --primary-light-text-color: black;
-    --semi-transparent-light-background-color: rgba(255, 255, 255, 80%);
-    --primary-light-link-color: blue;
-    --primary-light-link-hover-color: red;
-    --primary-light-link-visited-color: purple;
+  /* Light theme colors */
+  --primary-light-background-color: white;
+  --primary-light-text-color: black;
+  --semi-transparent-light-background-color: rgba(255, 255, 255, 80%);
+  --primary-light-link-color: blue;
+  --primary-light-link-hover-color: red;
+  --primary-light-link-visited-color: purple;
 
-    /* Dark theme colors */
-    --primary-dark-background-color: black;
-    --primary-dark-text-color: white;
-    --semi-transparent-dark-background-color: rgba(0, 0, 0, 80%);
-    --primary-dark-link-color: skyblue;
-    --primary-dark-link-hover-color: yellow;
-    --primary-dark-link-visited-color: magenta;
+  /* Dark theme colors */
+  --primary-dark-background-color: black;
+  --primary-dark-text-color: white;
+  --semi-transparent-dark-background-color: rgba(0, 0, 0, 80%);
+  --primary-dark-link-color: skyblue;
+  --primary-dark-link-hover-color: yellow;
+  --primary-dark-link-visited-color: magenta;
 
-    /* Full page popup colors */
-    --full-page-popup-backdrop-background-color: var(--semi-transparent-dark-background-color);
-    --full-page-popup-background-color: #c0c0c0;
-    --full-page-popup-text-color: var(--primary-light-text-color);
+  /* Full page popup colors */
+  --full-page-popup-backdrop-background-color: var(--semi-transparent-dark-background-color);
+  --full-page-popup-background-color: #c0c0c0;
+  --full-page-popup-text-color: var(--primary-light-text-color);
 
-    /* Link tile colors */
-    --link-tile-background-color: #e0e0e0;
-    --link-tile-hover-background-color: #efefef;
-    --link-tile-text-color: var(--primary-light-text-color) ;
+  /* Link tile colors */
+  --link-tile-background-color: #e0e0e0;
+  --link-tile-hover-background-color: #efefef;
+  --link-tile-text-color: var(--primary-light-text-color) ;
 }

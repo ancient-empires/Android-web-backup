@@ -1,62 +1,62 @@
 @import url("colors.css");
 
 html, body, h1, h2, h3, h4, h5, h6, div, p, ol, ul, li {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 1.2;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
 
-    background-color: var(--primary-light-background-color);
-    color: var(--primary-light-text-color);
+  background-color: var(--primary-light-background-color);
+  color: var(--primary-light-text-color);
 }
 
 h1 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 h2 {
-    font-size: 1.8em;
+  font-size: 1.8em;
 }
 
 h3 {
-    font-size: 1.6em;
+  font-size: 1.6em;
 }
 
 h4 {
-    font-size: 1.4em;
+  font-size: 1.4em;
 }
 
 h5 {
-    font-size: 1.3em;
+  font-size: 1.3em;
 }
 
 h6 {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 ol, ul {
-    padding: 0.5em 0 0.5em 2em;
+  padding: 0.5em 0 0.5em 2em;
 }
 
 li {
-    padding: 0.25em 0;
+  padding: 0.25em 0;
 }
 
 a:link {
-    color: var(--primary-light-link-color);
+  color: var(--primary-light-link-color);
 }
 a:visited {
-    color: var(--primary-light-link-visited-color);
+  color: var(--primary-light-link-visited-color);
 }
 a:hover {
-    color: var(--primary-light-link-hover-color);
+  color: var(--primary-light-link-hover-color);
 }
 
 [hidden] {
-    display: none !important;
+  display: none !important;
 }
