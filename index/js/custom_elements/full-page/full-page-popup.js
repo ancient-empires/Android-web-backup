@@ -1,4 +1,4 @@
-import {createShadow} from '../../helper.js';
+import {createShadow} from '../helper.js';
 
 const template = /* html */ `
 <slot><!-- Popup content --></slot>
