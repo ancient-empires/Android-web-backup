@@ -1,4 +1,4 @@
-tab-switcher {
+main-ui tab-switcher {
   grid-row: 1 / 2;
 
   z-index: 1;
