@@ -1,4 +1,4 @@
-@import url('colors.css');
+@import url('../colors.css');
 
 .link-tile {
   background-color: var(--link-tile-background-color);
