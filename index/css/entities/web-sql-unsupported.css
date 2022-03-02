@@ -1,0 +1,48 @@
+@import url("../colors.css");
+
+/* Styles for the popup if your browser does not support Web SQL */
+
+:root {
+	--action-list-width: 90%;
+  --action-list-max-width: 600px;
+  --action-list-row-gap: 0.5em;
+
+  --action-link-padding: 0.5em;
+  --action-link-column-gap: 1em;
+  --action-icon-size: 64px;
+}
+
+.web-sql-unsupported__container {
+  z-index: 2;
+}
+
+.web-sql-unsupported__content {
+  text-align: center;
+}
+
+.web-sql-unsupported__action-list {
+  width: var(--action-list-width);
+  max-width: var(--action-list-max-width);
+  margin: auto;
+
+  display: grid;
+  grid-row-gap: var(--action-list-row-gap);
+}
+
+.web-sql-unsupported__action-link {
+  padding: var(--action-link-padding);
+
+  display: grid;
+  grid-template-columns: var(--action-icon-size) auto;
+  grid-column-gap: var(--action-link-column-gap);
+  align-items: center;
+}
+
+.web-sql-unsupported__action-icon {
+  width: var(--action-icon-size);
+  height: var(--action-icon-size);
+}
+
+.web-sql-unsupported__action-text {
+  text-align: start;
+}

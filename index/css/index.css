@@ -3,7 +3,9 @@
 @import url("custom-elements/full-page/full-page.css");
 @import url("custom-elements/full-page/full-page-popup/full-page-popup.css");
 
-@import url("full-page/full-page.css");
+@import url("entities/not-mobile-user-agent.css");
+@import url("entities/web-sql-unsupported.css");
+
 @import url("main-ui/main-ui.css");
 
 html {

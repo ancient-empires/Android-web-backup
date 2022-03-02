@@ -1,0 +1,17 @@
+/* Styles for the popup if your user agent is not mobile */
+
+.not-mobile-user-agent__container {
+  z-index: 1;
+}
+
+.not-mobile-user-agent__content {
+  text-align: center;
+}
+
+.not-mobile-user-agent__setup-steps {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+
+  text-align: start;
+}
