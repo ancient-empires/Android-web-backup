@@ -2,11 +2,9 @@
 
 full-page-popup {
   display: block;
-
-  width: 100%;
+  width: 90%;
   max-width: 800px;
   height: 100%;
-  box-sizing: border-box;
   margin: auto;
   padding: 1em;
   overflow: auto;
@@ -16,14 +14,16 @@ full-page-popup {
 }
 
 full-page-popup .header {
-  font-size: 32px;
   margin: 0.5em 0;
+
+  font-size: 32px;
   text-align: center;
 }
 
 full-page-popup .subheader {
-  font-size: 24px;
   margin: 1em 0;
+
+  font-size: 24px;
 }
 
 full-page-popup a:link {

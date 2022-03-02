@@ -1,8 +1,6 @@
 @import url('../../colors.css');
 
 full-page {
-  display: block;
-
   position: fixed;
   top: 0;
   bottom: 0;
@@ -10,10 +8,10 @@ full-page {
   right: 0;
   overflow: auto;
 
-  box-sizing: border-box;
+  display: block;
   padding: 2em;
 }
 
-full-page.backdrop {
+.backdrop {
   background-color: var(--full-page-popup-backdrop-background-color);
 }
