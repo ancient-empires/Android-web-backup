@@ -2,7 +2,7 @@
   /* Light theme colors */
   --primary-light-background-color: white;
   --primary-light-text-color: black;
-  --semi-transparent-light-background-color: rgba(255, 255, 255, 80%);
+  --semi-transparent-light-background-color: rgba(255, 255, 255, 60%);
   --primary-light-link-color: blue;
   --primary-light-link-hover-color: red;
   --primary-light-link-visited-color: purple;
@@ -10,7 +10,7 @@
   /* Dark theme colors */
   --primary-dark-background-color: black;
   --primary-dark-text-color: white;
-  --semi-transparent-dark-background-color: rgba(0, 0, 0, 80%);
+  --semi-transparent-dark-background-color: rgba(0, 0, 0, 60%);
   --primary-dark-link-color: skyblue;
   --primary-dark-link-hover-color: yellow;
   --primary-dark-link-visited-color: magenta;
