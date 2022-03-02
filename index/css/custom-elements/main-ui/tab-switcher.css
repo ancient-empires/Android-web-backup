@@ -1,0 +1,8 @@
+tab-switcher {
+  grid-row: 1 / 2;
+
+  z-index: 1;
+
+  display: block;
+  padding: 0.5em;
+}

@@ -1,11 +1,11 @@
 @import url('common.css');
 
-@import url('custom-elements/full-area/full-area.css');
 @import url('custom-elements/full-page/full-page.css');
-@import url('custom-elements/full-page/full-page-popup/full-page-popup.css');
+@import url('custom-elements/full-page/full-page-popup.css');
+@import url('custom-elements/main-ui/main-ui.css');
 
+@import url('entities/full-area.css');
 @import url('entities/link-tile.css');
-@import url('entities/main-ui/main-ui.css');
 @import url('entities/not-mobile-user-agent.css');
 @import url('entities/web-sql-unsupported.css');
 

@@ -11,42 +11,44 @@
 
 <body>
   <main id="main" hidden>
-    <!-- Main UI, with tabbed pages -->
     <full-page class="main-ui">
-      <!-- Tab switcher -->
-      <div class="main-ui__tab-switcher">
-        <ul>
-          <li>Home</li>
-        </ul>
-      </div>
-
-      <!-- Tab contents -->
-      <div class="main-ui__tab-contents">
-        <!-- Home tab-->
-        <div id="homepage" class="main-ui__tab-content main-ui__tab-content--default">
-          <h1>Welcome to Ancient Empires web version!</h1>
-
-          <h2>Start game</h2>
+      <!-- Main UI, with tabbed pages -->
+      <main-ui class="full-area">
+        <!-- Tab switcher -->
+        <tab-switcher>
           <ul>
-            <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
-            <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
+            <li>Home</li>
           </ul>
-          <p>
-            <input type="checkbox" id="fullscreen-settings-toggle" /> <label
-              for="fullscreen-settings-toggle">Automatically enter fullscreen when starting a game</label>
-          </p>
-        </div>
+        </tab-switcher>
 
-        <!-- AE1 tab -->
-        <div id="ae1-game" class="main-ui__tab-content">
-          <iframe id="ae1-game-iframe" class="main-ui__game-iframe" src="about:blank"></iframe>
-        </div>
+        <!-- Tab contents -->
+        <tab-contents>
+          <!-- Home tab-->
+          <tab-content id="homepage" default>
+            <h1>Welcome to Ancient Empires web version!</h1>
 
-        <!-- AE2 tab -->
-        <div id="ae2-game" class="main-ui__tab-content">
-          <iframe id="ae2-game-iframe" class="main-ui__game-iframe" src="about:blank"></iframe>
-        </div>
-      </div>
+            <h2>Start game</h2>
+            <ul>
+              <li><a href="AE1/www/">Ancient Empires (Ancient Empires 1)</a></li>
+              <li><a href="AE2/www/">Ancient Empire: Strike Back (Ancient Empires 2)</a></li>
+            </ul>
+            <p>
+              <input type="checkbox" id="fullscreen-settings-toggle" /> <label
+                for="fullscreen-settings-toggle">Automatically enter fullscreen when starting a game</label>
+            </p>
+          </tab-content>
+
+          <!-- AE1 tab -->
+          <tab-content id="ae1-game">
+            <iframe id="ae1-game-iframe" src="about:blank"></iframe>
+          </tab-content>
+
+          <!-- AE2 tab -->
+          <tab-content id="ae2-game">
+            <iframe id="ae2-game-iframe" src="about:blank"></iframe>
+          </tab-content>
+        </tab-contents>
+      </main-ui>
     </full-page>
   </main>
 

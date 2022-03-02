@@ -1,0 +1,10 @@
+main-ui tab-contents {
+  grid-row: 2 / -1;
+
+  position: relative;
+  z-index: 0;
+
+  display: block;
+  height: 100%;
+  overflow: auto;
+}
