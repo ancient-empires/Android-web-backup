@@ -3,33 +3,32 @@
 @import url("custom-elements/full-page/full-page.css");
 @import url("custom-elements/full-page/full-page-popup/full-page-popup.css");
 
+@import url("entities/main-ui/main-ui.css");
 @import url("entities/not-mobile-user-agent.css");
 @import url("entities/web-sql-unsupported.css");
 
-@import url("main-ui/main-ui.css");
-
 html {
-    background-color: var(--semi-transparent-dark-background-color);
-    background-image: url("../images/home.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-blend-mode: overlay;
+  background-color: var(--semi-transparent-dark-background-color);
+  background-image: url("../images/home.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
 
-    color: var(--primary-dark-text-color);
+  color: var(--primary-dark-text-color);
 }
 
 body {
-    position: relative;
+  position: relative;
 }
 
 a:link {
-    color: var(--primary-dark-link-color);
+  color: var(--primary-dark-link-color);
 }
 a:visited {
-    color: var(--primary-dark-link-visited-color);
+  color: var(--primary-dark-link-visited-color);
 }
 a:hover {
-    color: var(--primary-dark-link-hover-color);
+  color: var(--primary-dark-link-hover-color);
 }
