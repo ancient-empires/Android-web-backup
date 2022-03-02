@@ -1,6 +1,8 @@
 @import url('../../colors.css');
 
 full-page {
+    display: block;
+
     position: fixed;
     top: 0;
     bottom: 0;
