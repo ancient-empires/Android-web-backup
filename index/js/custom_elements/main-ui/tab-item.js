@@ -117,12 +117,19 @@ export default class TabItemElement extends HTMLElement {
 
     const dom = parseHtml(labelStr);
 
+    // helper function for navigating to target hash
+    const navigateToTargetHash = () => {
+      navigateToHash(this.targetHash, true);
+    };
+
     // select radio button if window hash matches
     // the hash of the target tab
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
-    this.hashChangeListener = () => {
-      radio.checked = window.location.hash === this.targetHash;
+    radio.addEventListener('input', navigateToTargetHash);
+    this.setRadioStatus = () => {
+      radio.checked = this.isActiveTab();
     };
+    this.setRadioStatus();
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
@@ -131,25 +138,27 @@ export default class TabItemElement extends HTMLElement {
     // navigate to the corresponding hash when the current tab
     // is activated
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
-    tabAccessor.addEventListener('click', () => {
-      navigateToHash(this.targetHash, true);
-    });
+    tabAccessor.addEventListener('click', navigateToTargetHash);
 
     this.append(...dom.body.children);
   }
 
   /** Callback when the element is loaded into the document DOM. */
   connectedCallback() {
-    /** @type { HTMLInputElement} */
-    const radio = this.querySelector(`.${RADIO_CLASS_NAME}`);
-    radio.checked = window.location.hash === this.targetHash;
-
-    window.addEventListener('hashchange', this.hashChangeListener);
+    window.addEventListener('hashchange', this.setRadioStatus);
   }
 
   /** Callback when the element is removed from the document DOM. */
   disconnectedCallback() {
-    window.removeEventListener('hashchange', this.hashChangeListener);
+    window.removeEventListener('hashchange', this.setRadioStatus);
+  }
+
+  /**
+   * Check if the current tab is active.
+   * @return { boolean } `true` if this tab is active, `false` otherwise.
+   */
+  isActiveTab() {
+    return window.location.hash === this.targetHash;
   }
 }
 
