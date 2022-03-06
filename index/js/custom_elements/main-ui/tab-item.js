@@ -85,9 +85,8 @@ export default class TabItemElement extends HTMLElement {
    * Defaults to `false`.
    *    - The tab whose `target-hash` matches the `default-tab-hash` attribute
    *      of the parent `default-tab-hash` attribute must *NOT* be closeable.
-   *
-   * - `game-iframe-id` *(optional)*: the ID of the `<iframe>`
-   * element that hosts the actual game.
+   * - `game` *(optional)*: the string representing the actual
+   * game. *(Must be in **lowercase**)*
   */
   constructor() {
     super();
@@ -103,7 +102,7 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
     this.iconSrc = this.getAttribute('icon-src');
     this.iconAlt = this.getAttribute('icon-alt') || this.name;
     this.closeable = this.hasAttribute('closeable');
-    this.gameFrameId = this.getAttribute('game-iframe-id');
+    this.game = this.getAttribute('game');
 
     if (this.isDefaultTab() && this.closeable) {
       throw new Error(`The "${this.name}" tab is the default tab \
