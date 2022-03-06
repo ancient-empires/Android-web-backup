@@ -123,7 +123,7 @@ export default class TabItemElement extends HTMLElement {
 
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', () => {
-      navigateToHash(this.hash);
+      navigateToHash(this.hash, true);
       label.click();
     });
 
