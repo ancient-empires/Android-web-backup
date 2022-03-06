@@ -22,6 +22,10 @@ import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
  * `false` otherwise.
  */
 const initIndexUi = () => {
+  // ensure that we always get the Welcome page
+  // when the user opens it (hash should be discarded)
+  navigateToTopHash(true);
+
   // check browser support
   const webSqlSupportObserver = new WebSqlSupportObserver(
       document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
@@ -47,8 +51,6 @@ const initIndexUi = () => {
   }(mainElement);
 
   initMainUi(browserIsSupported, mainElementObserver);
-
-  navigateToTopHash(true);
 
   return browserIsSupported;
 };
