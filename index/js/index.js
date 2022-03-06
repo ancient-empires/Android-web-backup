@@ -1,12 +1,13 @@
-import Observer from './observer.js';
+import {navigateToTopHash} from './helpers.js';
+
+import Observer from './observers/observer.js';
 
 import initCheckBrowserSupport,
 {WebSqlSupportObserver, IsMobileObserver}
-  from './check_browser.js';
+  from './observers/check_browser.js';
 import initFullscreenSettings, {getFullscreenStatus,
-  setFullscreenStatus} from './fullscreen_settings.js';
-import initMainUi from './main_ui.js';
-import {navigateToTopHash} from './helpers.js';
+  setFullscreenStatus} from './observers/fullscreen_settings.js';
+import initMainUi from './observers/main_ui.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
