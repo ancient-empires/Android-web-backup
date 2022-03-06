@@ -1,4 +1,5 @@
-import {parseHtml, createShadow} from '../helper.js';
+import {parseHtml, createShadow} from '../dom_helpers.js';
+import {navigateToHash} from '../../helpers.js';
 
 const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
@@ -122,7 +123,7 @@ export default class TabItemElement extends HTMLElement {
 
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', () => {
-      window.location.hash = this.hash;
+      navigateToHash(this.hash);
       label.click();
     });
 
