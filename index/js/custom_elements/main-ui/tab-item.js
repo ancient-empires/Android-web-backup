@@ -191,11 +191,13 @@ with target hash "${this.targetHash}", and it must not be closeable`);
 
   /** Close current tab. */
   closeTab() {
-    this.hidden = true;
+    if (this.closeable) {
+      this.hidden = true;
 
-    /** @type { TabItemsElement } */
-    const tabItems = this.parentElement;
-    navigateToHash(tabItems.defaultTabHash, true);
+      /** @type { TabItemsElement } */
+      const tabItems = this.parentElement;
+      navigateToHash(tabItems.defaultTabHash, true);
+    }
   }
 }
 
