@@ -68,7 +68,7 @@ export default class TabItemElement extends HTMLElement {
     }`;
 
   /**
-   * Construct a <tab-item> element.
+   * Construct a `<tab-item>` element.
    *
    * Accepted attributes:
    * - `name`: the name of the tab.
