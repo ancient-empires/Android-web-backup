@@ -66,8 +66,8 @@ export default class TabItemElement extends HTMLElement {
    * - `name`: the name of the tab.
    * - `radio-name`: the name of the mutually exclusive
    * list of tabs (only one tab can be selected at a time).
-   * - `hash` *(optional)*: the fragment to jump to
-   * when the this tab item is activated.
+   * - `target-hash` *(optional)*: the target tab to jump to
+   * when the this tab item is clicked.
    * If not present, jump to the top of the document.
    * The hash symbol `#` shall *NOT* be provided in user input.
    * - `icon-src`: URL of the tab icon.
@@ -84,7 +84,7 @@ export default class TabItemElement extends HTMLElement {
 
     this.name = this.getAttribute('name');
     this.radioName = this.getAttribute('radio-name');
-    this.hash = normalizeHash(this.getAttribute('hash'));
+    this.targetHash = normalizeHash(this.getAttribute('target-hash'));
     this.iconSrc = this.getAttribute('icon-src');
     this.iconAlt = this.getAttribute('icon-alt') || this.name;
     this.closeable = this.hasAttribute('closeable');
@@ -115,22 +115,24 @@ export default class TabItemElement extends HTMLElement {
       </div>`;
 
     const dom = parseHtml(labelStr);
-    const label = dom.querySelector(`.${LABEL_CLASS_NAME}`);
+
+    // select radio button if window hash matches
+    // the hash of the target tab
+    const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
+    this.hashChangeListener = () => {
+      radio.checked = window.location.hash === this.targetHash;
+    };
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
         'closed', shadowDomStr);
 
+    // navigate to the corresponding hash when the current tab
+    // is activated
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', () => {
-      navigateToHash(this.hash, true);
+      navigateToHash(this.targetHash, true);
     });
-
-    this.hashChangeListener = () => {
-      if (window.location.hash === this.hash) {
-        label.click();
-      }
-    };
 
     this.append(...dom.body.children);
   }
@@ -139,7 +141,7 @@ export default class TabItemElement extends HTMLElement {
   connectedCallback() {
     /** @type { HTMLInputElement} */
     const radio = this.querySelector(`.${RADIO_CLASS_NAME}`);
-    radio.checked = window.location.hash === this.hash;
+    radio.checked = window.location.hash === this.targetHash;
 
     window.addEventListener('hashchange', this.hashChangeListener);
   }
