@@ -93,8 +93,9 @@ export default class TabItemElement extends HTMLElement {
     const labelStr = /* html */ `
       <label class="${LABEL_CLASS_NAME}">
         <!-- Radio button to select active tab -->
-        <input type="radio" class="${RADIO_CLASS_NAME}"
-          name=${this.radioName} hidden />
+        <input type="radio" value="${this.targetHash}"
+          class="${RADIO_CLASS_NAME}" name=${this.radioName}
+          hidden />
         <!-- Clickable controls -->
         <div class="container ${SHADOW_HOST_CLASS_NAME}">
           <!-- Attach shadow DOM here -->
