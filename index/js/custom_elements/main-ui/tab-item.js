@@ -110,6 +110,8 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
 with target hash "${this.targetHash}", and it must not be closeable`);
     }
 
+    // <label> element for selecting the radio button
+    // and for containing clickable controls of the tab
     const labelStr = /* html */ `
       <label class="${LABEL_CLASS_NAME}">
         <!-- Radio button to select active tab -->
@@ -122,6 +124,7 @@ with target hash "${this.targetHash}", and it must not be closeable`);
         </div>
       </label>`;
 
+    // Shadow DOM for clickable controls
     const shadowDomStr = /* html */ `
       <style>${TabItemElement.shadowStyle}</style>
       <div class="tab-item-container">
@@ -140,22 +143,27 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     // select radio button if window hash matches
     // the hash of the target tab
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
+    radio.checked = this.isActiveTab();
     radio.addEventListener('input', this.selectTab.bind(this));
-    this.setRadioStatus = () => {
+
+    // helper function to handle hash changes
+    this.hashChangeListener = () => {
+      if (this.isActiveTab()) {
+        this.hidden = false;
+      }
       radio.checked = this.isActiveTab();
     };
-    this.setRadioStatus();
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
         'closed', shadowDomStr);
 
-    // navigate to the corresponding hash when the current tab
-    // is activated
+    // set tab accessor click event: navigate to the corresponding
+    // target hash when the current tab is activated
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', this.selectTab.bind(this));
 
-    // set event for close button
+    // set click event for close button
     if (this.closeable) {
       const closeButton = shadowRoot.getElementById(CLOSE_BUTTON_ID);
       closeButton.addEventListener('click', this.closeTab.bind(this));
@@ -166,12 +174,12 @@ with target hash "${this.targetHash}", and it must not be closeable`);
 
   /** Callback when the element is loaded into the document DOM. */
   connectedCallback() {
-    window.addEventListener('hashchange', this.setRadioStatus);
+    window.addEventListener('hashchange', this.hashChangeListener);
   }
 
   /** Callback when the element is removed from the document DOM. */
   disconnectedCallback() {
-    window.removeEventListener('hashchange', this.setRadioStatus);
+    window.removeEventListener('hashchange', this.hashChangeListener);
   }
 
   /**
