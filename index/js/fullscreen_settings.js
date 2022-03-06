@@ -16,8 +16,11 @@ class FullscreenLocalStorageObserver extends Observer {
     }
   }
 
-  /** @return { boolean } */
-  static getFullscreenStatus() {
+  /**
+   * @return { boolean } `true` if the user opts to start the game
+   * in fullscreen mode, `false` otherwise.
+   */
+  static getFullscreenSettings() {
     return Boolean(localStorage.getItem(FULLSCREEN_LOCAL_STORAGE_KEY));
   }
 }
@@ -28,7 +31,7 @@ fullscreenObservers.add(new FullscreenLocalStorageObserver());
 
 const fullscreenSettingsProxy = new Proxy(Object.seal({
   'shouldEnterFullscreenOnGameStart':
-      FullscreenLocalStorageObserver.getFullscreenStatus(),
+      FullscreenLocalStorageObserver.getFullscreenSettings(),
 }), {
   set: /** @return { boolean } */ (target, prop, value) => {
     return Reflect.set(target, prop, Boolean(value)) &&

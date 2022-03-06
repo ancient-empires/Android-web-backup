@@ -16,7 +16,9 @@ import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
  * Initialize the UI for index.html.
  * First check browser support.
  * Then show main element if the browser supports running the game.
- * @return { boolean }
+ *
+ * @return { boolean } `true` if browser supports running the game,
+ * `false` otherwise.
  */
 const initIndexUi = () => {
   // check browser support
@@ -74,7 +76,7 @@ class FullscreenCheckboxObserver extends Observer {
 
 /**
  * Initialize fullscreen settings.
- * @return { boolean }
+ * @return { boolean } `true`
  */
 const initFullscreen = () => {
   // use the checkbox on the page to set fullscreen status

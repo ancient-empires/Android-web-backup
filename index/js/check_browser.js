@@ -95,7 +95,8 @@ const checkBrowserSupport = () =>
  *
  * @param { WebSqlSupportObserver } [webSqlSupportObserver]
  * @param { IsMobileObserver } [isMobileObserver]
- * @return { boolean }
+ * @return { boolean } `true` if the browser supports
+ * running the game, `false` otherwise.
  */
 const initCheckBrowserSupport = (webSqlSupportObserver, isMobileObserver) => {
   observers.webSqlSupportObserver = webSqlSupportObserver;
