@@ -6,7 +6,7 @@ const mainElementObservers = new Set();
 const mainElementProxy = new Proxy(Object.seal({
   'show': false,
 }), {
-  set: /** @returns { boolean } */ (target, prop, value) => {
+  set: /** @return { boolean } */ (target, prop, value) => {
     return Reflect.set(target, prop, Boolean(value)) &&
       (() => {
         switch (prop) {

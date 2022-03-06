@@ -45,7 +45,7 @@ const browserSupportProxy = new Proxy(Object.seal({
   'hasWebSqlSupport': false,
   'isMobile': false,
 }), {
-  set: /** @returns { boolean } */ (target, prop, value) => {
+  set: /** @return { boolean } */ (target, prop, value) => {
     return Reflect.set(target, prop, Boolean(value)) &&
       (() => {
         switch (prop) {
