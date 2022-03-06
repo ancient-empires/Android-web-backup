@@ -111,7 +111,7 @@ export default class TabItemElement extends HTMLElement {
         </button>
         ${this.closeable ?
           /* html */ `<button role="button"
-            class="close-button">&#x2715</button>` :
+            class="close-button">&#x1f5d9</button>` :
           ''}
       </div>`;
 
