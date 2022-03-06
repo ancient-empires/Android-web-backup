@@ -1,15 +1,16 @@
 /**
  * Normalize a hash.
- * For undefined, null, '', or '#':
- * - If @param keepHashOnEmpty is true, then return '#'.
+ * For `undefined`, `null`, `''`, or `#`:
+ * - If @param keepHashOnEmpty is true, then return `#`.
  * - Otherwise return empty string.
  *
  * Otherwise, for a normal @param hash:
- * - If hash starts with '#', return original hash.
- * - Otherwise, add '#' at the beginning.
+ * - If hash starts with `#`, return original hash.
+ * - Otherwise, add `#` at the beginning.
  *
  * @param { ?string | undefined } hash the hash to normalize.
- * @param { boolean } keepHashOnEmpty whether to keep '#' for empty hash.
+ * @param { boolean } keepHashOnEmpty whether to keep `#`
+ *   for empty hash. (Default is `false`)
  * @return { string } normalized hash.
  */
 export const normalizeHash = (hash = '', keepHashOnEmpty = false) => {
