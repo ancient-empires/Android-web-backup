@@ -1,5 +1,6 @@
 /** <tab-items> custom element */
 export default class TabItemsElement extends HTMLElement {
+  static tagName = 'tab-items';
 }
 
-customElements.define('tab-items', TabItemsElement);
+customElements.define(TabItemsElement.tagName, TabItemsElement);

@@ -1,5 +1,6 @@
 /** <tab-contents> custom element */
 export default class TabContentsElement extends HTMLElement {
+  static tagName = 'tab-contents';
 }
 
-customElements.define('tab-contents', TabContentsElement);
+customElements.define(TabContentsElement.tagName, TabContentsElement);

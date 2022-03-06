@@ -11,6 +11,8 @@ const TAB_ACCESSOR_ID = 'tab-accessor';
  * <tab-item> custom element
  * (used on tab switcher; lets the user click to switch tabs) */
 export default class TabItemElement extends HTMLElement {
+  static tagName = 'tab-item';
+
   static shadowStyle = /* css */ `
     @import url('/index/css/colors.css');
 
@@ -162,4 +164,4 @@ export default class TabItemElement extends HTMLElement {
   }
 }
 
-customElements.define('tab-item', TabItemElement);
+customElements.define(TabItemElement.tagName, TabItemElement);
