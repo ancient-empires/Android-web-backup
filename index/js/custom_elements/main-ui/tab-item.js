@@ -1,5 +1,6 @@
 import {parseHtml, createShadow} from '../helper.js';
 
+const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
 const SHADOW_HOST_CLASS_NAME = 'js-shadow-host';
 
@@ -87,7 +88,7 @@ export default class TabItemElement extends HTMLElement {
     this.gameFrameId = this.getAttribute('game-iframe-id');
 
     const labelStr = /* html */ `
-      <label>
+      <label class="${LABEL_CLASS_NAME}">
         <!-- Radio button to select active tab -->
         <input type="radio" class="${RADIO_CLASS_NAME}"
           name=${this.radioName} hidden />
@@ -105,13 +106,13 @@ export default class TabItemElement extends HTMLElement {
           <span class="tab-name">${this.name}</span>
         </a>
         ${this.closeable ?
-          /* html */
-          `<button role="button" class="tab-button">&#x2715</button>` :
+          /* html */ `<button role="button"
+            class="tab-button">&#x2715</button>` :
           ''}
-      </div>
-    `;
+      </div>`;
 
     const dom = parseHtml(labelStr);
+    const label = dom.querySelector(`.${LABEL_CLASS_NAME}`);
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
@@ -119,7 +120,9 @@ export default class TabItemElement extends HTMLElement {
 
     const tabItemLink = shadowRoot.getElementById(TAB_ITEM_LINK_ID);
     tabItemLink.addEventListener('click', () => {
-      tabItemLink.parentElement.click();
+      label.click();
+
+      // ensure that the link color in shadow DOM is inherited properly
       tabItemLink.style = tabItemLink.style;
     });
 
