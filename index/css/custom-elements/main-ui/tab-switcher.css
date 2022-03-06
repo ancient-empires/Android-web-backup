@@ -5,7 +5,7 @@ main-ui tab-switcher {
 
   z-index: 1;
 
-  display: block;
+  display: flex;
   padding: 0.5em;
 
   background-color: var(--tab-switcher-background-color);

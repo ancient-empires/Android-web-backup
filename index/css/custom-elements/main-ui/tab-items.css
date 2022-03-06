@@ -1,4 +1,6 @@
 tab-items {
+  flex-grow: 1;
+
   display: flex;
   gap: 0.5em;
 }
