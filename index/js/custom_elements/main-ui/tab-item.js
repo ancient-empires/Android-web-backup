@@ -17,15 +17,14 @@ export default class TabItemElement extends HTMLElement {
     }
 
     .tab-item-container {
-      padding: 0.25em 0.5em;
-
       display: flex;
-      align-items: center;
       gap: 0.25em;
     }
 
     .tab-link {
       flex-grow: 1;
+
+      padding: 0.25em 0.5em;
 
       display: flex;
       align-items: center;
@@ -44,6 +43,17 @@ export default class TabItemElement extends HTMLElement {
 
     .tab-name {
       flex-grow: 1;
+    }
+
+    .tab-button {
+      margin: 0;
+      padding: 0 0.5em;
+      width: auto;
+      height: auto;
+
+      border: none;
+      background-color: transparent;
+      color: inherit;
     }`;
 
   /**
@@ -95,7 +105,10 @@ export default class TabItemElement extends HTMLElement {
           <img class="tab-icon" src="${this.iconSrc}" alt="${this.iconAlt}" />
           <span class="tab-name">${this.name}</span>
         </a>
-        ${this.closeable ? /* html */ `<button>&#x2715</button>` : ''}
+        ${this.closeable ?
+          /* html */
+          `<button role="button" class="tab-button">&#x2715</button>` :
+          ''}
       </div>
     `;
 
