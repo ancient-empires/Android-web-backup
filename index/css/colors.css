@@ -30,7 +30,7 @@
   --tab-item-unselected-background-color: #222;
   --tab-item-unselected-text-color: #e0e0e0;
   --tab-item-hover-background-color: #444;
-  --tab-item-hover-text-color: #111;
+  --tab-item-hover-text-color: var(--primary-dark-text-color);
   --tab-item-selected-background-color: white;
   --tab-item-selected-text-color: var(--primary-light-text-color);
 }
