@@ -1,5 +1,6 @@
 @import url('colors.css');
 
+@import url('webfonts/noto-sans-symbols2.css');
 @import url('webfonts/noto-sans.css');
 
 * {
@@ -12,7 +13,7 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ol, ul, li {
 }
 
 html {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans', 'Noto Sans Symbols2', sans-serif;
   font-size: 16px;
   line-height: 1.2;
 
