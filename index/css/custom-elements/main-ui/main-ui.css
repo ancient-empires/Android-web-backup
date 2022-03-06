@@ -1,5 +1,7 @@
 @import url('tab-content.css');
 @import url('tab-contents.css');
+@import url('tab-item.css');
+@import url('tab-items.css');
 @import url('tab-switcher.css');
 
 main-ui {

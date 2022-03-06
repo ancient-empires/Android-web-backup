@@ -16,9 +16,20 @@
       <main-ui class="full-area">
         <!-- Tab switcher -->
         <tab-switcher>
-          <ul>
-            <li>Home</li>
-          </ul>
+          <tab-items>
+            <!-- Home tab-->
+            <tab-item name="Home" radio-name="main-ui-tabs" icon-src="favicon.ico"></tab-item>
+
+            <!-- AE1 tab-->
+            <tab-item name="AE1" radio-name="main-ui-tabs" hash="ae1-game" icon-src="index/icons/ae1-icon.png" closeable
+              game-iframe-id="ae1-game-iframe">
+            </tab-item>
+
+            <!-- AE2 tab-->
+            <tab-item name="AE2" radio-name="main-ui-tabs" hash="ae2-game" icon-src="index/icons/ae2-icon.png" closeable
+              game-iframe-id="ae2-game-iframe">
+            </tab-item>
+          </tab-items>
         </tab-switcher>
 
         <!-- Tab contents -->

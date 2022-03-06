@@ -27,4 +27,10 @@
 
   /* Tab switcher colors */
   --tab-switcher-background-color: var(--primary-dark-background-color);
+  --tab-item-unselected-background-color: #222;
+  --tab-item-unselected-text-color: #e0e0e0;
+  --tab-item-hover-background-color: #444;
+  --tab-item-hover-text-color: #111;
+  --tab-item-selected-background-color: white;
+  --tab-item-selected-text-color: var(--primary-light-text-color);
 }

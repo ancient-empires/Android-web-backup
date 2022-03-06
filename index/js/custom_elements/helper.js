@@ -1,9 +1,19 @@
+const domParser = new DOMParser();
+
+/**
+ * Parse HTML string.
+ * @param { string } htmlStr
+ * @return { Document }
+*/
+export const parseHtml = (htmlStr) =>
+  domParser.parseFromString(htmlStr, 'text/html');
+
 /**
  * Get internal styles.
  * @param { Document } doc
  * @return { NodeList }
 */
-const getInternalStyles = (doc) =>
+export const getInternalStyles = (doc) =>
   doc.querySelectorAll('style');
 
 /**
@@ -11,27 +21,33 @@ const getInternalStyles = (doc) =>
  * @param { Document } doc
  * @return { NodeList }
 */
-const getExternalStylesheets = (doc) =>
+export const getExternalStylesheets = (doc) =>
   doc.querySelectorAll('link[rel="stylesheet"]');
+
+/**
+ * Get body.
+ * @param { Document } doc
+ * @return { HTMLElement }
+*/
+export const getBody = (doc) => doc.body;
 
 /**
  * Create a shadow root.
  * Reference: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#autonomous_custom_elements
- * @param { HTMLElement } element
+ * @param { HTMLElement } hostElement
  * @param { 'open' | 'closed' } mode
  * @param { string } template
  * @return { ShadowRoot }
  */
-export const createShadow = (element, mode, template) => {
-  const shadowRoot = element.attachShadow({'mode': mode});
+export const createShadow = (hostElement, mode, template) => {
+  const shadowRoot = hostElement.attachShadow({'mode': mode});
 
-  const domParser = new DOMParser();
-  const templateDoc = domParser.parseFromString(template, 'text/html');
+  const templateDoc = parseHtml(template);
 
   // Extract external stylesheets, internal styles, and body.
   const externalStylesheets = getExternalStylesheets(templateDoc);
   const internalStyles = getInternalStyles(templateDoc);
-  const body = templateDoc.body;
+  const body = getBody(templateDoc);
 
   shadowRoot.append(...externalStylesheets, ...internalStyles,
       ...body.childNodes);

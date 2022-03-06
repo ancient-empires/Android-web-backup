@@ -6,4 +6,6 @@ import './full-page/full-page-popup.js';
 import './main-ui/main-ui.js';
 import './main-ui/tab-content.js';
 import './main-ui/tab-contents.js';
+import './main-ui/tab-item.js';
+import './main-ui/tab-items.js';
 import './main-ui/tab-switcher.js';

@@ -1,0 +1,22 @@
+@import url('../../colors.css');
+
+tab-item {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 200px;
+}
+
+tab-item .container {
+  background-color: var(--tab-item-unselected-background-color);
+  color: var(--tab-item-unselected-text-color);
+}
+
+tab-item .container:hover {
+  background-color: var(--tab-item-hover-background-color);
+  color: var(--tab-item-hover-text-color);
+}
+
+tab-item input[type="radio"]:checked + .container {
+  background-color: var(--tab-item-selected-background-color);
+  color: var(--tab-item-selected-text-color);
+}
