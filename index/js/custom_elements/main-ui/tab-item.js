@@ -18,7 +18,6 @@ export default class TabItemElement extends HTMLElement {
 
     .tab-item-container {
       display: flex;
-      gap: 0.25em;
     }
 
     .tab-link {
