@@ -3,9 +3,10 @@ import Observer from './observer.js';
 import initCheckBrowserSupport,
 {WebSqlSupportObserver, IsMobileObserver}
   from './check_browser.js';
-import initMainUi from './main_ui.js';
 import initFullscreenSettings, {getFullscreenStatus,
   setFullscreenStatus} from './fullscreen_settings.js';
+import initMainUi from './main_ui.js';
+import {navigateToTopHash} from './helpers.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
@@ -46,6 +47,8 @@ const initIndexUi = () => {
   }(mainElement);
 
   initMainUi(browserIsSupported, mainElementObserver);
+
+  navigateToTopHash(true);
 
   return browserIsSupported;
 };

@@ -48,3 +48,13 @@ export const navigateToHash = (hash = '', replace = false) => {
         window.location.pathname);
   }
 };
+
+/**
+ * Navigate to top hash.
+ * @param { boolean } replace if `true`, then replace the current
+ *   entry in browser history, instead of appending to it.
+ *   (Default is `false`)
+*/
+export const navigateToTopHash = (replace = false) => {
+  navigateToHash('', replace);
+};
