@@ -31,7 +31,7 @@ export const setMainUiVisibility = (value) => {
 
 /**
  * @param { boolean } visibility
- * @param { Observer[] } observers
+ * @param { ...Observer } observers
  */
 const initMainUi = (visibility, ...observers) => {
   observers.forEach((observer) => {
