@@ -76,14 +76,16 @@ export default class TabItemElement extends HTMLElement {
    * list of tabs (only one tab can be selected at a time).
    * - `target-hash` *(optional)*: the target tab to jump to
    * when the this tab item is clicked.
-   * If not present, jump to the top of the document.
-   * The hash symbol `#` shall *NOT* be provided in user input.
+   *    - If not present, jump to the top of the document.
+   *    - The hash symbol `#` shall *NOT* be provided in user input.
    * - `icon-src`: URL of the tab icon.
    * - `icon-alt` *(optional)*: Alternative description text of the tab icon.
-   * If not provided, then defaults to the tab name
-   * (`name` attribute).
+   *    - If not provided, then defaults to the tab name (`name` attribute).
    * - `closeable` *(optional, boolean)*: whether this tab can be closed.
    * Defaults to `false`.
+   *    - The tab whose `target-hash` matches the `default-tab-hash` attribute
+   *      of the parent `default-tab-hash` attribute must *NOT* be closeable.
+   *
    * - `game-iframe-id` *(optional)*: the ID of the `<iframe>`
    * element that hosts the actual game.
   */
@@ -102,6 +104,12 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
     this.iconAlt = this.getAttribute('icon-alt') || this.name;
     this.closeable = this.hasAttribute('closeable');
     this.gameFrameId = this.getAttribute('game-iframe-id');
+
+    if (this.targetHash === this.parentElement.defaultTabHash &&
+      this.closeable) {
+      throw new Error(`The "${this.name}" tab is the default tab \
+with target hash "${this.targetHash}", and it must not be closeable`);
+    }
 
     const labelStr = /* html */ `
       <label class="${LABEL_CLASS_NAME}">
