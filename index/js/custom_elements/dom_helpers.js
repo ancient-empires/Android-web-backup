@@ -3,7 +3,7 @@ const domParser = new DOMParser();
 /**
  * Parse HTML string.
  * @param { string } htmlStr
- * @return { Document }
+ * @return { Document } the complete document that is parsed.
 */
 export const parseHtml = (htmlStr) =>
   domParser.parseFromString(htmlStr, 'text/html');
@@ -11,7 +11,7 @@ export const parseHtml = (htmlStr) =>
 /**
  * Get internal styles.
  * @param { Document } doc
- * @return { NodeList }
+ * @return { NodeList } all the <style> elements.
 */
 export const getInternalStyles = (doc) =>
   doc.querySelectorAll('style');
@@ -19,7 +19,7 @@ export const getInternalStyles = (doc) =>
 /**
  * Get external stylesheets.
  * @param { Document } doc
- * @return { NodeList }
+ * @return { NodeList } all the <link> elements that link to stylesheets.
 */
 export const getExternalStylesheets = (doc) =>
   doc.querySelectorAll('link[rel="stylesheet"]');
