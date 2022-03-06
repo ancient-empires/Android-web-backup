@@ -1,15 +1,21 @@
 import {parseHtml, createShadow} from '../dom_helpers.js';
 import {normalizeHash, navigateToHash} from '../../helpers.js';
 
+import TabItemsElement from './tab-items.js';
+
 const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
 const SHADOW_HOST_CLASS_NAME = 'js-shadow-host';
 
 const TAB_ACCESSOR_ID = 'tab-accessor';
+const CLOSE_BUTTON_ID = 'close-button';
 
 /**
- * <tab-item> custom element
- * (used on tab switcher; lets the user click to switch tabs) */
+ * <tab-item> custom element used on tab switcher,
+ * which lets the user click to switch tabs.
+ * Must be placed inside a <tab-items> element.
+ * @see {@link tab-items.js}
+ */
 export default class TabItemElement extends HTMLElement {
   static tagName = 'tab-item';
 
@@ -62,7 +68,7 @@ export default class TabItemElement extends HTMLElement {
     }`;
 
   /**
-   * Construct a tab item element.
+   * Construct a <tab-item> element.
    *
    * Accepted attributes:
    * - `name`: the name of the tab.
@@ -83,6 +89,11 @@ export default class TabItemElement extends HTMLElement {
   */
   constructor() {
     super();
+
+    if (!(this.parentElement instanceof TabItemsElement)) {
+      throw new TypeError(`A <${TabItemElement.tagName}> element \
+must be placed inside a <${TabItemsElement.tagName}> element.`);
+    }
 
     this.name = this.getAttribute('name');
     this.radioName = this.getAttribute('radio-name');
@@ -112,7 +123,7 @@ export default class TabItemElement extends HTMLElement {
           <span class="tab-name">${this.name}</span>
         </button>
         ${this.closeable ?
-          /* html */ `<button role="button"
+          /* html */ `<button role="button" id="${CLOSE_BUTTON_ID}"
             class="close-button">&#x1f5d9</button>` :
           ''}
       </div>`;
@@ -137,6 +148,12 @@ export default class TabItemElement extends HTMLElement {
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', this.selectTab.bind(this));
 
+    // set event for close button
+    if (this.closeable) {
+      const closeButton = shadowRoot.getElementById(CLOSE_BUTTON_ID);
+      closeButton.addEventListener('click', this.closeTab.bind(this));
+    }
+
     this.append(...dom.body.children);
   }
 
@@ -160,7 +177,17 @@ export default class TabItemElement extends HTMLElement {
 
   /** Select current tab. */
   selectTab() {
+    this.hidden = false;
     navigateToHash(this.targetHash, true);
+  }
+
+  /** Close current tab. */
+  closeTab() {
+    this.hidden = true;
+
+    /** @type { TabItemsElement } */
+    const tabItems = this.parentElement;
+    navigateToHash(tabItems.defaultTabHash, true);
   }
 }
 
