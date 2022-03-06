@@ -117,15 +117,10 @@ export default class TabItemElement extends HTMLElement {
 
     const dom = parseHtml(labelStr);
 
-    // helper function for navigating to target hash
-    const navigateToTargetHash = () => {
-      navigateToHash(this.targetHash, true);
-    };
-
     // select radio button if window hash matches
     // the hash of the target tab
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
-    radio.addEventListener('input', navigateToTargetHash);
+    radio.addEventListener('input', this.selectTab.bind(this));
     this.setRadioStatus = () => {
       radio.checked = this.isActiveTab();
     };
@@ -138,7 +133,7 @@ export default class TabItemElement extends HTMLElement {
     // navigate to the corresponding hash when the current tab
     // is activated
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
-    tabAccessor.addEventListener('click', navigateToTargetHash);
+    tabAccessor.addEventListener('click', this.selectTab.bind(this));
 
     this.append(...dom.body.children);
   }
@@ -159,6 +154,11 @@ export default class TabItemElement extends HTMLElement {
    */
   isActiveTab() {
     return window.location.hash === this.targetHash;
+  }
+
+  /** Select current tab. */
+  selectTab() {
+    navigateToHash(this.targetHash, true);
   }
 }
 
