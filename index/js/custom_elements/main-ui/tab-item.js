@@ -4,7 +4,7 @@ const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
 const SHADOW_HOST_CLASS_NAME = 'js-shadow-host';
 
-const TAB_ITEM_LINK_ID = 'link';
+const TAB_ACCESSOR_ID = 'tab-accessor';
 
 /**
  * <tab-item> custom element
@@ -17,11 +17,20 @@ export default class TabItemElement extends HTMLElement {
       box-sizing: border-box;
     }
 
+    button {
+      background-color: transparent;
+      border: none;
+
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
     .tab-item-container {
       display: flex;
     }
 
-    .tab-link {
+    .tab-accessor {
       flex-grow: 1;
 
       padding: 0.25em 0.5em;
@@ -30,8 +39,7 @@ export default class TabItemElement extends HTMLElement {
       align-items: center;
       gap: 0.5em;
 
-      color: inherit;
-      text-decoration: none;
+      text-align: start;
     }
 
     .tab-icon {
@@ -45,15 +53,9 @@ export default class TabItemElement extends HTMLElement {
       flex-grow: 1;
     }
 
-    .tab-button {
+    .close-button {
       margin: 0;
       padding: 0 0.5em;
-      width: auto;
-      height: auto;
-
-      border: none;
-      background-color: transparent;
-      color: inherit;
     }`;
 
   /**
@@ -101,13 +103,13 @@ export default class TabItemElement extends HTMLElement {
     const shadowDomStr = /* html */ `
       <style>${TabItemElement.shadowStyle}</style>
       <div class="tab-item-container">
-        <a class="tab-link" id="${TAB_ITEM_LINK_ID}" href="#${this.hash}">
+        <button class="tab-accessor" id="${TAB_ACCESSOR_ID}">
           <img class="tab-icon" src="${this.iconSrc}" alt="${this.iconAlt}" />
           <span class="tab-name">${this.name}</span>
-        </a>
+        </button>
         ${this.closeable ?
           /* html */ `<button role="button"
-            class="tab-button">&#x2715</button>` :
+            class="close-button">&#x2715</button>` :
           ''}
       </div>`;
 
@@ -118,12 +120,10 @@ export default class TabItemElement extends HTMLElement {
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
         'closed', shadowDomStr);
 
-    const tabItemLink = shadowRoot.getElementById(TAB_ITEM_LINK_ID);
-    tabItemLink.addEventListener('click', () => {
+    const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
+    tabAccessor.addEventListener('click', () => {
+      window.location.hash = this.hash;
       label.click();
-
-      // ensure that the link color in shadow DOM is inherited properly
-      tabItemLink.style = tabItemLink.style;
     });
 
     this.append(...dom.body.children);
