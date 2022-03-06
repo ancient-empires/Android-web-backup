@@ -105,8 +105,7 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
     this.closeable = this.hasAttribute('closeable');
     this.gameFrameId = this.getAttribute('game-iframe-id');
 
-    if (this.targetHash === this.parentElement.defaultTabHash &&
-      this.closeable) {
+    if (this.isDefaultTab() && this.closeable) {
       throw new Error(`The "${this.name}" tab is the default tab \
 with target hash "${this.targetHash}", and it must not be closeable`);
     }
@@ -173,6 +172,18 @@ with target hash "${this.targetHash}", and it must not be closeable`);
   /** Callback when the element is removed from the document DOM. */
   disconnectedCallback() {
     window.removeEventListener('hashchange', this.setRadioStatus);
+  }
+
+  /**
+   * Check if the current tab is default tab,
+   * i.e. "target-hash" attribute matches
+   * "default-tab-hash" attribute of parent element.
+   * @see {@link tab-items.js}
+   *
+   * @return { boolean } `true` if this tab is default tab, `false` otherwise.
+   */
+  isDefaultTab() {
+    return this.targetHash === this.parentElement.defaultTabHash;
   }
 
   /**
