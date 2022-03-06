@@ -109,6 +109,7 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
       throw new Error(`The "${this.name}" tab is the default tab \
 with target hash "${this.targetHash}", and it must not be closeable`);
     }
+    this.hidden = !this.isDefaultTab() && this.closeable;
 
     // <label> element for selecting the radio button
     // and for containing clickable controls of the tab
