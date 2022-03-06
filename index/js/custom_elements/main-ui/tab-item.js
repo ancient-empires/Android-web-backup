@@ -87,6 +87,7 @@ export default class TabItemElement extends HTMLElement {
    *      of the parent `default-tab-hash` attribute must *NOT* be closeable.
    * - `game` *(optional)*: the string representing the actual
    * game. *(Must be in **lowercase**)*
+   *    - Currently accepted values are: `ae1`, `ae2`.
   */
   constructor() {
     super();
