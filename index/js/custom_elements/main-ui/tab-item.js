@@ -1,5 +1,5 @@
 import {parseHtml, createShadow} from '../dom_helpers.js';
-import {navigateToHash} from '../../helpers.js';
+import {normalizeHash, navigateToHash} from '../../helpers.js';
 
 const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
@@ -84,7 +84,7 @@ export default class TabItemElement extends HTMLElement {
 
     this.name = this.getAttribute('name');
     this.radioName = this.getAttribute('radio-name');
-    this.hash = this.getAttribute('hash') || '';
+    this.hash = normalizeHash(this.getAttribute('hash'));
     this.iconSrc = this.getAttribute('icon-src');
     this.iconAlt = this.getAttribute('icon-alt') || this.name;
     this.closeable = this.hasAttribute('closeable');
@@ -124,8 +124,13 @@ export default class TabItemElement extends HTMLElement {
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', () => {
       navigateToHash(this.hash, true);
-      label.click();
     });
+
+    this.hashChangeListener = () => {
+      if (window.location.hash === this.hash) {
+        label.click();
+      }
+    };
 
     this.append(...dom.body.children);
   }
@@ -134,12 +139,14 @@ export default class TabItemElement extends HTMLElement {
   connectedCallback() {
     /** @type { HTMLInputElement} */
     const radio = this.querySelector(`.${RADIO_CLASS_NAME}`);
-    radio.checked = this.isDefaultTab();
+    radio.checked = window.location.hash === this.hash;
+
+    window.addEventListener('hashchange', this.hashChangeListener);
   }
 
-  /** @return { boolean } */
-  isDefaultTab() {
-    return !Boolean(this.hash);
+  /** Callback when the element is removed from the document DOM. */
+  disconnectedCallback() {
+    window.removeEventListener('hashchange', this.hashChangeListener);
   }
 }
 
