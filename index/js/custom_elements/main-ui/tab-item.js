@@ -177,6 +177,7 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     if (this.game) {
       const fullscreenButton = shadowRoot.getElementById(FULLSCREEN_BUTTON_ID);
       fullscreenButton.addEventListener('click', () => {
+        this.selectTab();
         requestFullscreen(this.game);
       });
     }
