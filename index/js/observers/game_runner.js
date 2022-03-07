@@ -16,6 +16,8 @@ const BLANK_URL = 'about:blank';
 
 /** Game status observer for starting and stopping games. */
 export class GameStatusObserver extends Observer {
+  static numRunningGames = 0;
+
   /**
    * Initialize a game status observer.
    * @param { HTMLIFrameElement } iframe the iframe in which to run the game.
@@ -39,6 +41,7 @@ export class GameStatusObserver extends Observer {
   startGame() {
     if (!this.isRunning()) {
       this.iframe.src = this.gameUrl;
+      ++GameStatusObserver.numRunningGames;
     }
   }
 
@@ -46,6 +49,7 @@ export class GameStatusObserver extends Observer {
   endGame() {
     if (this.isRunning()) {
       this.iframe.src = BLANK_URL;
+      --GameStatusObserver.numRunningGames;
     }
   }
 
@@ -57,6 +61,20 @@ export class GameStatusObserver extends Observer {
    * */
   receive(shouldStartGame) {
     shouldStartGame ? this.startGame() : this.endGame();
+  }
+
+  /**
+   * Show a warning when the user attempts to leave or refresh
+   * the page, if there are any games still running.
+   * @param { BeforeUnloadEvent } e
+   * @return { ?string }
+   */
+  static showWarningBeforeUnload(e) {
+    e.preventDefault();
+    if (GameStatusObserver.numRunningGames > 0) {
+      return e.returnValue = 'confirm';
+    }
+    return null;
   }
 }
 

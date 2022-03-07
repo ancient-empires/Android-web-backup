@@ -63,6 +63,10 @@ const initIndexUi = () => {
       document.getElementById(AE2_GAME_IFRAME_ID), GAME_URLS[GAMES.AE2]);
   initGameStatusObservers(ae1Observer, ae2Observer);
 
+  // show warning message before unloading
+  window.addEventListener('beforeunload',
+      GameStatusObserver.showWarningBeforeUnload);
+
   return browserIsSupported;
 };
 
