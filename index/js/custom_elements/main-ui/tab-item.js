@@ -1,7 +1,8 @@
 import Observer from '../../observers/observer.js';
 import {setGameRunningStatus, requestFullscreen}
   from '../../observers/game_runner.js';
-import {getActiveTabContentId, setActiveTabContentId, addTabbedUiObservers}
+import {getActiveTabContentId, setActiveTabContentId,
+  addTabbedUiObservers, removeTabbedUiObservers}
   from '../../observers/tabbed_ui.js';
 
 import {parseHtml, createShadow} from '../dom_helpers.js';
@@ -154,7 +155,7 @@ and it must not be closeable`);
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
     radio.checked = this.isActiveTab();
     radio.addEventListener('input', this.selectTab.bind(this));
-    const radioObserver = new (class RadioObserver extends Observer {
+    this.radioObserver = new (class RadioObserver extends Observer {
       /** @param { TabItemElement } tabItemElement */
       constructor(tabItemElement) {
         super();
@@ -170,7 +171,6 @@ and it must not be closeable`);
         radio.checked = this.tabItemElement.isActiveTab();
       }
     })(this);
-    addTabbedUiObservers(radioObserver);
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
@@ -196,6 +196,16 @@ and it must not be closeable`);
     }
 
     this.append(...dom.body.children);
+  }
+
+  /** Callback when the element is loaded into DOM. */
+  connectedCallback() {
+    addTabbedUiObservers(this.radioObserver);
+  }
+
+  /** Callback when the element is removed from DOM. */
+  disconnectedCallback() {
+    removeTabbedUiObservers(this.radioObserver);
   }
 
   /**
