@@ -1,7 +1,8 @@
 import {parseHtml, createShadow} from '../dom_helpers.js';
-import {normalizeHash, navigateToHash} from '../../helpers.js';
-
 import TabItemsElement from './tab-items.js';
+
+import {normalizeHash, navigateToHash} from '../../helpers.js';
+import {setGameRunningStatus} from '../../observers/game_runner.js';
 
 const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
@@ -151,6 +152,10 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     this.hashChangeListener = () => {
       if (this.isActiveTab()) {
         this.hidden = false;
+
+        if (this.game) {
+          setGameRunningStatus(this.game, true);
+        }
       }
       radio.checked = this.isActiveTab();
     };
@@ -219,6 +224,9 @@ with target hash "${this.targetHash}", and it must not be closeable`);
       /** @type { TabItemsElement } */
       const tabItems = this.parentElement;
       navigateToHash(tabItems.defaultTabHash, true);
+    }
+    if (this.game) {
+      setGameRunningStatus(this.game, false);
     }
   }
 }
