@@ -1,10 +1,11 @@
-import {parseHtml, createShadow} from '../dom_helpers.js';
-import TabItemsElement from './tab-items.js';
-
-import {getActiveTabContentId, setActiveTabContentId}
-  from '../../observers/tabbed_ui.js';
+import Observer from '../../observers/observer.js';
 import {setGameRunningStatus, requestFullscreen}
   from '../../observers/game_runner.js';
+import {getActiveTabContentId, setActiveTabContentId, addTabbedUiObservers}
+  from '../../observers/tabbed_ui.js';
+
+import {parseHtml, createShadow} from '../dom_helpers.js';
+import TabItemsElement from './tab-items.js';
 
 const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
@@ -149,9 +150,27 @@ and it must not be closeable`);
     const dom = parseHtml(labelStr);
 
     // select radio button if the current tab is active
+    /** @type { HTMLInputElement } */
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
     radio.checked = this.isActiveTab();
     radio.addEventListener('input', this.selectTab.bind(this));
+    const radioObserver = new (class RadioObserver extends Observer {
+      /** @param { TabItemElement } tabItemElement */
+      constructor(tabItemElement) {
+        super();
+        this.tabItemElement = tabItemElement;
+      }
+
+      /**
+       * Active the radio button corresponding to the active tab.
+       * @override
+       * @param { string } _activeTabContentId not used.
+      */
+      receive(_activeTabContentId) {
+        radio.checked = this.tabItemElement.isActiveTab();
+      }
+    })(this);
+    addTabbedUiObservers(radioObserver);
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
