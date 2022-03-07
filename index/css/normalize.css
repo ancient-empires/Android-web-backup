@@ -63,6 +63,10 @@ a:hover {
   color: var(--primary-light-link-hover-color);
 }
 
+input, button {
+  font-family: inherit;
+}
+
 [hidden] {
   display: none !important;
 }
