@@ -45,6 +45,11 @@ export class GameStatusObserver extends Observer {
     }
   }
 
+  /** Request to display the <iframe> in fullscreen mode. */
+  requestFullscreen() {
+    this.iframe.requestFullscreen();
+  }
+
   /** End the game. */
   endGame() {
     if (this.isRunning()) {
@@ -116,6 +121,16 @@ export const getGameRunningStatus = (game) => {
  */
 export const setGameRunningStatus = (game, status) => {
   gameRunningStatusProxy[game] = status;
+};
+
+/**
+ * Request fullscreen for the game.
+ * If the game is not running, it will be started.
+ * @param { GAMES } game game to start.
+ */
+export const requestFullscreen = (game) => {
+  setGameRunningStatus(game, true);
+  observers[game]?.requestFullscreen();
 };
 
 /**
