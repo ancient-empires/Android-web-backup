@@ -18,17 +18,18 @@
       <main-ui class="full-area">
         <!-- Tab switcher -->
         <tab-switcher>
-          <tab-items>
+          <tab-items default-tab-content-id="homepage">
             <!-- Home tab-->
-            <tab-item name="Home" radio-name="main-ui-tabs" icon-src="favicon.ico"></tab-item>
+            <tab-item name="Home" target-tab-content-id="homepage" radio-name="main-ui-tabs" icon-src="favicon.ico">
+            </tab-item>
 
             <!-- AE1 tab-->
-            <tab-item name="AE1" game="ae1" target-hash="ae1-game" closeable radio-name="main-ui-tabs"
+            <tab-item name="AE1" target-tab-content-id="ae1-game" game="ae1" closeable radio-name="main-ui-tabs"
               icon-src="index/icons/ae1-icon.png">
             </tab-item>
 
             <!-- AE2 tab-->
-            <tab-item name="AE2" game="ae2" target-hash="ae2-game" closeable radio-name="main-ui-tabs"
+            <tab-item name="AE2" target-tab-content-id="ae2-game" game="ae2" closeable radio-name="main-ui-tabs"
               icon-src="index/icons/ae2-icon.png">
             </tab-item>
           </tab-items>
@@ -37,7 +38,7 @@
         <!-- Tab contents -->
         <tab-contents>
           <!-- Home tab-->
-          <tab-content id="homepage" default>
+          <tab-content id="homepage">
             <h1>Welcome to Ancient Empires web version!</h1>
 
             <h2>Start game</h2>

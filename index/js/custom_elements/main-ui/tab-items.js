@@ -1,4 +1,4 @@
-import {normalizeHash} from '../../helpers.js';
+import {setActiveTabContentId} from '../../observers/tabbed_ui.js';
 
 /** <tab-items> custom element */
 export default class TabItemsElement extends HTMLElement {
@@ -8,16 +8,14 @@ export default class TabItemsElement extends HTMLElement {
    * Construct a `<tab-items>` element.
    *
    * Accepted attributes:
-   * - `default-tab-hash` *(optional)*: hash of default tab.
-   * Default value is empty string (`''`).
-   *    - Tabs other than the default tab that are closeable
-   * (`<tab-item>` elements whose `target-hash` attribute does not
-   * match `default-tab-hash` and whose `closeable` attribute is
-   * present) are automatically set to hidden in the initial state.
+   * - `default-tab-content-id`: ID of the `<tab-content>` element
+   *   that acts as the default tab. @see {@link tab-content.js}
    */
   constructor() {
     super();
-    this.defaultTabHash = normalizeHash(this.getAttribute('default-tab-hash'));
+    this.defaultTabContentId = this.getAttribute('default-tab-content-id');
+
+    setActiveTabContentId(this.defaultTabContentId);
   }
 }
 

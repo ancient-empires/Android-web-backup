@@ -1,7 +1,8 @@
 import {parseHtml, createShadow} from '../dom_helpers.js';
 import TabItemsElement from './tab-items.js';
 
-import {normalizeHash, navigateToHash} from '../../helpers.js';
+import {getActiveTabContentId, setActiveTabContentId}
+  from '../../observers/tabbed_ui.js';
 import {setGameRunningStatus, requestFullscreen}
   from '../../observers/game_runner.js';
 
@@ -73,19 +74,20 @@ export default class TabItemElement extends HTMLElement {
    * - `name`: the name of the tab.
    * - `radio-name`: the name of the mutually exclusive
    * list of tabs (only one tab can be selected at a time).
-   * - `target-hash` *(optional)*: the target tab to jump to
-   * when the this tab item is clicked.
-   *    - If not present, jump to the top of the document.
-   *    - The hash symbol `#` shall *NOT* be provided in user input.
+   * - `target-tab-content-id`: the <tab-content> element to display
+   * when the user selects this tab. @see {@link tab-content.js}
    * - `icon-src`: URL of the tab icon.
-   * - `icon-alt` *(optional)*: Alternative description text of the tab icon.
-   *    - If not provided, then defaults to the tab name (`name` attribute).
-   * - `closeable` *(optional, boolean)*: whether this tab can be closed.
-   * Defaults to `false`.
-   *    - The tab whose `target-hash` matches the `default-tab-hash` attribute
-   *      of the parent `default-tab-hash` attribute must *NOT* be closeable.
+   * - `icon-alt` *(optional)*: Alternative description text of
+   *    the tab icon.
+   *    - If not provided, then defaults to the tab name (`name`
+   *      attribute).
+   * - `closeable` *(optional, boolean)*: whether this tab can be
+   *   closed. (Defaults to `false`)
+   *    - The tab whose `target-tab-content-id` matches the
+   *      `default-tab-content-id` attribute of the parent
+   *      `<tab-contents>` element must *NOT* be closeable.
    * - `game` *(optional)*: the string representing the actual
-   * game. *(Must be in **lowercase**)*
+   *   game. *(Must be in **lowercase**)*
    *    - Currently accepted values are: `ae1`, `ae2`.
   */
   constructor() {
@@ -98,7 +100,7 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
 
     this.name = this.getAttribute('name');
     this.radioName = this.getAttribute('radio-name');
-    this.targetHash = normalizeHash(this.getAttribute('target-hash'));
+    this.targetTabContentId = this.getAttribute('target-tab-content-id');
     this.iconSrc = this.getAttribute('icon-src');
     this.iconAlt = this.getAttribute('icon-alt') || this.name;
     this.closeable = this.hasAttribute('closeable');
@@ -106,7 +108,8 @@ must be placed inside a <${TabItemsElement.tagName}> element.`);
 
     if (this.isDefaultTab() && this.closeable) {
       throw new Error(`The "${this.name}" tab is the default tab \
-with target hash "${this.targetHash}", and it must not be closeable`);
+with target <tab-content> element ID "${this.targetTabContentId}", \
+and it must not be closeable`);
     }
     this.hidden = !this.isDefaultTab() && this.closeable;
 
@@ -115,7 +118,7 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     const labelStr = /* html */ `
       <label class="${LABEL_CLASS_NAME}">
         <!-- Radio button to select active tab -->
-        <input type="radio" value="${this.targetHash}"
+        <input type="radio" value="${this.targetTabContentId}"
           class="${RADIO_CLASS_NAME}" name=${this.radioName}
           hidden />
         <!-- Clickable controls -->
@@ -145,31 +148,16 @@ with target hash "${this.targetHash}", and it must not be closeable`);
 
     const dom = parseHtml(labelStr);
 
-    // select radio button if window hash matches
-    // the hash of the target tab
+    // select radio button if the current tab is active
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
     radio.checked = this.isActiveTab();
     radio.addEventListener('input', this.selectTab.bind(this));
-
-    // helper function to handle hash changes
-    this.hashChangeListener = () => {
-      if (this.isActiveTab()) {
-        this.hidden = false;
-
-        // start the game when switching to the tab
-        if (this.game) {
-          setGameRunningStatus(this.game, true);
-        }
-      }
-      radio.checked = this.isActiveTab();
-    };
 
     const shadowRoot = createShadow(
         dom.querySelector(`.${SHADOW_HOST_CLASS_NAME}`),
         'closed', shadowDomStr);
 
-    // set tab accessor click event: navigate to the corresponding
-    // target hash when the current tab is activated
+    // set tab accessor click event: select the current tab
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', this.selectTab.bind(this));
 
@@ -191,28 +179,19 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     this.append(...dom.body.children);
   }
 
-  /** Callback when the element is loaded into the document DOM. */
-  connectedCallback() {
-    window.addEventListener('hashchange', this.hashChangeListener);
-  }
-
-  /** Callback when the element is removed from the document DOM. */
-  disconnectedCallback() {
-    window.removeEventListener('hashchange', this.hashChangeListener);
-  }
-
   /**
    * Check if the current tab is default tab,
-   * i.e. "target-hash" attribute matches
-   * "default-tab-hash" attribute of parent element.
+   * i.e. the `target-tab-content-id` attribute matches the
+   * `default-tab-content-id` attribute of parent element.
    * @see {@link tab-items.js}
    *
    * @return { boolean } `true` if this tab is default tab, `false` otherwise.
    */
   isDefaultTab() {
     /** @type { TabItemsElement } */
-    const tabItemsElement = this.parentElement;
-    return this.targetHash === tabItemsElement.defaultTabHash;
+    const parentTabItemsElement = this.parentElement;
+    return this.targetTabContentId ===
+      parentTabItemsElement.defaultTabContentId;
   }
 
   /**
@@ -220,13 +199,18 @@ with target hash "${this.targetHash}", and it must not be closeable`);
    * @return { boolean } `true` if this tab is active, `false` otherwise.
    */
   isActiveTab() {
-    return window.location.hash === this.targetHash;
+    return getActiveTabContentId() === this.targetTabContentId;
   }
 
   /** Select current tab. */
   selectTab() {
     this.hidden = false;
-    navigateToHash(this.targetHash, true);
+    setActiveTabContentId(this.targetTabContentId);
+
+    // start the game when switching to the tab
+    if (this.game) {
+      setGameRunningStatus(this.game, true);
+    }
   }
 
   /** Close current tab. */
@@ -236,7 +220,7 @@ with target hash "${this.targetHash}", and it must not be closeable`);
 
       /** @type { TabItemsElement } */
       const tabItems = this.parentElement;
-      navigateToHash(tabItems.defaultTabHash, true);
+      setActiveTabContentId(tabItems.defaultTabContentId);
     }
 
     // close the game if it is running
