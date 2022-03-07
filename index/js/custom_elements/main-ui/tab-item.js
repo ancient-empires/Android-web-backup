@@ -2,13 +2,15 @@ import {parseHtml, createShadow} from '../dom_helpers.js';
 import TabItemsElement from './tab-items.js';
 
 import {normalizeHash, navigateToHash} from '../../helpers.js';
-import {setGameRunningStatus} from '../../observers/game_runner.js';
+import {setGameRunningStatus, requestFullscreen}
+  from '../../observers/game_runner.js';
 
 const LABEL_CLASS_NAME = 'js-label';
 const RADIO_CLASS_NAME = 'js-radio';
 const SHADOW_HOST_CLASS_NAME = 'js-shadow-host';
 
 const TAB_ACCESSOR_ID = 'tab-accessor';
+const FULLSCREEN_BUTTON_ID = 'fullscreen-button';
 const CLOSE_BUTTON_ID = 'close-button';
 
 /**
@@ -25,9 +27,12 @@ export default class TabItemElement extends HTMLElement {
 
     * {
       box-sizing: border-box;
+      line-height: 1;
     }
 
     button {
+      padding: 0.25em 0.5em;
+
       background-color: transparent;
       border: none;
 
@@ -42,8 +47,6 @@ export default class TabItemElement extends HTMLElement {
 
     .tab-accessor {
       flex-grow: 1;
-
-      padding: 0.25em 0.5em;
 
       display: flex;
       align-items: center;
@@ -61,11 +64,6 @@ export default class TabItemElement extends HTMLElement {
 
     .tab-name {
       flex-grow: 1;
-    }
-
-    .close-button {
-      margin: 0;
-      padding: 0 0.5em;
     }`;
 
   /**
@@ -130,13 +128,18 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     const shadowDomStr = /* html */ `
       <style>${TabItemElement.shadowStyle}</style>
       <div class="tab-item-container">
-        <button class="tab-accessor" id="${TAB_ACCESSOR_ID}">
+        <button class="tab-accessor" id="${TAB_ACCESSOR_ID}"
+          title="${this.name}">
           <img class="tab-icon" src="${this.iconSrc}" alt="${this.iconAlt}" />
           <span class="tab-name">${this.name}</span>
         </button>
+        ${this.game ?
+          /* html */ `<button role="button" id="${FULLSCREEN_BUTTON_ID}"
+            title='Run the game in fullscreen'>&#x2922</button>` :
+          ''}
         ${this.closeable ?
           /* html */ `<button role="button" id="${CLOSE_BUTTON_ID}"
-            class="close-button">&#x1f5d9</button>` :
+            title='Close the game'>&#x1f5d9</button>` :
           ''}
       </div>`;
 
@@ -169,6 +172,14 @@ with target hash "${this.targetHash}", and it must not be closeable`);
     // target hash when the current tab is activated
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', this.selectTab.bind(this));
+
+    // set click event for fullscreen button
+    if (this.game) {
+      const fullscreenButton = shadowRoot.getElementById(FULLSCREEN_BUTTON_ID);
+      fullscreenButton.addEventListener('click', () => {
+        requestFullscreen(this.game);
+      });
+    }
 
     // set click event for close button
     if (this.closeable) {
