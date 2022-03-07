@@ -7,11 +7,14 @@ import initCheckBrowserSupport,
   from './observers/check_browser.js';
 import initFullscreenSettings, {getFullscreenStatus,
   setFullscreenStatus} from './observers/fullscreen_settings.js';
+import initGameStatusObservers, {GAMES, GAME_URLS, GameStatusObserver}
+  from './observers/game_runner.js';
 import initMainUi from './observers/main_ui.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
-  NOT_MOBILE_USER_AGENT_POPUP_ID, FULLSCREEN_SETTINGS_TOGGLE_ID}
+  NOT_MOBILE_USER_AGENT_POPUP_ID, FULLSCREEN_SETTINGS_TOGGLE_ID,
+  AE1_GAME_IFRAME_ID, AE2_GAME_IFRAME_ID}
   from './key_element_ids.js';
 
 /**
@@ -52,6 +55,13 @@ const initIndexUi = () => {
   }(mainElement);
 
   initMainUi(browserIsSupported, mainElementObserver);
+
+  // initialize observers for AE1 and AE2
+  const ae1Observer = new GameStatusObserver(
+      document.getElementById(AE1_GAME_IFRAME_ID), GAME_URLS[GAMES.AE1]);
+  const ae2Observer = new GameStatusObserver(
+      document.getElementById(AE2_GAME_IFRAME_ID), GAME_URLS[GAMES.AE2]);
+  initGameStatusObservers(ae1Observer, ae2Observer);
 
   return browserIsSupported;
 };
