@@ -48,6 +48,9 @@ const init = () => {
   })() && (() => {
     // Step 3: Initialize the fullscreen settings.
 
+    const fullscreenCheckbox =
+      document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID);
+
     const fullscreenCheckboxObserver = new (
       class FullscreenCheckboxObserver extends Observer {
         /** @param { HTMLInputElement } checkbox */
@@ -71,7 +74,7 @@ const init = () => {
           setFullscreenStatus(Boolean(e.target.checked));
         }
       }
-    )(document.getElementById(FULLSCREEN_SETTINGS_TOGGLE_ID));
+    )(fullscreenCheckbox);
 
     initFullscreenSettings(fullscreenCheckboxObserver);
 
