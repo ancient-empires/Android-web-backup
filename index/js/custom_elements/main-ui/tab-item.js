@@ -219,13 +219,17 @@ and it must not be closeable`);
 
   /** Callback when the element is loaded into DOM. */
   connectedCallback() {
-    addGameStatusObservers(this.game, this.gameStatusObserver);
+    if (this.game) {
+      addGameStatusObservers(this.game, this.gameStatusObserver);
+    }
     addTabbedUiObservers(this.radioObserver);
   }
 
   /** Callback when the element is removed from DOM. */
   disconnectedCallback() {
-    removeGameStatusObservers(this.game, this.gameStatusObserver);
+    if (this.game) {
+      removeGameStatusObservers(this.game, this.gameStatusObserver);
+    }
     removeTabbedUiObservers(this.radioObserver);
   }
 
