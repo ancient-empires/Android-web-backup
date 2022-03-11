@@ -32,6 +32,9 @@ class FullscreenLocalStorageObserver extends Observer {
 
 /** Observer to broadcast fullscreen settings to other tabs/windows. */
 class FullscreenBroadcastObserver extends Observer {
+  static curr =
+    FullscreenLocalStorageObserver.getFullscreenSettings();
+
   /** @constant */
   static CHANNEL_NAME = 'fullscreen';
 
@@ -46,7 +49,10 @@ class FullscreenBroadcastObserver extends Observer {
    */
   receive(value) {
     value = Boolean(value);
-    FullscreenBroadcastObserver.channel.postMessage(value);
+    if (FullscreenBroadcastObserver.curr !== value) {
+      FullscreenBroadcastObserver.curr = value;
+      FullscreenBroadcastObserver.channel.postMessage(value);
+    }
   }
 
   /**
@@ -69,7 +75,6 @@ const fullscreenSettingsProxy = new Proxy(Object.seal({
       FullscreenLocalStorageObserver.getFullscreenSettings(),
 }), {
   set: /** @return { boolean } */ (target, prop, value) => {
-    const oldValue = Reflect.get(target, prop);
     value = Boolean(value);
     return Reflect.set(target, prop, value) &&
       (() => {
@@ -77,10 +82,7 @@ const fullscreenSettingsProxy = new Proxy(Object.seal({
           default:
             break;
           case 'shouldEnterFullscreenOnGameStart':
-            if (oldValue !== value) {
-              Observer.publishTo(fullscreenObservers, value);
-            }
-            break;
+            Observer.publishTo(fullscreenObservers, value);
         }
         return true;
       })();
