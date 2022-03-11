@@ -1,6 +1,10 @@
 import Observer from './observer.js';
 
-/** @readonly @enum {string} */
+/**
+ * @readonly @enum {string}
+ * Use this class in order to avoid directly using string literals
+ * of game names.
+ */
 export const GAMES = Object.freeze({
   AE1: 'ae1',
   AE2: 'ae2',
