@@ -10,11 +10,14 @@ const tabbedUiProxy = new Proxy(Object.seal({
 }), {
   set: /** @return { boolean } */
     (target, prop, value) => {
+      const oldValue = Reflect.get(target, prop);
       value = String(value);
       return Reflect.set(target, prop, value) && (() => {
-        tabbedUiObservers.forEach((observer) => {
-          observer.receive(value);
-        });
+        if (oldValue !== value) {
+          tabbedUiObservers.forEach((observer) => {
+            observer.receive(value);
+          });
+        }
         return true;
       })();
     },
