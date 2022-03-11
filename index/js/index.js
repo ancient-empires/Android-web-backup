@@ -1,13 +1,11 @@
 import Observer from './observers/observer.js';
 
-import initCheckBrowserSupport,
-{WebSqlSupportObserver, IsMobileObserver}
-  from './observers/check_browser.js';
+import browserIsSupported, {hasWebSqlSupport, isMobile}
+  from './check_browser.js';
 import initFullscreenSettings, {getFullscreenStatus,
   setFullscreenStatus} from './observers/fullscreen_settings.js';
 import initGameStatusObservers, {GAMES, GAME_URLS, GameStatusObserver}
   from './observers/game_runner.js';
-import initMainUi from './observers/main_ui.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
@@ -25,30 +23,12 @@ import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
  */
 const initIndexUi = () => {
   // check browser support
-  const webSqlSupportObserver = new WebSqlSupportObserver(
-      document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID));
-  const isMobileObserver = new IsMobileObserver(
-      document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID));
-  const browserIsSupported = initCheckBrowserSupport(
-      webSqlSupportObserver, isMobileObserver);
-
-  // if browser is supported, then show main element
-  // otherwise, hide the main element
-  const mainElement = document.getElementById(MAIN_ID);
-  const mainElementObserver = new class MainElementObserver extends Observer {
-    /** @param { HTMLElement } mainElement */
-    constructor(mainElement) {
-      super();
-      this.mainElement = mainElement;
-    }
-
-    /** @override */
-    receive(value) {
-      mainElement.hidden = !value;
-    }
-  }(mainElement);
-
-  initMainUi(browserIsSupported, mainElementObserver);
+  // set visibility of popups & main element
+  document.getElementById(WEB_SQL_UNSUPPORTED_POPUP_ID).hidden =
+    hasWebSqlSupport();
+  document.getElementById(NOT_MOBILE_USER_AGENT_POPUP_ID).hidden =
+    isMobile();
+  document.getElementById(MAIN_ID).hidden = !browserIsSupported();
 
   // initialize observers for AE1 and AE2
   const ae1Observer = new GameStatusObserver(
