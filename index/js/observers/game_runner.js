@@ -28,7 +28,7 @@ export class GameIframeObserver extends Observer {
   static BLANK_URL = 'about:blank';
 
   /**
-   * Initialize a game status observer.
+   * Initialize a game iframe observer.
    * @param { HTMLIFrameElement } iframe the iframe in which to run the game.
    * @param { string } gameUrl the URL for the game.
   */
