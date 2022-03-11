@@ -1,6 +1,6 @@
-import {addToSet, removeFromSet} from '../helpers.js';
+import Observer from './observer.js';
 
-/** @typedef { import('./observer.js').default } Observer */
+import {addToSet, removeFromSet} from '../helpers/sets.js';
 
 /** @type { Set<Observer> } */
 const tabbedUiObservers = new Set();
@@ -19,9 +19,7 @@ const tabbedUiProxy = new Proxy(Object.seal({
             break;
           case 'activeTabContentId':
             if (oldValue !== value) {
-              tabbedUiObservers.forEach((observer) => {
-                observer.receive(value);
-              });
+              Observer.publishTo(tabbedUiObservers, value);
             }
             break;
         }
