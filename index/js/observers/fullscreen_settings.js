@@ -1,4 +1,5 @@
 import Observer from './observer.js';
+import {addToSet, removeFromSet} from '../helpers/sets.js';
 
 const FULLSCREEN_LOCAL_STORAGE_KEY = 'enter-fullscreen-on-game-start';
 
@@ -53,7 +54,7 @@ class FullscreenBroadcastObserver extends Observer {
    * @param { MessageEvent } e the message event.
    */
   static broadcastMessageHandler(e) {
-    setFullscreenStatus(Boolean(e.data));
+    setFullscreenSettings(Boolean(e.data));
   }
 }
 
@@ -77,9 +78,7 @@ const fullscreenSettingsProxy = new Proxy(Object.seal({
             break;
           case 'shouldEnterFullscreenOnGameStart':
             if (oldValue !== value) {
-              fullscreenObservers.forEach((observer) => {
-                observer.receive(value);
-              });
+              Observer.publishTo(fullscreenObservers, value);
             }
             break;
         }
@@ -89,11 +88,11 @@ const fullscreenSettingsProxy = new Proxy(Object.seal({
 });
 
 /** @return { boolean } */
-export const getFullscreenStatus = () =>
+export const getFullscreenSettings = () =>
   fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart;
 
 /** @param { boolean } value */
-export const setFullscreenStatus = (value) => {
+export const setFullscreenSettings = (value) => {
   fullscreenSettingsProxy.shouldEnterFullscreenOnGameStart = value;
 };
 
@@ -102,9 +101,7 @@ export const setFullscreenStatus = (value) => {
  * @param { ...Observer } observers observers to add.
  */
 export const addFullscreenObservers = (...observers) => {
-  observers.forEach((observer) => {
-    fullscreenObservers.add(observer);
-  });
+  addToSet(fullscreenObservers, ...observers);
 };
 
 /**
@@ -112,7 +109,5 @@ export const addFullscreenObservers = (...observers) => {
  * @param { ...Observer } observers observers to remove.
  */
 export const removeFullscreenObservers = (...observers) => {
-  observers.forEach((observer) => {
-    fullscreenObservers.delete(observer);
-  });
+  removeFromSet(fullscreenObservers, ...observers);
 };
