@@ -12,11 +12,18 @@ const tabbedUiProxy = new Proxy(Object.seal({
     (target, prop, value) => {
       const oldValue = Reflect.get(target, prop);
       value = String(value);
+
       return Reflect.set(target, prop, value) && (() => {
-        if (oldValue !== value) {
-          tabbedUiObservers.forEach((observer) => {
-            observer.receive(value);
-          });
+        switch (prop) {
+          default:
+            break;
+          case 'activeTabContentId':
+            if (oldValue !== value) {
+              tabbedUiObservers.forEach((observer) => {
+                observer.receive(value);
+              });
+            }
+            break;
         }
         return true;
       })();
