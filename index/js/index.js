@@ -2,8 +2,8 @@ import Observer from './observers/observer.js';
 
 import browserIsSupported, {hasWebSqlSupport, isMobile}
   from './check_browser.js';
-import initFullscreenSettings, {getFullscreenStatus,
-  setFullscreenStatus} from './observers/fullscreen_settings.js';
+import {getFullscreenStatus, setFullscreenStatus,
+  addFullscreenObservers} from './observers/fullscreen_settings.js';
 import initGameIframeObservers, {GAMES, GAME_URLS, GameIframeObserver}
   from './observers/game_runner.js';
 
@@ -76,7 +76,7 @@ const init = () => {
       }
     )(fullscreenCheckbox);
 
-    initFullscreenSettings(fullscreenCheckboxObserver);
+    addFullscreenObservers(fullscreenCheckboxObserver);
 
     return true;
   })();

@@ -98,13 +98,21 @@ export const setFullscreenStatus = (value) => {
 };
 
 /**
- * Initialize fullscreen settings with additional observers.
- * @param { ...Observer } additionalObservers
+ * Add fullscreen observers.
+ * @param { ...Observer } observers observers to add.
  */
-const initFullscreenSettings = (...additionalObservers) => {
-  additionalObservers.forEach((observer) => {
+export const addFullscreenObservers = (...observers) => {
+  observers.forEach((observer) => {
     fullscreenObservers.add(observer);
   });
 };
 
-export default initFullscreenSettings;
+/**
+ * Remove specified fullscreen observers.
+ * @param { ...Observer } observers observers to remove.
+ */
+export const removeFullscreenObservers = (...observers) => {
+  observers.forEach((observer) => {
+    fullscreenObservers.delete(observer);
+  });
+};
