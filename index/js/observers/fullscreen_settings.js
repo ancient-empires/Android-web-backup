@@ -7,7 +7,11 @@ const fullscreenObservers = new Set();
 
 /** Observer to observe fullscreen settings in local storage. */
 class FullscreenLocalStorageObserver extends Observer {
-  /** @override */
+  /**
+   * @override
+   * @param { boolean } value `true` for setting fullscreen,
+   *   `false` for un-setting fullscreen.
+   */
   receive(value) {
     if (value) {
       localStorage.setItem(FULLSCREEN_LOCAL_STORAGE_KEY, true);
@@ -25,8 +29,6 @@ class FullscreenLocalStorageObserver extends Observer {
   }
 }
 
-// add local storage observer to remember if the user
-// opts for starting game on fullscreen.
 fullscreenObservers.add(new FullscreenLocalStorageObserver());
 
 const fullscreenSettingsProxy = new Proxy(Object.seal({
