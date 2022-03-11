@@ -1,5 +1,7 @@
 import Observer from './observer.js';
 
+import {addToSet, removeFromSet} from '../helpers/sets.js';
+
 /**
  * @readonly @enum {string}
  * Use this class in order to avoid directly using string literals
@@ -16,86 +18,10 @@ export const GAME_URLS = Object.freeze({
   [GAMES.AE2]: '/AE2/www',
 });
 
-/**
- * Game iframe observer.
- * Change the iframe URLs and update number of running games when
- * a game is started or ended.
-*/
-export class GameIframeObserver extends Observer {
-  static numRunningGames = 0;
-
-  /** @constant */
-  static BLANK_URL = 'about:blank';
-
-  /**
-   * Initialize a game iframe observer.
-   * @param { HTMLIFrameElement } iframe the iframe in which to run the game.
-   * @param { string } gameUrl the URL for the game.
-  */
-  constructor(iframe, gameUrl) {
-    super();
-
-    this.iframe = iframe;
-    this.gameUrl = gameUrl;
-
-    this.iframe.src = GameIframeObserver.BLANK_URL;
-  }
-
-  /** @return { boolean } */
-  isRunning() {
-    return this.iframe.src !== GameIframeObserver.BLANK_URL;
-  }
-
-  /** Start the game. */
-  startGame() {
-    if (!this.isRunning()) {
-      this.iframe.src = this.gameUrl;
-      ++GameIframeObserver.numRunningGames;
-    }
-  }
-
-  /** Request to display the <iframe> in fullscreen mode. */
-  requestFullscreen() {
-    this.iframe.requestFullscreen();
-  }
-
-  /** End the game. */
-  endGame() {
-    if (this.isRunning()) {
-      this.iframe.src = GameIframeObserver.BLANK_URL;
-      --GameIframeObserver.numRunningGames;
-    }
-  }
-
-  /**
-   * @override
-   * @param { boolean } shouldStartGame
-   *   `true` for instruction to start the game;
-   *   `false` to end the game.
-   * */
-  receive(shouldStartGame) {
-    shouldStartGame ? this.startGame() : this.endGame();
-  }
-
-  /**
-   * Show a warning when the user attempts to leave or refresh
-   * the page, if there are any games still running.
-   * @param { BeforeUnloadEvent } e
-   * @return { ?string }
-   */
-  static showWarningBeforeUnload(e) {
-    e.preventDefault();
-    if (GameIframeObserver.numRunningGames > 0) {
-      return e.returnValue = 'confirm';
-    }
-    return null;
-  }
-}
-
-/** @type { Object.<string, ?GameIframeObserver> } */
-const gameIframeObservers = Object.seal({
-  [GAMES.AE1]: null,
-  [GAMES.AE2]: null,
+/** @type { Object.<string, Set<Observer>> } */
+export const gameStatusObservers = Object.freeze({
+  [GAMES.AE1]: new Set(),
+  [GAMES.AE2]: new Set(),
 });
 
 /** @type { Proxy<Object.<string, boolean>> } */
@@ -105,19 +31,39 @@ const gameRunningStatusProxy = new Proxy(Object.seal({
 }), {
   set: /** @return { boolean } */
     (target, prop, value) => {
+      const oldValue = Reflect.get(target, prop);
       value = Boolean(value);
       return Reflect.set(target, prop, value) &&
         (() => {
-          gameIframeObservers[prop]?.receive(value);
+          if (oldValue !== value) {
+            Observer.publishTo(gameStatusObservers[prop], value);
+          }
           return true;
         })();
     },
 });
 
 /**
+ * Get number of games running.
+ * @return { number }
+ */
+export const getNumRunningGames = () => {
+  return Object.keys(gameRunningStatusProxy).reduce(
+      /**
+       * @param { number } prevVal
+       * @param { string } currVal
+       * @return { number } the value that will be prevVal
+       *   in the next iteration.
+       */
+      (prevVal, currVal) => {
+        return prevVal + (gameRunningStatusProxy[currVal] ? 1 : 0);
+      }, 0);
+};
+
+/**
  * Get game running status.
- * @param { GAMES } game
- * @return { boolean }
+ * @param { GAMES } game the game to get running status for.
+ * @return { boolean } `true` if the game is running, `false` if not.
  */
 export const getGameRunningStatus = (game) => {
   return gameRunningStatusProxy[game];
@@ -125,31 +71,44 @@ export const getGameRunningStatus = (game) => {
 
 /**
  * Set game running status.
- * @param { GAMES } game
- * @param { boolean } status
+ * @param { GAMES } game the game to set running status for.
+ * @param { boolean } status `true` to start the game,
+ *  `false` to end the game.
  */
 export const setGameRunningStatus = (game, status) => {
   gameRunningStatusProxy[game] = status;
 };
 
 /**
- * Request fullscreen for the game.
- * If the game is not running, it will be started.
- * @param { GAMES } game game to start.
+ * Start the game.
+ * @param { GAMES } game the game to start.
  */
-export const requestFullscreen = (game) => {
+export const startGame = (game) => {
   setGameRunningStatus(game, true);
-  gameIframeObservers[game]?.requestFullscreen();
 };
 
 /**
- * Initialize game status with observers.
- * @param { ?GameIframeObserver } ae1Observer
- * @param { ?GameIframeObserver } ae2Observer
+ * End the game.
+ * @param { GAMES } game the game to end.
  */
-const initGameIframeObservers = (ae1Observer, ae2Observer) => {
-  gameIframeObservers[GAMES.AE1] = ae1Observer;
-  gameIframeObservers[GAMES.AE2] = ae2Observer;
+export const endGame = (game) => {
+  setGameRunningStatus(game, false);
 };
 
-export default initGameIframeObservers;
+/**
+ * Add game status observers.
+ * @param { GAMES } game the game to add observers to.
+ * @param { ...Observer } observers observers to add.
+ */
+export const addGameStatusObservers = (game, ...observers) => {
+  addToSet(gameStatusObservers[game], ...observers);
+};
+
+/**
+ * Remove game status observers.
+ * @param { GAMES } game the game to remove observers from.
+ * @param { ...Observer } observers observers to remove.
+ */
+export const removeGameStatusObservers = (game, ...observers) => {
+  removeFromSet(gameStatusObservers[game], ...observers);
+};
