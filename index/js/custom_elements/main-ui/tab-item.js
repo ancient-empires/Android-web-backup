@@ -1,5 +1,5 @@
 import Observer from '../../observers/observer.js';
-import {setGameRunningStatus, requestFullscreen}
+import {startGame, endGame, addGameStatusObservers, removeGameStatusObservers}
   from '../../observers/game_runner.js';
 import {getActiveTabContentId, setActiveTabContentId,
   addTabbedUiObservers, removeTabbedUiObservers}
@@ -150,6 +150,26 @@ and it must not be closeable`);
 
     const dom = parseHtml(labelStr);
 
+    // select current tab if the game is started
+    this.gameStatusObserver = new (class gameStatusObserver extends Observer {
+      /** @param { TabItemElement } tabItemElement */
+      constructor(tabItemElement) {
+        super();
+        this.tabItemElement = tabItemElement;
+      }
+
+      /**
+       * Select the current tab if the current game is running.
+       * @override
+       * @param { boolean } gameIsRunning
+       */
+      receive(gameIsRunning) {
+        if (gameIsRunning) {
+          this.tabItemElement.selectTab();
+        }
+      }
+    })(this);
+
     // select radio button if the current tab is active
     /** @type { HTMLInputElement } */
     const radio = dom.querySelector(`.${RADIO_CLASS_NAME}`);
@@ -163,7 +183,7 @@ and it must not be closeable`);
       }
 
       /**
-       * Active the radio button corresponding to the active tab.
+       * Activate the radio button corresponding to the active tab.
        * @override
        * @param { string } _activeTabContentId not used.
       */
@@ -185,7 +205,6 @@ and it must not be closeable`);
       const fullscreenButton = shadowRoot.getElementById(FULLSCREEN_BUTTON_ID);
       fullscreenButton.addEventListener('click', () => {
         this.selectTab();
-        requestFullscreen(this.game);
       });
     }
 
@@ -200,11 +219,13 @@ and it must not be closeable`);
 
   /** Callback when the element is loaded into DOM. */
   connectedCallback() {
+    addGameStatusObservers(this.game, this.gameStatusObserver);
     addTabbedUiObservers(this.radioObserver);
   }
 
   /** Callback when the element is removed from DOM. */
   disconnectedCallback() {
+    removeGameStatusObservers(this.game, this.gameStatusObserver);
     removeTabbedUiObservers(this.radioObserver);
   }
 
@@ -238,7 +259,7 @@ and it must not be closeable`);
 
     // start the game when switching to the tab
     if (this.game) {
-      setGameRunningStatus(this.game, true);
+      startGame(this.game);
     }
   }
 
@@ -252,9 +273,9 @@ and it must not be closeable`);
       setActiveTabContentId(tabItems.defaultTabContentId);
     }
 
-    // close the game if it is running
+    // end the game if it is running
     if (this.game) {
-      setGameRunningStatus(this.game, false);
+      endGame(this.game);
     }
   }
 }
