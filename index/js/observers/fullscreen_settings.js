@@ -34,7 +34,8 @@ const fullscreenSettingsProxy = new Proxy(Object.seal({
       FullscreenLocalStorageObserver.getFullscreenSettings(),
 }), {
   set: /** @return { boolean } */ (target, prop, value) => {
-    return Reflect.set(target, prop, Boolean(value)) &&
+    value = Boolean(value);
+    return Reflect.set(target, prop, value) &&
       (() => {
         switch (prop) {
           default:
@@ -42,7 +43,7 @@ const fullscreenSettingsProxy = new Proxy(Object.seal({
           case 'shouldEnterFullscreenOnGameStart':
             {
               fullscreenObservers.forEach((observer) => {
-                observer.receive(Boolean(value));
+                observer.receive(value);
               });
             }
             break;
