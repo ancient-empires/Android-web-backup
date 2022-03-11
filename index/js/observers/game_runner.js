@@ -12,11 +12,16 @@ export const GAME_URLS = Object.freeze({
   [GAMES.AE2]: '/AE2/www',
 });
 
-const BLANK_URL = 'about:blank';
-
-/** Game status observer for starting and stopping games. */
-export class GameStatusObserver extends Observer {
+/**
+ * Game iframe observer.
+ * Change the iframe URLs and update number of running games when
+ * a game is started or ended.
+*/
+export class GameIframeObserver extends Observer {
   static numRunningGames = 0;
+
+  /** @constant */
+  static BLANK_URL = 'about:blank';
 
   /**
    * Initialize a game status observer.
@@ -29,19 +34,19 @@ export class GameStatusObserver extends Observer {
     this.iframe = iframe;
     this.gameUrl = gameUrl;
 
-    this.iframe.src = BLANK_URL;
+    this.iframe.src = GameIframeObserver.BLANK_URL;
   }
 
   /** @return { boolean } */
   isRunning() {
-    return this.iframe.src !== BLANK_URL;
+    return this.iframe.src !== GameIframeObserver.BLANK_URL;
   }
 
   /** Start the game. */
   startGame() {
     if (!this.isRunning()) {
       this.iframe.src = this.gameUrl;
-      ++GameStatusObserver.numRunningGames;
+      ++GameIframeObserver.numRunningGames;
     }
   }
 
@@ -53,8 +58,8 @@ export class GameStatusObserver extends Observer {
   /** End the game. */
   endGame() {
     if (this.isRunning()) {
-      this.iframe.src = BLANK_URL;
-      --GameStatusObserver.numRunningGames;
+      this.iframe.src = GameIframeObserver.BLANK_URL;
+      --GameIframeObserver.numRunningGames;
     }
   }
 
@@ -76,15 +81,15 @@ export class GameStatusObserver extends Observer {
    */
   static showWarningBeforeUnload(e) {
     e.preventDefault();
-    if (GameStatusObserver.numRunningGames > 0) {
+    if (GameIframeObserver.numRunningGames > 0) {
       return e.returnValue = 'confirm';
     }
     return null;
   }
 }
 
-/** @type { Object.<string, ?GameStatusObserver> } */
-const observers = Object.seal({
+/** @type { Object.<string, ?GameIframeObserver> } */
+const gameIframeObservers = Object.seal({
   [GAMES.AE1]: null,
   [GAMES.AE2]: null,
 });
@@ -99,7 +104,7 @@ const gameRunningStatusProxy = new Proxy(Object.seal({
       value = Boolean(value);
       return Reflect.set(target, prop, value) &&
         (() => {
-          observers[prop]?.receive(value);
+          gameIframeObservers[prop]?.receive(value);
           return true;
         })();
     },
@@ -130,17 +135,17 @@ export const setGameRunningStatus = (game, status) => {
  */
 export const requestFullscreen = (game) => {
   setGameRunningStatus(game, true);
-  observers[game]?.requestFullscreen();
+  gameIframeObservers[game]?.requestFullscreen();
 };
 
 /**
  * Initialize game status with observers.
- * @param { ?GameStatusObserver } ae1Observer
- * @param { ?GameStatusObserver } ae2Observer
+ * @param { ?GameIframeObserver } ae1Observer
+ * @param { ?GameIframeObserver } ae2Observer
  */
-const initGameStatusObservers = (ae1Observer, ae2Observer) => {
-  observers[GAMES.AE1] = ae1Observer;
-  observers[GAMES.AE2] = ae2Observer;
+const initGameIframeObservers = (ae1Observer, ae2Observer) => {
+  gameIframeObservers[GAMES.AE1] = ae1Observer;
+  gameIframeObservers[GAMES.AE2] = ae2Observer;
 };
 
-export default initGameStatusObservers;
+export default initGameIframeObservers;

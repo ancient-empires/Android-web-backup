@@ -4,7 +4,7 @@ import browserIsSupported, {hasWebSqlSupport, isMobile}
   from './check_browser.js';
 import initFullscreenSettings, {getFullscreenStatus,
   setFullscreenStatus} from './observers/fullscreen_settings.js';
-import initGameStatusObservers, {GAMES, GAME_URLS, GameStatusObserver}
+import initGameIframeObservers, {GAMES, GAME_URLS, GameIframeObserver}
   from './observers/game_runner.js';
 
 import './custom_elements/init.js';
@@ -31,15 +31,17 @@ const initIndexUi = () => {
   document.getElementById(MAIN_ID).hidden = !browserIsSupported();
 
   // initialize observers for AE1 and AE2
-  const ae1Observer = new GameStatusObserver(
-      document.getElementById(AE1_GAME_IFRAME_ID), GAME_URLS[GAMES.AE1]);
-  const ae2Observer = new GameStatusObserver(
-      document.getElementById(AE2_GAME_IFRAME_ID), GAME_URLS[GAMES.AE2]);
-  initGameStatusObservers(ae1Observer, ae2Observer);
+  const ae1IframeObserver = new GameIframeObserver(
+      document.getElementById(AE1_GAME_IFRAME_ID),
+      GAME_URLS[GAMES.AE1]);
+  const ae2IframeObserver = new GameIframeObserver(
+      document.getElementById(AE2_GAME_IFRAME_ID),
+      GAME_URLS[GAMES.AE2]);
+  initGameIframeObservers(ae1IframeObserver, ae2IframeObserver);
 
   // show warning message before unloading
   window.addEventListener('beforeunload',
-      GameStatusObserver.showWarningBeforeUnload);
+      GameIframeObserver.showWarningBeforeUnload);
 
   return browserIsSupported;
 };
