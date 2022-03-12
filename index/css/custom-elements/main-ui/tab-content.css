@@ -1,3 +1,5 @@
+@import url('../../colors.css');
+
 /* Tab content */
 main-ui tab-content {
   position: absolute;
@@ -27,5 +29,6 @@ main-ui tab-content iframe {
   width: 100%;
   height: 100%;
 
+  background-color: var(--game-iframe-background-color);
   border: none;
 }

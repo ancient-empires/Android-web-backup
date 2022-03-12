@@ -33,4 +33,7 @@
   --tab-item-hover-text-color: var(--primary-dark-text-color);
   --tab-item-selected-background-color: white;
   --tab-item-selected-text-color: var(--primary-light-text-color);
+
+  /* Game iframe colors */
+  --game-iframe-background-color: var(--primary-dark-background-color);
 }
