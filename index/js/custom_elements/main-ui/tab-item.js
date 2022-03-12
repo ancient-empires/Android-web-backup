@@ -1,6 +1,6 @@
 import Observer from '../../observers/observer.js';
 import {startGame, endGame, addGameStatusObservers,
-  removeGameStatusObservers, requestFullscreen}
+  removeGameStatusObservers, requestFullscreen, reloadGame}
   from '../../observers/game_runner.js';
 import {getActiveTabContentId, setActiveTabContentId,
   addTabbedUiObservers, removeTabbedUiObservers}
@@ -14,6 +14,7 @@ const RADIO_CLASS_NAME = 'js-radio';
 const SHADOW_HOST_CLASS_NAME = 'js-shadow-host';
 
 const TAB_ACCESSOR_ID = 'tab-accessor';
+const RELOAD_BUTTON_ID = 'reload-button';
 const FULLSCREEN_BUTTON_ID = 'fullscreen-button';
 const CLOSE_BUTTON_ID = 'close-button';
 
@@ -141,13 +142,17 @@ and it must not be closeable`);
           <span class="tab-name">${this.name}</span>
         </button>
         ${this.game ?
-          /* html */ `<button role="button" id="${FULLSCREEN_BUTTON_ID}"
-            title='Run the game in fullscreen'>&#x2922</button>` :
-          ''}
+          /* html */ `
+            <button role="button" id="${RELOAD_BUTTON_ID}"
+              title='Reload the game'>&#x2b6e</button>
+            <button role="button" id="${FULLSCREEN_BUTTON_ID}"
+              title='Run the game in fullscreen'>&#x2922</button>
+          ` : ''}
         ${this.closeable ?
-          /* html */ `<button role="button" id="${CLOSE_BUTTON_ID}"
-            title='Close the game'>&#x1f5d9</button>` :
-          ''}
+          /* html */ `
+            <button role="button" id="${CLOSE_BUTTON_ID}"
+              title='Close the game'>&#x1f5d9</button>
+          ` : ''}
       </div>`;
 
     const dom = parseHtml(labelStr);
@@ -204,8 +209,15 @@ and it must not be closeable`);
     const tabAccessor = shadowRoot.getElementById(TAB_ACCESSOR_ID);
     tabAccessor.addEventListener('click', this.selectTab.bind(this));
 
-    // set click event for fullscreen button
     if (this.game) {
+      // set click event for reload button
+      const reloadButton = shadowRoot.getElementById(RELOAD_BUTTON_ID);
+      reloadButton.addEventListener('click', () => {
+        this.selectTab();
+        reloadGame(this.game);
+      });
+
+      // set click event for fullscreen button
       const fullscreenButton = shadowRoot.getElementById(FULLSCREEN_BUTTON_ID);
       fullscreenButton.addEventListener('click', () => {
         this.selectTab();

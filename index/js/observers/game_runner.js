@@ -119,9 +119,9 @@ export const removeGameStatusObservers = (game, ...observers) => {
 /**
  * Set the `<iframe>` element corresponding to each game.
  *
- * After setting the iframe, you can use
- * `{@link #requestFullscreen requestFullscreen}`
- * to display the game in fullscreen mode.
+ * After setting the iframe, you can use:
+ * * `requestFullscreen` to display the game in fullscreen mode.
+ * * `reloadGame` to reload the game.
  *
  * @param { GAMES } game the game to set the `<iframe>` element.
  * @param { ?HTMLIFrameElement } iframe the iframe to set.
@@ -137,4 +137,12 @@ export const setGameIframe = (game, iframe) => {
  */
 export const requestFullscreen = (game) => {
   gameIframes[game]?.requestFullscreen();
+};
+
+/**
+ * Reload the game in the corresponding `<iframe>` element.
+ * @param { GAMES } game the game to reload.
+ */
+export const reloadGame = (game) => {
+  gameIframes[game]?.contentWindow.location.reload();
 };
