@@ -17,9 +17,10 @@ const FULLSCREEN_BUTTON_ID = 'fullscreen-button';
 const CLOSE_BUTTON_ID = 'close-button';
 
 /**
- * <tab-item> custom element used on tab switcher,
+ * `<tab-item>` custom element used on tab switcher,
  * which lets the user click to switch tabs.
- * Must be placed inside a <tab-items> element.
+ *
+ * Must be placed inside a `<tab-items>` element.
  * @see {@link tab-items.js}
  */
 export default class TabItemElement extends HTMLElement {
