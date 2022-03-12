@@ -165,7 +165,13 @@ and it must not be closeable`);
        */
       receive(gameIsRunning) {
         if (gameIsRunning) {
-          this.tabItemElement.selectTab();
+          if (!this.tabItemElement.isActiveTab()) {
+            this.tabItemElement.selectTab();
+          }
+        } else {
+          if (this.tabItemElement.isOpen()) {
+            this.tabItemElement.closeTab();
+          }
         }
       }
     })(this);
@@ -249,6 +255,14 @@ and it must not be closeable`);
   }
 
   /**
+   * Check if the current tab is open.
+   * @return { boolean } `true` if this tab is open, `false` otherwise.
+   */
+  isOpen() {
+    return !this.closeable || !this.hidden;
+  }
+
+  /**
    * Check if the current tab is active.
    * @return { boolean } `true` if this tab is active, `false` otherwise.
    */
@@ -256,19 +270,32 @@ and it must not be closeable`);
     return getActiveTabContentId() === this.targetTabContentId;
   }
 
-  /** Select current tab. */
-  selectTab() {
-    this.hidden = false;
-    setActiveTabContentId(this.targetTabContentId);
+  /** Open current tab. */
+  openTab() {
+    if (this.isOpen()) {
+      return;
+    }
 
-    // start the game when switching to the tab
+    this.hidden = false;
+
+    // start the game when opening the tab
     if (this.game) {
       startGame(this.game);
     }
   }
 
+  /** Select current tab. */
+  selectTab() {
+    this.openTab();
+    setActiveTabContentId(this.targetTabContentId);
+  }
+
   /** Close current tab. */
   closeTab() {
+    if (!this.isOpen()) {
+      return;
+    }
+
     if (this.closeable) {
       this.hidden = true;
 

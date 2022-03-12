@@ -31,13 +31,10 @@ const gameRunningStatusProxy = new Proxy(Object.seal({
 }), {
   set: /** @return { boolean } */
     (target, prop, value) => {
-      const oldValue = Reflect.get(target, prop);
       value = Boolean(value);
       return Reflect.set(target, prop, value) &&
         (() => {
-          if (oldValue !== value) {
-            Observer.publishTo(gameStatusObservers[prop], value);
-          }
+          Observer.publishTo(gameStatusObservers[prop], value);
           return true;
         })();
     },
