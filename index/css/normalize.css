@@ -65,6 +65,7 @@ a:hover {
 
 input, button {
   font-family: inherit;
+  font-size: inherit;
 }
 
 [hidden] {
