@@ -5,7 +5,8 @@ import browserIsSupported, {hasWebSqlSupport, isMobile}
 import {getFullscreenSettings, setFullscreenSettings,
   addFullscreenObservers} from './observers/fullscreen_settings.js';
 import {GAMES, GAME_URLS, getNumRunningGames, startGame,
-  addGameStatusObservers, setGameIframe} from './observers/game_runner.js';
+  addGameStatusObservers, setGameIframe, requestFullscreen}
+  from './observers/game_runner.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
@@ -131,10 +132,24 @@ const init = () => {
     return true;
   })() && (() => {
     // Step 3: Add click events on buttons to start the games.
+
+    /**
+     * @param { GAMES } game the game to start.
+     * @return { function(): void } game handler.
+     */
+    const startGameHandler = (game) => {
+      return () => {
+        startGame(game);
+        if (getFullscreenSettings()) {
+          requestFullscreen(game);
+        }
+      };
+    };
+
     document.getElementById(AE1_START_GAME_ID).addEventListener(
-        'click', () => startGame(GAMES.AE1));
+        'click', startGameHandler(GAMES.AE1));
     document.getElementById(AE2_START_GAME_ID).addEventListener(
-        'click', () => startGame(GAMES.AE2));
+        'click', startGameHandler(GAMES.AE2));
 
     return true;
   })() && (() => {
