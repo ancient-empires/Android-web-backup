@@ -5,7 +5,7 @@ import browserIsSupported, {hasWebSqlSupport, isMobile}
 import {getFullscreenSettings, setFullscreenSettings,
   addFullscreenObservers} from './observers/fullscreen_settings.js';
 import {GAMES, GAME_URLS, getNumRunningGames, startGame,
-  addGameStatusObservers} from './observers/game_runner.js';
+  addGameStatusObservers, setGameIframe} from './observers/game_runner.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
@@ -105,13 +105,22 @@ const init = () => {
       }
     }
 
+    /** @type { HTMLIFrameElement[] } */
+    const [ae1Iframe, ae2Iframe] = [
+      document.getElementById(AE1_GAME_IFRAME_ID),
+      document.getElementById(AE2_GAME_IFRAME_ID),
+    ];
+
+    // set game `<iframe>`s (so that the user may display them in
+    // fullscreen mode)
+    setGameIframe(GAMES.AE1, ae1Iframe);
+    setGameIframe(GAMES.AE2, ae2Iframe);
+
     // initialize observers for AE1 and AE2
-    const ae1IframeObserver = new GameIframeObserver(
-        document.getElementById(AE1_GAME_IFRAME_ID),
-        GAME_URLS[GAMES.AE1]);
-    const ae2IframeObserver = new GameIframeObserver(
-        document.getElementById(AE2_GAME_IFRAME_ID),
-        GAME_URLS[GAMES.AE2]);
+    const [ae1IframeObserver, ae2IframeObserver] = [
+      new GameIframeObserver(ae1Iframe, GAME_URLS[GAMES.AE1]),
+      new GameIframeObserver(ae2Iframe, GAME_URLS[GAMES.AE2]),
+    ];
     addGameStatusObservers(GAMES.AE1, ae1IframeObserver);
     addGameStatusObservers(GAMES.AE2, ae2IframeObserver);
 

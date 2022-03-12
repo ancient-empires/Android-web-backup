@@ -24,6 +24,12 @@ export const gameStatusObservers = Object.freeze({
   [GAMES.AE2]: new Set(),
 });
 
+/** @type { Object.<string, ?HTMLIFrameElement> } */
+export const gameIframes = Object.seal({
+  [GAMES.AE1]: null,
+  [GAMES.AE2]: null,
+});
+
 /** @type { Proxy<Object.<string, boolean>> } */
 const gameRunningStatusProxy = new Proxy(Object.seal({
   [GAMES.AE1]: false,
@@ -108,4 +114,27 @@ export const addGameStatusObservers = (game, ...observers) => {
  */
 export const removeGameStatusObservers = (game, ...observers) => {
   removeFromSet(gameStatusObservers[game], ...observers);
+};
+
+/**
+ * Set the `<iframe>` element corresponding to each game.
+ *
+ * After setting the iframe, you can use
+ * `{@link #requestFullscreen requestFullscreen}`
+ * to display the game in fullscreen mode.
+ *
+ * @param { GAMES } game the game to set the `<iframe>` element.
+ * @param { ?HTMLIFrameElement } iframe the iframe to set.
+ */
+export const setGameIframe = (game, iframe) => {
+  gameIframes[game] = iframe;
+};
+
+/**
+ * Request the `<iframe>` element corresponding to the game to be
+ * displayed in fullscreen.
+ * @param { GAMES } game the game to display in fullscreen.
+ */
+export const requestFullscreen = (game) => {
+  gameIframes[game]?.requestFullscreen();
 };

@@ -1,5 +1,6 @@
 import Observer from '../../observers/observer.js';
-import {startGame, endGame, addGameStatusObservers, removeGameStatusObservers}
+import {startGame, endGame, addGameStatusObservers,
+  removeGameStatusObservers, requestFullscreen}
   from '../../observers/game_runner.js';
 import {getActiveTabContentId, setActiveTabContentId,
   addTabbedUiObservers, removeTabbedUiObservers}
@@ -208,6 +209,7 @@ and it must not be closeable`);
       const fullscreenButton = shadowRoot.getElementById(FULLSCREEN_BUTTON_ID);
       fullscreenButton.addEventListener('click', () => {
         this.selectTab();
+        requestFullscreen(this.game);
       });
     }
 
