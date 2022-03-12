@@ -165,13 +165,9 @@ and it must not be closeable`);
        */
       receive(gameIsRunning) {
         if (gameIsRunning) {
-          if (!this.tabItemElement.isActiveTab()) {
-            this.tabItemElement.selectTab();
-          }
+          this.tabItemElement.selectTab();
         } else {
-          if (this.tabItemElement.isOpen()) {
-            this.tabItemElement.closeTab();
-          }
+          this.tabItemElement.closeTab();
         }
       }
     })(this);
@@ -267,7 +263,8 @@ and it must not be closeable`);
    * @return { boolean } `true` if this tab is active, `false` otherwise.
    */
   isActiveTab() {
-    return getActiveTabContentId() === this.targetTabContentId;
+    return this.isOpen() &&
+      (getActiveTabContentId() === this.targetTabContentId);
   }
 
   /** Open current tab. */
@@ -286,6 +283,10 @@ and it must not be closeable`);
 
   /** Select current tab. */
   selectTab() {
+    if (this.isActiveTab()) {
+      return;
+    }
+
     this.openTab();
     setActiveTabContentId(this.targetTabContentId);
   }
