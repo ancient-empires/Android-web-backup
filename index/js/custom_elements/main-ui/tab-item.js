@@ -146,7 +146,7 @@ and it must not be closeable`);
             <button role="button" id="${RELOAD_BUTTON_ID}"
               title='Reload the game'>&#x2b6e</button>
             <button role="button" id="${FULLSCREEN_BUTTON_ID}"
-              title='Run the game in fullscreen'>&#x2922</button>
+              title='Enter fullscreen'>&#x2922</button>
           ` : ''}
         ${this.closeable ?
           /* html */ `
