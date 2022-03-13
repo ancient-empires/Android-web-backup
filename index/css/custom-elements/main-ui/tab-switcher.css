@@ -1,8 +1,6 @@
 @import url('../../colors.css');
 
-main-ui tab-switcher {
-  grid-row: 1 / 2;
-
+tab-switcher {
   z-index: 1;
 
   display: flex;
