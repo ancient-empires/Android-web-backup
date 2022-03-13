@@ -1,5 +1,5 @@
-main-ui tab-contents {
-  grid-row: 2 / -1;
+tab-contents {
+  flex-grow: 1;
 
   position: relative;
   z-index: 0;
