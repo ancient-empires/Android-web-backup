@@ -1,11 +1,5 @@
 @import url('../../colors.css');
 
-tab-item {
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: 200px;
-}
-
 tab-item .container {
   background-color: var(--tab-item-unselected-background-color);
   color: var(--tab-item-unselected-text-color);

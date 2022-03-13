@@ -1,6 +1,16 @@
 tab-items {
   flex-grow: 1;
 
-  display: flex;
+  display: grid;
   gap: 0.5em;
+
+  width: 100%;
+  overflow: auto;
+}
+
+@media screen and (min-width: 800px) {
+  tab-items {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(200px, min-content);
+  }
 }
