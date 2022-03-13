@@ -144,14 +144,14 @@ and it must not be closeable`);
         ${this.game ?
           /* html */ `
             <button role="button" id="${RELOAD_BUTTON_ID}"
-              title='Reload the game'>&#x2b6e</button>
+              title='Reload game'>&#x2b6e</button>
             <button role="button" id="${FULLSCREEN_BUTTON_ID}"
               title='Enter fullscreen'>&#x2922</button>
           ` : ''}
         ${this.closeable ?
           /* html */ `
             <button role="button" id="${CLOSE_BUTTON_ID}"
-              title='Close the game'>&#x1f5d9</button>
+              title='Close tab'>&#x1f5d9</button>
           ` : ''}
       </div>`;
 
