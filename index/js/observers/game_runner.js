@@ -144,8 +144,8 @@ export const requestFullscreen = (game) => {
  * @param { GAMES } game the game to reload.
  */
 export const reloadGame = (game) => {
-  if (window.confirm(`Are you sure to reload the game "${game}"?
-Your current game progress will be lost!`)) {
+  if (window.confirm(`Are you sure to reload the game?
+The progress of your currently playing level will be LOST!`)) {
     gameIframes[game]?.contentWindow.location.reload();
   }
 };
