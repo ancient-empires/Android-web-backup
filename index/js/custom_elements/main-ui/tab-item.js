@@ -313,9 +313,8 @@ and it must not be closeable`);
     }
 
     if (this.closeable) {
-      if (!this.game || (this.game &&
-        window.confirm(`Are you sure to END the game?
-The progress of your currently playing level will be LOST!`))) {
+      if (!this.game || window.confirm(`Are you sure to END the game?
+The progress of your currently playing level will be LOST!`)) {
         this.hidden = true;
 
         /** @type { TabItemsElement } */
