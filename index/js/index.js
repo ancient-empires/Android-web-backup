@@ -8,7 +8,7 @@ import {GAMES, GAME_URLS, getNumRunningGames, startGame,
   addGameStatusObservers, setGameIframe, requestFullscreen}
   from './observers/game_runner.js';
 
-import {BLANK_URL} from './helpers/iframes.js';
+import {BLANK_URL, iframeIsBlank, setIframeSrc} from './helpers/iframes.js';
 
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
@@ -53,18 +53,18 @@ const init = () => {
         this.iframe = iframe;
         this.gameUrl = gameUrl;
 
-        this.iframe.src = BLANK_URL;
+        setIframeSrc(iframe, BLANK_URL);
       }
 
       /** @return { boolean } */
       isRunning() {
-        return this.iframe.src !== BLANK_URL;
+        return !iframeIsBlank(this.iframe);
       }
 
       /** Start the game. */
       startGame() {
         if (!this.isRunning()) {
-          this.iframe.src = this.gameUrl;
+          setIframeSrc(this.iframe, this.gameUrl);
         }
       }
 
@@ -76,7 +76,7 @@ const init = () => {
       /** End the game. */
       endGame() {
         if (this.isRunning()) {
-          this.iframe.src = BLANK_URL;
+          setIframeSrc(this.iframe);
         }
       }
 
