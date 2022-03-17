@@ -313,18 +313,12 @@ and it must not be closeable`);
     }
 
     if (this.closeable) {
-      if (!this.game || window.confirm(`Are you sure to END the game?
-The progress of your currently playing level will be LOST!`)) {
+      if (!this.game || endGame(this.game)) { // end the game if running
         this.hidden = true;
 
         /** @type { TabItemsElement } */
         const tabItems = this.parentElement;
         setActiveTabContentId(tabItems.defaultTabContentId);
-
-        // end the game if it is running
-        if (this.game) {
-          endGame(this.game);
-        }
       }
     }
   }

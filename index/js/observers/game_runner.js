@@ -94,9 +94,16 @@ export const startGame = (game) => {
 /**
  * End the game.
  * @param { GAMES } game the game to end.
+ * @return { boolean } `true` if this game is ended;
+ *   `false` otherwise (e.g. if the user rejects the confirm dialog).
  */
 export const endGame = (game) => {
-  setGameRunningStatus(game, false);
+  if (game in GAME_URLS && window.confirm(`Are you sure to END the game?
+The progress of your currently playing level will be LOST!`)) {
+    setGameRunningStatus(game, false);
+    return true;
+  }
+  return false;
 };
 
 /**
