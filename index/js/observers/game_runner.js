@@ -1,6 +1,7 @@
 import Observer from './observer.js';
 
 import {addToSet, removeFromSet} from '../helpers/sets.js';
+import {iframeIsBlank} from '../helpers/iframes.js';
 
 /**
  * @readonly @enum {string}
@@ -144,8 +145,12 @@ export const requestFullscreen = (game) => {
  * @param { GAMES } game the game to reload.
  */
 export const reloadGame = (game) => {
-  if (window.confirm(`Are you sure to reload the game?
+  const iframe = gameIframes[game];
+  if (iframe != null) {
+    if (iframeIsBlank(iframe) ||
+      window.confirm(`Are you sure to reload the game?
 The progress of your currently playing level will be LOST!`)) {
-    gameIframes[game]?.contentWindow.location.reload();
+      iframe.contentWindow.location.href = iframe.src;
+    }
   }
 };

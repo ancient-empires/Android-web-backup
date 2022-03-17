@@ -8,6 +8,8 @@ import {GAMES, GAME_URLS, getNumRunningGames, startGame,
   addGameStatusObservers, setGameIframe, requestFullscreen}
   from './observers/game_runner.js';
 
+import {BLANK_URL} from './helpers/iframes.js';
+
 import './custom_elements/init.js';
 import {MAIN_ID, WEB_SQL_UNSUPPORTED_POPUP_ID,
   NOT_MOBILE_USER_AGENT_POPUP_ID,
@@ -39,9 +41,6 @@ const init = () => {
      * a game is started or ended.
     */
     class GameIframeObserver extends Observer {
-      /** @constant */
-      static BLANK_URL = 'about:blank';
-
       /**
        * Initialize a game iframe observer.
        * @param { HTMLIFrameElement } iframe the iframe in which
@@ -54,12 +53,12 @@ const init = () => {
         this.iframe = iframe;
         this.gameUrl = gameUrl;
 
-        this.iframe.src = GameIframeObserver.BLANK_URL;
+        this.iframe.src = BLANK_URL;
       }
 
       /** @return { boolean } */
       isRunning() {
-        return this.iframe.src !== GameIframeObserver.BLANK_URL;
+        return this.iframe.src !== BLANK_URL;
       }
 
       /** Start the game. */
@@ -77,7 +76,7 @@ const init = () => {
       /** End the game. */
       endGame() {
         if (this.isRunning()) {
-          this.iframe.src = GameIframeObserver.BLANK_URL;
+          this.iframe.src = BLANK_URL;
         }
       }
 
