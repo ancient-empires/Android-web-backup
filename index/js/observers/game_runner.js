@@ -99,11 +99,12 @@ export const startGame = (game) => {
  * user rejects the confirm dialog).
  */
 export const endGame = (game) => {
-  if (game in gameStatusObservers &&
-    window.confirm(`Are you sure to END the game?
+  if (getGameRunningStatus(game)) {
+    if (window.confirm(`Are you sure to END the game?
 The progress of your currently playing level will be LOST!`)) {
-    setGameRunningStatus(game, false);
-    return true;
+      setGameRunningStatus(game, false);
+      return true;
+    }
   }
   return false;
 };
