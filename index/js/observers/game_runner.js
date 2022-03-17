@@ -146,7 +146,7 @@ export const requestFullscreen = (game) => {
  */
 export const reloadGame = (game) => {
   const iframe = gameIframes[game];
-  if (iframe != null) {
+  if (iframe instanceof HTMLIFrameElement) {
     if (iframeIsBlank(iframe) ||
       window.confirm(`Are you sure to reload the game?
 The progress of your currently playing level will be LOST!`)) {
