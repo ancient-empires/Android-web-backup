@@ -1,0 +1,25 @@
+.bg-gradient-color-black {
+	background-image: -webkit-linear-gradient(rgb(0, 22, 48), rgb(0, 118, 150));
+	background-image: linear-gradient(rgb(0, 22, 48), rgb(0, 118, 150));
+}
+
+.bg-gradient-color-blue {
+	background-image: -webkit-linear-gradient(rgb(12, 53, 112), rgb(150, 217, 244));
+	background-image: linear-gradient(rgb(12, 53, 112), rgb(150, 217, 244));
+}
+
+.bg-gradient-color-gray {
+	background-image: -webkit-linear-gradient(rgb(48, 48, 48), rgb(149, 149, 149));
+	background-image: linear-gradient(rgb(48, 48, 48), rgb(149, 149, 149));
+}
+
+.bg-gradient-color-green {
+	background-image: -webkit-linear-gradient(rgb(0, 85, 82), rgb(171, 237, 90));
+	background-image: linear-gradient(rgb(0, 85, 82), rgb(171, 237, 90));
+}
+
+.bg-gradient-color-red {
+	background-image: -webkit-linear-gradient(rgb(95, 5, 120), rgb(244, 158, 156));
+	background-image: linear-gradient(rgb(95, 5, 120), rgb(244, 158, 156));
+}
+

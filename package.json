@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "AE": "npx http-server -c-1",
-    "AE1": "npx http-server -c-1 AE1/www",
-    "AE2": "npx http-server -c-1 AE2/www"
+    "AE": "npx http-server -c-1 docs",
+    "AE1": "npx http-server -c-1 docs/AE1/www",
+    "AE2": "npx http-server -c-1 docs/AE2/www"
   },
   "dependencies": {
     "http-server": "^14.0.0"

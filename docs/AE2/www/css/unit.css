@@ -1,0 +1,584 @@
+.grave-wrapper {
+	background-image: url(../i/unit/grave.png);
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	z-index: -1;
+}
+
+.unit-image {
+	width: 100%;
+	height: 100%;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	position: absolute;
+	z-index: 0;
+
+	-webkit-transition: background 0.2s ease-out;
+	transition: background 0.2s ease-out;
+
+	-webkit-animation-name: unit-bg-shift;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: steps(2);
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: unit-bg-shift;
+	animation-duration: 0.2s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: steps(2);
+	animation-fill-mode: forwards;
+
+}
+
+.unit-wrapper.moving {
+	z-index: 1;
+	-webkit-transition: -webkit-transform 0.2s ease-out;
+	transition: transform 0.2s ease-out;
+}
+
+.unit-image.show-new-unit {
+
+	-webkit-animation-name: unit-appear;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: 50% 100%;
+
+	animation-name: unit-appear;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+	transform-origin: 50% 100%;
+
+}
+
+@-webkit-keyframes unit-appear {
+	0% { -webkit-transform: scale(1, 0); }
+	100% { -webkit-transform: scale(1, 1); }
+}
+
+@keyframes unit-appear {
+	0% { transform: scale(1, 0); }
+	100% { transform: scale(1, 1); }
+}
+
+@-webkit-keyframes unit-bg-shift {
+	from { background-position: 0 0; }
+	to { background-position: 0 200%; }
+}
+
+@keyframes unit-bg-shift {
+	from { background-position: 0 0; }
+	to { background-position: 0 200%; }
+}
+
+.delta-unit-health {
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.unit-health-ten,
+.unit-health-one {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 25%;
+	height: 33.666666%;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+}
+
+.unit-health-ten {
+	left: 0;
+}
+
+.unit-health-one {
+	left: 25%;
+}
+
+.delta-unit-health-sign,
+.delta-unit-health-ten,
+.delta-unit-health-one {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 33.333333%;
+	height: 50%;
+	float: left;
+	margin-top: 50%;
+}
+
+.unit-level {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 25%;
+	height: 33.666666%;
+	position: absolute;
+	right: 12.5%;
+	bottom: 0;
+}
+
+.bounce {
+
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: bounce;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center bottom;
+
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-name: bounce;
+	animation-fill-mode: forwards;
+	transform-origin: center bottom;
+
+}
+
+@-webkit-keyframes bounce {
+
+	0%, 20%, 53%, 80%, 100% {
+		/*-webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
+		/*transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
+		-webkit-transform: translate3d(0,0,0);
+		/*transform: translate3d(0,0,0);*/
+	}
+
+	40%, 43% {
+		/*-webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		/*transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		-webkit-transform: translate3d(0, -50%, 0);
+		/*transform: translate3d(0, -50%, 0);*/
+	}
+
+	70% {
+		/*-webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		/*transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		-webkit-transform: translate3d(0, -40%, 0);
+		/*transform: translate3d(0, -40%, 0);*/
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 0, 0);
+		/*transform: translate3d(0, 0, 0);*/
+	}
+
+}
+
+@keyframes bounce {
+
+	0%, 20%, 53%, 80%, 100% {
+		/*-webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
+		/*transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
+		/*-webkit-transform: translate3d(0,0,0);*/
+		/*-ms-transform: translate3d(0,0,0);*/
+		transform: translate3d(0,0,0);
+	}
+
+	40%, 43% {
+		/*-webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		/*transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		/*-webkit-transform: translate3d(0, -50%, 0);*/
+		/*-ms-transform: translate3d(0, -50%, 0);*/
+		transform: translate3d(0, -50%, 0);
+	}
+
+	70% {
+		/*-webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		/*transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);*/
+		/*-webkit-transform: translate3d(0, -40%, 0);*/
+		/*-ms-transform: translate3d(0, -40%, 0);*/
+		transform: translate3d(0, -40%, 0);
+	}
+
+	90% {
+		/*-webkit-transform: translate3d(0, 0, 0);*/
+		/*-ms-transform: translate3d(0, 0, 0);*/
+		transform: translate3d(0, 0, 0);
+	}
+
+}
+
+.attack-square { /* above from units */
+	z-index: 2;
+}
+
+.spark {
+	width: 100%;
+	height: 100%;
+	background-image: url(../i/unit/attack-action.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+
+	-webkit-animation-name: spark-animation;
+	-webkit-animation-duration: 0.6s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: steps(6);
+	/* 	-webkit-animation-fill-mode: forwards; */
+
+	animation-name: spark-animation;
+	animation-duration: 0.6s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: steps(6);
+	/* 	animation-fill-mode: forwards; */
+
+}
+
+@-webkit-keyframes spark-animation {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 120% 0;
+	}
+}
+
+@keyframes spark-animation {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 120% 0;
+	}
+}
+
+.attack-square.moving { /* above from units */
+	-webkit-transition: -webkit-transform 0.2s ease-out;
+	transition: transform 0.2s ease-out;
+}
+
+.under-wisp-aura-image,
+.under-poison-image {
+	width: 33.333333%;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	float: right;
+}
+
+.under-wisp-aura-image {
+	background-image: url(../i/unit/under-wisp-aura.png);
+	height: 33.333333%;
+}
+
+.under-poison-image {
+	background-image: url(../i/unit/under-poison.png);
+	height: 50%;
+}
+
+.unit-level-up {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 300%;
+	left: -100%;
+	position: absolute;
+	bottom: 0;
+	height: 50%;
+	background-image: url(../i/ux/level-up.png);
+}
+
+.unit-level-up.move-up {
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: level-up;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-name: level-up;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+
+}
+
+@-webkit-keyframes level-up {
+
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+
+	100% {
+		-webkit-transform: translate3d(0, -200% ,0);
+	}
+
+}
+
+@keyframes level-up {
+
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(0, -200% ,0);
+	}
+
+}
+
+.hide-unit-animation .unit-image {
+	-webkit-animation: none;
+	animation: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* archer */
+.unit-image-archer-black { background-image: url(../i/unit/unit-archer-black.png); }
+.unit-image-archer-blue { background-image: url(../i/unit/unit-archer-blue.png); }
+.unit-image-archer-gray { background-image: url(../i/unit/unit-archer-gray.png); }
+.unit-image-archer-green { background-image: url(../i/unit/unit-archer-green.png); }
+.unit-image-archer-red { background-image: url(../i/unit/unit-archer-red.png); }
+
+/* catapult */
+.unit-image-catapult-black { background-image: url(../i/unit/unit-catapult-black.png); }
+.unit-image-catapult-blue { background-image: url(../i/unit/unit-catapult-blue.png); }
+.unit-image-catapult-gray { background-image: url(../i/unit/unit-catapult-gray.png); }
+.unit-image-catapult-green { background-image: url(../i/unit/unit-catapult-green.png); }
+.unit-image-catapult-red { background-image: url(../i/unit/unit-catapult-red.png); }
+
+/* crystal */
+.unit-image-crystal-black { background-image: url(../i/unit/unit-crystal-black.png); }
+.unit-image-crystal-blue { background-image: url(../i/unit/unit-crystal-blue.png); }
+.unit-image-crystal-gray { background-image: url(../i/unit/unit-crystal-gray.png); }
+.unit-image-crystal-green { background-image: url(../i/unit/unit-crystal-green.png); }
+.unit-image-crystal-red { background-image: url(../i/unit/unit-crystal-red.png); }
+
+/* demon-lord */
+.unit-image-demon-lord-black { background-image: url(../i/unit/unit-demon-lord-black.png); }
+.unit-image-demon-lord-blue { background-image: url(../i/unit/unit-demon-lord-blue.png); }
+.unit-image-demon-lord-gray { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.unit-image-demon-lord-green { background-image: url(../i/unit/unit-demon-lord-green.png); }
+.unit-image-demon-lord-red { background-image: url(../i/unit/unit-demon-lord-red.png); }
+
+/* dire-wolf */
+.unit-image-dire-wolf-black { background-image: url(../i/unit/unit-dire-wolf-black.png); }
+.unit-image-dire-wolf-blue { background-image: url(../i/unit/unit-dire-wolf-blue.png); }
+.unit-image-dire-wolf-gray { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.unit-image-dire-wolf-green { background-image: url(../i/unit/unit-dire-wolf-green.png); }
+.unit-image-dire-wolf-red { background-image: url(../i/unit/unit-dire-wolf-red.png); }
+
+/* dragon */
+.unit-image-dragon-black { background-image: url(../i/unit/unit-dragon-black.png); }
+.unit-image-dragon-blue { background-image: url(../i/unit/unit-dragon-blue.png); }
+.unit-image-dragon-gray { background-image: url(../i/unit/unit-dragon-gray.png); }
+.unit-image-dragon-green { background-image: url(../i/unit/unit-dragon-green.png); }
+.unit-image-dragon-red { background-image: url(../i/unit/unit-dragon-red.png); }
+
+/* elemental */
+.unit-image-elemental-black { background-image: url(../i/unit/unit-elemental-black.png); }
+.unit-image-elemental-blue { background-image: url(../i/unit/unit-elemental-blue.png); }
+.unit-image-elemental-gray { background-image: url(../i/unit/unit-elemental-gray.png); }
+.unit-image-elemental-green { background-image: url(../i/unit/unit-elemental-green.png); }
+.unit-image-elemental-red { background-image: url(../i/unit/unit-elemental-red.png); }
+
+/* galamar */
+.unit-image-galamar-black { background-image: url(../i/unit/unit-galamar-black.png); }
+.unit-image-galamar-blue { background-image: url(../i/unit/unit-galamar-blue.png); }
+.unit-image-galamar-gray { background-image: url(../i/unit/unit-galamar-gray.png); }
+.unit-image-galamar-green { background-image: url(../i/unit/unit-galamar-green.png); }
+.unit-image-galamar-red { background-image: url(../i/unit/unit-galamar-red.png); }
+
+/* golem */
+.unit-image-golem-black { background-image: url(../i/unit/unit-golem-black.png); }
+.unit-image-golem-blue { background-image: url(../i/unit/unit-golem-blue.png); }
+.unit-image-golem-gray { background-image: url(../i/unit/unit-golem-gray.png); }
+.unit-image-golem-green { background-image: url(../i/unit/unit-golem-green.png); }
+.unit-image-golem-red { background-image: url(../i/unit/unit-golem-red.png); }
+
+/* saeth, saeth-heavens-fury */
+.unit-image-saeth-black, .unit-image-saeth-heavens-fury-black {background-image: url(../i/unit/unit-saeth-black.png); }
+.unit-image-saeth-blue, .unit-image-saeth-heavens-fury-blue {background-image: url(../i/unit/unit-saeth-blue.png); }
+.unit-image-saeth-gray, .unit-image-saeth-heavens-fury-gray {background-image: url(../i/unit/unit-saeth-gray.png); }
+.unit-image-saeth-green, .unit-image-saeth-heavens-fury-green {background-image: url(../i/unit/unit-saeth-green.png); }
+.unit-image-saeth-red, .unit-image-saeth-heavens-fury-red {background-image: url(../i/unit/unit-saeth-red.png); }
+
+/* skeleton */
+.unit-image-skeleton-black { background-image: url(../i/unit/unit-skeleton-black.png); }
+.unit-image-skeleton-blue { background-image: url(../i/unit/unit-skeleton-blue.png); }
+.unit-image-skeleton-gray { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.unit-image-skeleton-green { background-image: url(../i/unit/unit-skeleton-green.png); }
+.unit-image-skeleton-red { background-image: url(../i/unit/unit-skeleton-red.png); }
+
+/* soldier */
+.unit-image-soldier-black { background-image: url(../i/unit/unit-soldier-black.png); }
+.unit-image-soldier-blue { background-image: url(../i/unit/unit-soldier-blue.png); }
+.unit-image-soldier-gray { background-image: url(../i/unit/unit-soldier-gray.png); }
+.unit-image-soldier-green { background-image: url(../i/unit/unit-soldier-green.png); }
+.unit-image-soldier-red { background-image: url(../i/unit/unit-soldier-red.png); }
+
+/* sorceress */
+.unit-image-sorceress-black { background-image: url(../i/unit/unit-sorceress-black.png); }
+.unit-image-sorceress-blue { background-image: url(../i/unit/unit-sorceress-blue.png); }
+.unit-image-sorceress-gray { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.unit-image-sorceress-green { background-image: url(../i/unit/unit-sorceress-green.png); }
+.unit-image-sorceress-red { background-image: url(../i/unit/unit-sorceress-red.png); }
+
+/* valadorn */
+.unit-image-valadorn-black { background-image: url(../i/unit/unit-valadorn-black.png); }
+.unit-image-valadorn-blue { background-image: url(../i/unit/unit-valadorn-blue.png); }
+.unit-image-valadorn-gray { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.unit-image-valadorn-green { background-image: url(../i/unit/unit-valadorn-green.png); }
+.unit-image-valadorn-red { background-image: url(../i/unit/unit-valadorn-red.png); }
+
+/* wisp */
+.unit-image-wisp-black { background-image: url(../i/unit/unit-wisp-black.png); }
+.unit-image-wisp-blue { background-image: url(../i/unit/unit-wisp-blue.png); }
+.unit-image-wisp-gray { background-image: url(../i/unit/unit-wisp-gray.png); }
+.unit-image-wisp-green { background-image: url(../i/unit/unit-wisp-green.png); }
+.unit-image-wisp-red { background-image: url(../i/unit/unit-wisp-red.png); }
+
+/* not active */
+/* archer */
+.not-active .unit-image-archer-black { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-blue { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-gray { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-green { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-red { background-image: url(../i/unit/unit-archer-gray.png); }
+
+/* catapult */
+.not-active .unit-image-catapult-black { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-blue { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-gray { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-green { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-red { background-image: url(../i/unit/unit-catapult-gray.png); }
+
+/* crystal */
+.not-active .unit-image-crystal-black { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-blue { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-gray { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-green { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-red { background-image: url(../i/unit/unit-crystal-gray.png); }
+
+/* demon-lord */
+.not-active .unit-image-demon-lord-black { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-blue { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-gray { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-green { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-red { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+
+/* dire-wolf */
+.not-active .unit-image-dire-wolf-black { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-blue { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-gray { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-green { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-red { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+
+/* dragon */
+.not-active .unit-image-dragon-black { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-blue { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-gray { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-green { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-red { background-image: url(../i/unit/unit-dragon-gray.png); }
+
+/* elemental */
+.not-active .unit-image-elemental-black { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-blue { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-gray { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-green { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-red { background-image: url(../i/unit/unit-elemental-gray.png); }
+
+/* galamar */
+.not-active .unit-image-galamar-black { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-blue { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-gray { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-green { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-red { background-image: url(../i/unit/unit-galamar-gray.png); }
+
+/* golem */
+.not-active .unit-image-golem-black { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-blue { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-gray { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-green { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-red { background-image: url(../i/unit/unit-golem-gray.png); }
+
+/* saeth */
+.not-active .unit-image-saeth-black { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-blue { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-gray { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-green { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-red { background-image: url(../i/unit/unit-saeth-gray.png); }
+
+/* skeleton */
+.not-active .unit-image-skeleton-black { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-blue { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-gray { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-green { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-red { background-image: url(../i/unit/unit-skeleton-gray.png); }
+
+/* soldier */
+.not-active .unit-image-soldier-black { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-blue { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-gray { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-green { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-red { background-image: url(../i/unit/unit-soldier-gray.png); }
+
+/* sorceress */
+.not-active .unit-image-sorceress-black { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-blue { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-gray { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-green { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-red { background-image: url(../i/unit/unit-sorceress-gray.png); }
+
+/* valadorn */
+.not-active .unit-image-valadorn-black { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-blue { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-gray { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-green { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-red { background-image: url(../i/unit/unit-valadorn-gray.png); }
+
+/* wisp */
+.not-active .unit-image-wisp-black { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-blue { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-gray { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-green { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-red { background-image: url(../i/unit/unit-wisp-gray.png); }
+
+
+
+
+
+
+
+
+
+
+

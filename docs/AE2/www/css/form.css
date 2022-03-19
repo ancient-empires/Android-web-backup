@@ -1,0 +1,137 @@
+.main-header-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+	box-sizing: border-box;
+	background-color: #242a45;
+	border-width: 0.75rem;
+	border-style: solid;
+	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	padding: 0;
+	height: 2.9rem;
+}
+
+.main-header,
+.back {
+	padding: 0.6rem 0.5rem 0.6rem;
+	line-height: 1.1rem;
+	font-size: 1.1rem;
+	text-shadow: 0.15rem 0.15rem 0 #000;
+	position: absolute;
+	left: 0;
+	top: -0.45rem;
+}
+
+.main-header {
+	float: right;
+	left: auto;
+	right: 0;
+}
+
+.back {
+	float: left;
+}
+
+.back:active {
+	text-shadow: none;
+}
+
+.main-content-wrapper {
+	padding-top: 4.3rem;
+	padding-bottom: 2rem;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	/* see .title-game-bg */
+	/*background-image: url(../img/other/1.jpg);*/
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center;
+	background-color: #333C57;
+	background-image: -webkit-linear-gradient(top, #7F8598, #333C57);
+	background-image: linear-gradient(top, #7F8598, #333C57);
+}
+
+@media only screen and (orientation: landscape) {
+	.main-content-wrapper {
+		padding-top: 3.5rem;
+		padding-bottom: 0.6rem;
+	}
+}
+
+.main-content-container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	box-sizing: border-box;
+	background-color: #242a45;
+
+	border-bottom-width: 0.15rem;
+	border-bottom-style: solid;
+	border-top-width: 0.15rem;
+	border-top-style: solid;
+	border-color: #B0B8AB;
+}
+
+.scroll-area {
+	width: 100%;
+	box-sizing: border-box;
+	border-width: 0.75rem;
+	border-style: solid;
+	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	padding: 0.5rem 0.1rem;
+	min-height: 100%;
+}
+
+.on-off,
+.level-star {
+	position: relative;
+	top: 0.3rem;
+}
+
+.on-off {
+	opacity: 0.2;
+}
+
+.on-off-enable .on-off {
+	opacity: 1;
+}
+
+.new-turn-notification {
+	border: 0.15rem solid #ccc;
+	text-shadow: 0.1rem 0.1rem 0 #000;
+}
+
+.new-turn-notification .popup-header {
+	padding-top: 0.3rem;
+}
+
+.input-text {
+	padding: 0;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border-width: 0.15rem;
+	font-size: 1rem;
+	padding-left: 0.2rem;
+	font-family: inherit;
+	color: #f0f0f0;
+	background-color: #242a45;
+	border-color: #f0f0f0;
+}
+
+.setup-form-wrapper {
+	margin: 0 -0.2rem 0.5rem;
+	border-bottom-style: solid;
+	border-bottom-width: 0.15rem;
+}
+
+.setup-form-item {
+	padding-bottom: 0.5rem;
+	text-transform: capitalize;
+}

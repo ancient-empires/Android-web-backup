@@ -1,0 +1,34 @@
+/* Landscape */
+@media screen and (orientation:landscape) {
+
+	.double-blocks-wrapper .double-block-container {
+		float: left;
+		width: 50%;
+		height: 100%;
+	}
+
+	.double-blocks-wrapper .table-row {
+		height: 100%;
+	}
+
+    .land-clear {
+	    clear: both;
+    }
+
+	.item-wrapper .land-with-padding-left {
+	    padding-left: 2em;
+    }
+
+    .land-left {
+	    float: left;
+    }
+
+	.land-vertical-align-middle {
+		vertical-align: middle;
+	}
+
+    .cell-button-wrapper {
+	    padding-top: 0;
+    }
+
+}

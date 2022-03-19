@@ -1,0 +1,43 @@
+.terrain-forest,
+.terrain-green,
+.terrain-hill,
+.terrain-road,
+.terrain-stone,
+.terrain-water,
+.terrain-bridge-horizontal,
+.terrain-bridge-vertical {
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.terrain-forest {
+	background-image: url(../img/terrain/forest.png);
+}
+
+.terrain-green {
+	background-image: url(../img/terrain/green.png);
+}
+
+.terrain-hill {
+	background-image: url(../img/terrain/hill.png);
+}
+
+.terrain-road {
+	background-image: url(../img/terrain/road.png);
+}
+
+.terrain-stone {
+	background-image: url(../img/terrain/stone.png);
+}
+
+.terrain-water {
+	background-image: url(../img/terrain/water.png);
+}
+
+.terrain-bridge-horizontal {
+	background-image: url(../img/terrain/bridge-horizontal.png);
+}
+
+.terrain-bridge-vertical {
+	background-image: url(../img/terrain/bridge-vertical.png);
+}

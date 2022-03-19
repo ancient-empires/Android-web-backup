@@ -1,8 +1,0 @@
-"name":"([\s\S]+?)",
-"name":"","name-es":"","name-ru":"$1",
-
-window.APP.map.detectDuplicate();
-
-
-find * -type f
-chrome://appcache-internals/

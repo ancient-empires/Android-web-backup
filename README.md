@@ -1,24 +1,28 @@
-# Ancient Empires source code backup (Android version)
+# Ancient Empires source code backup (Android & web versions)
+This repository provides the backup of source code for the Ancient Empires Android & web versions, as well as the APK files of the Android version.
 
-Backup source code for the Android version.
+* [Original repository](https://github.com/webbestmaster/main) (by [webbestmaster](https://github.com/webbestmaster))
+* [Fork repository](https://github.com/ancient-empires-resources/webbestmaster-backup)
 
-* Original repository: https://github.com/webbestmaster/main
-* Fork: https://github.com/ancient-empires-resources/webbestmaster-backup
+## Download Android version
 
-Note that this repository only copies the latest code from the original repository. Please click on the two links above to check the history of the commits.
+Go to the **`apk`** directory to download the Android version.
 
-# Running the games in a PC web browser
+## Running the web version on PC
 
 This game is designed to run in [Android WebView](https://developer.chrome.com/docs/multidevice/webview/), a Chrome-based built-in component on Android phones for displaying web content. Hence it can also be run in a PC web browser.
 
-## Prerequisites
+### Prerequisites
+
 To run the AE1 and AE2 games in web browser, you must have all these prerequisites ready:
+
 1. A web browser that supports [Web SQL](https://www.w3.org/TR/webdatabase/), such as [Google Chrome](https://chrome.google.com).
 2. The "[User-Agent Switcher and Manager](https://chrome.google.com/webstore/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg)" browser extension for Chrome.
 3. [Node.js](https://nodejs.org/en/download/) version >= 12.0.0.
 4. [`http-server`](https://www.npmjs.com/package/http-server) NPM package.
 
-## How to setup & start the game
+### How to setup & start the game
+
 1. **Install Node.js.**
 
     You may visit https://nodejs.org/en/download/ to download and install the Node.js that is suitable for your operating system.
