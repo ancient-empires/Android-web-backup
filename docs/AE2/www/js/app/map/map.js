@@ -2,7 +2,7 @@
 (function (win, doc) {
 
 	'use strict';
-	/*global window, document, openDatabase */
+	/*global window, document */
 	/*global $, _ */
 
 	win.APP.map = {
@@ -328,58 +328,131 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-                    db = openDatabase(dbMaster.name, dbMaster.version, dbMaster.description, dbMaster.size),
 					map = win.APP.map,
 					info = win.APP.info,
 					currentMapVersion = map.mapPackVersion,
-					previousMapVersion = info.get('mapPackVersion') || 0;
+					previousMapVersion = info.get('mapPackVersion') || 0,
+					request;
 
-				dbMaster.db = db;
-
-				// create tablet if needed
-				db.transaction(function (tx) {
-
-					var missionDeferred = $.Deferred(),
-						skirmishDeferred = $.Deferred();
-
-					function createMissionMapTables() {
-						tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
-							missionDeferred.resolve();
-						}, function (e) {
-							//log(e);
-						});
+				function createMapStore(db, storeName) {
+					if (!db.objectStoreNames.contains(storeName)) {
+						db.createObjectStore(storeName, { keyPath: 'jsMapKey' });
 					}
+				}
 
-					function createSkirmishMapTables() {
-						tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
-							skirmishDeferred.resolve();
-						}, function (e) {
-							//log(e);
-						});
+				function createSavedGameStore(db) {
+					var store;
+
+					if (!db.objectStoreNames.contains(dbMaster.savedGame)) {
+						store = db.createObjectStore(dbMaster.savedGame, { keyPath: 'name' });
+						store.createIndex('date', 'date', { unique: false });
 					}
+				}
 
-					$.when(missionDeferred, skirmishDeferred).done(function () {
-						dbMaster.prepareDefaultMap().then(function () {
-                            deferred.resolve();
-						});
+				function prepareDefaultMaps() {
+					dbMaster.prepareDefaultMap().then(function () {
+						deferred.resolve();
 					});
+				}
 
-					// Update maps for next mapPack
+				if (!win.indexedDB) {
+					deferred.reject();
+					return deferred.promise();
+				}
+
+				request = win.indexedDB.open(dbMaster.name, Number(dbMaster.version));
+
+				request.onupgradeneeded = function (event) {
+					var db = event.target.result;
+
+					createMapStore(db, dbMaster.missionMaps);
+					createMapStore(db, dbMaster.skirmishMaps);
+					createMapStore(db, dbMaster.userMap);
+					createSavedGameStore(db);
+				};
+
+				request.onsuccess = function (event) {
+					dbMaster.db = event.target.result;
+
 					if (currentMapVersion > previousMapVersion) { // remove all maps
 						info.set('mapPackVersion', currentMapVersion);
-						tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.skirmishMaps, createSkirmishMapTables, createSkirmishMapTables);
-					} else {
-						createSkirmishMapTables();
+						dbMaster.clearStore(dbMaster.skirmishMaps).then(prepareDefaultMaps, function () {
+							deferred.reject();
+						});
+						return;
 					}
 
-					createMissionMapTables();
+					prepareDefaultMaps();
+				};
 
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.savedGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.userMap + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], null, null);
-
-				});
+				request.onerror = function () {
+					deferred.reject();
+				};
 
                 return deferred.promise();
+
+			},
+
+			clearStore: function (type) {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					request = dbMaster.db.transaction([type], 'readwrite').objectStore(type).clear();
+
+				request.onsuccess = function () {
+					deferred.resolve();
+				};
+
+				request.onerror = function () {
+					deferred.reject();
+				};
+
+				return deferred.promise();
+
+			},
+
+			getRow: function (type, jsMapKey) {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					request = dbMaster.db.transaction([type], 'readonly').objectStore(type).get(jsMapKey);
+
+				request.onsuccess = function () {
+					deferred.resolve(request.result);
+				};
+
+				request.onerror = function () {
+					deferred.reject();
+				};
+
+				return deferred.promise();
+
+			},
+
+			getRows: function (type) {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					rows = [],
+					request = dbMaster.db.transaction([type], 'readonly').objectStore(type).openCursor();
+
+				request.onsuccess = function (event) {
+					var cursor = event.target.result;
+
+					if (cursor) {
+						rows.push(cursor.value);
+						cursor.continue();
+						return;
+					}
+
+					deferred.resolve(rows);
+				};
+
+				request.onerror = function () {
+					deferred.reject();
+				};
+
+				return deferred.promise();
 
 			},
 
@@ -410,27 +483,24 @@
             prepareMap: function (map, jsMapKey) {
 
                 var dbMaster = this,
-                    db = dbMaster.db,
                     mapObj = win.APP.map,
                     deferred = $.Deferred();
 
-                db.transaction(function (tx) {
-                    tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsMapKey=?', [jsMapKey], function (tx, results) {
-                        if (results.rows.length) {
-                            dbMaster.compareMap(results.rows.item(0), map, jsMapKey).then(function () {
-                                win.APP.maps[jsMapKey] = null;
-                                delete win.APP.maps[jsMapKey];
-                                mapObj.recountProgress();
-                                deferred.resolve();
-                            });
-                            return;
-                        }
-                        dbMaster.insertMap(map, jsMapKey).then(function () {
+                dbMaster.getRow(map.type, jsMapKey).then(function (row) {
+                    if (row) {
+                        dbMaster.compareMap(row, map, jsMapKey).then(function () {
                             win.APP.maps[jsMapKey] = null;
                             delete win.APP.maps[jsMapKey];
                             mapObj.recountProgress();
                             deferred.resolve();
                         });
+                        return;
+                    }
+                    dbMaster.insertMap(map, jsMapKey).then(function () {
+                        win.APP.maps[jsMapKey] = null;
+                        delete win.APP.maps[jsMapKey];
+                        mapObj.recountProgress();
+                        deferred.resolve();
                     });
                 });
 
@@ -466,8 +536,9 @@
 					type: newMap.type,
 					jsMapKey: jsMapKey
 				}).then(function () {
-					dbMaster.insertMap(newMap, jsMapKey);
-					deferred.resolve();
+					dbMaster.insertMap(newMap, jsMapKey).then(function () {
+						deferred.resolve();
+					});
 				});
 				return deferred.promise();
 
@@ -478,8 +549,8 @@
 				var maps = win.APP.maps,
 					deferred = $.Deferred(),
 					dbMaster = this,
-					db = dbMaster.db,
-					info;
+					info,
+					request;
 
 				info = JSON.parse(JSON.stringify(map));
 
@@ -490,14 +561,21 @@
 				info.terrain = null;
 				delete info.terrain;
 
-				db.transaction(function (tx) {
-					tx.executeSql('INSERT INTO ' + map.type + ' (jsMapKey, info, map) values(?, ?, ?)', [jsMapKey, JSON.stringify(info), JSON.stringify(map)], function () {
-						deferred.resolve();
-					}, null);
+				request = dbMaster.db.transaction([map.type], 'readwrite').objectStore(map.type).put({
+					jsMapKey: jsMapKey,
+					info: JSON.stringify(info),
+					map: JSON.stringify(map)
 				});
 
-				maps[jsMapKey] = null;
-				delete maps[jsMapKey];
+				request.onsuccess = function () {
+					maps[jsMapKey] = null;
+					delete maps[jsMapKey];
+					deferred.resolve();
+				};
+
+				request.onerror = function () {
+					deferred.reject();
+				};
 
 				return deferred.promise();
 
@@ -506,18 +584,18 @@
 			removeMap: function (data) {
 
 				var dbMaster = this,
-					db = dbMaster.db,
 					type = data.type,
 					jsMapKey = data.jsMapKey,
-					deferred = $.Deferred();
+					deferred = $.Deferred(),
+					request = dbMaster.db.transaction([type], 'readwrite').objectStore(type).delete(jsMapKey);
 
-				db.transaction(function (tx) {
-					tx.executeSql('DELETE FROM ' + type + ' WHERE jsMapKey = ?', [jsMapKey], function () {
-						deferred.resolve();
-					}, function () {
-						deferred.resolve();
-					});
-				});
+				request.onsuccess = function () {
+					deferred.resolve();
+				};
+
+				request.onerror = function () {
+					deferred.resolve();
+				};
 
 				return deferred.promise();
 
@@ -526,16 +604,16 @@
 			removeSave: function (name) {
 
 				var dbMaster = this,
-					db = dbMaster.db,
-					deferred = $.Deferred();
+					deferred = $.Deferred(),
+					request = dbMaster.db.transaction([dbMaster.savedGame], 'readwrite').objectStore(dbMaster.savedGame).delete(name);
 
-				db.transaction(function (tx) {
-					tx.executeSql('DELETE FROM ' + dbMaster.savedGame + ' WHERE name = ?', [name], function () {
-						deferred.resolve();
-					}, function () {
-						deferred.resolve();
-					});
-				});
+				request.onsuccess = function () {
+					deferred.resolve();
+				};
+
+				request.onerror = function () {
+					deferred.resolve();
+				};
 
 				return deferred.promise();
 
@@ -547,20 +625,17 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					db = dbMaster.db,
 					mapsInfo = {};
 
 				data.type = data.type || dbMaster.skirmishMaps;
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' ORDER BY jsMapKey ASC', [], function (tx, results) {
-						var i, len, row;
-						for (i = 0, len = results.rows.length; i < len; i += 1) {
-							row = results.rows.item(i);
-							mapsInfo[row.jsMapKey] = JSON.parse(row.info);
-						}
-						deferred.resolve(mapsInfo);
-					});
+				dbMaster.getRows(data.type).then(function (rows) {
+					var i, len, row;
+					for (i = 0, len = rows.length; i < len; i += 1) {
+						row = rows[i];
+						mapsInfo[row.jsMapKey] = JSON.parse(row.info);
+					}
+					deferred.resolve(mapsInfo);
 				});
 
 				return deferred.promise();
@@ -572,20 +647,16 @@
 				data = data || {};
 
 				var dbMaster = this,
-					deferred = $.Deferred(),
-					db = dbMaster.db;
+					deferred = $.Deferred();
 
 				data.type = data.type || dbMaster.skirmishMaps;
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
+				dbMaster.getRow(data.type, data.jsMapKey).then(function (row) {
 
-						var row = results.rows.item(0),
-							mapInfo = JSON.parse(row.info);
+					var mapInfo = JSON.parse(row.info);
 
-						deferred.resolve(mapInfo);
+					deferred.resolve(mapInfo);
 
-					});
 				});
 
 				return deferred.promise();
@@ -597,20 +668,16 @@
 				data = data || {};
 
 				var dbMaster = this,
-					deferred = $.Deferred(),
-					db = dbMaster.db;
+					deferred = $.Deferred();
 
 				data.type = data.type || dbMaster.skirmishMaps;
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
+				dbMaster.getRow(data.type, data.jsMapKey).then(function (row) {
 
-						var row = results.rows.item(0),
-							map = JSON.parse(row.map);
+					var map = JSON.parse(row.map);
 
-						deferred.resolve(map);
+					deferred.resolve(map);
 
-					});
 				});
 
 				return deferred.promise();
@@ -623,20 +690,17 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					db = dbMaster.db,
 					mapsInfo = {};
 
 				data.type = data.type || dbMaster.skirmishMaps;
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' ORDER BY jsMapKey ASC', [], function (tx, results) {
-						var i, len, row;
-						for (i = 0, len = results.rows.length; i < len; i += 1) {
-							row = results.rows.item(i);
-							mapsInfo[row.jsMapKey] = JSON.parse(row.info);
-						}
-						deferred.resolve(mapsInfo);
-					});
+				dbMaster.getRows(data.type).then(function (rows) {
+					var i, len, row;
+					for (i = 0, len = rows.length; i < len; i += 1) {
+						row = rows[i];
+						mapsInfo[row.jsMapKey] = JSON.parse(row.info);
+					}
+					deferred.resolve(mapsInfo);
 				});
 
 				return deferred.promise();
@@ -649,20 +713,17 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					db = dbMaster.db,
 					mapsInfo = {};
 
 				data.type = data.type || dbMaster.skirmishMaps;
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' ORDER BY jsMapKey ASC', [], function (tx, results) {
-						var i, len, row;
-						for (i = 0, len = results.rows.length; i < len; i += 1) {
-							row = results.rows.item(i);
-							mapsInfo[row.jsMapKey] = JSON.parse(row.map);
-						}
-						deferred.resolve(mapsInfo);
-					});
+				dbMaster.getRows(data.type).then(function (rows) {
+					var i, len, row;
+					for (i = 0, len = rows.length; i < len; i += 1) {
+						row = rows[i];
+						mapsInfo[row.jsMapKey] = JSON.parse(row.map);
+					}
+					deferred.resolve(mapsInfo);
 				});
 
 				return deferred.promise();
@@ -706,7 +767,7 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					db = dbMaster.db;
+					request;
 
 				_.each(data.map, function (value, key) {
 					if (!/briefing/i.test(key)) { // save briefing only
@@ -728,11 +789,19 @@
 				dbMaster
 					.removeSave(name)
 					.then(function () {
-						db.transaction(function (tx) {
-							tx.executeSql('INSERT INTO ' + dbMaster.savedGame + ' (date, name, game) values(?, ?, ?)', [date, name, JSON.stringify(data)], function () {
-								deferred.resolve();
-							}, null);
+						request = dbMaster.db.transaction([dbMaster.savedGame], 'readwrite').objectStore(dbMaster.savedGame).put({
+							date: date,
+							name: name,
+							game: JSON.stringify(data)
 						});
+
+						request.onsuccess = function () {
+							deferred.resolve();
+						};
+
+						request.onerror = function () {
+							deferred.reject();
+						};
 					});
 
 				return deferred.promise();
@@ -743,19 +812,24 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					db = dbMaster.db,
-					saves = [];
+					saves = [],
+					request = dbMaster.db.transaction([dbMaster.savedGame], 'readonly').objectStore(dbMaster.savedGame).index('date').openCursor(null, 'prev');
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + dbMaster.savedGame + ' ORDER BY date DESC', [], function (tx, results) {
-						var i, len, row;
-						for (i = 0, len = results.rows.length; i < len; i += 1) {
-							row = results.rows.item(i);
-							saves.push(row.name);
-						}
-						deferred.resolve(saves);
-					});
-				});
+				request.onsuccess = function (event) {
+					var cursor = event.target.result;
+
+					if (cursor) {
+						saves.push(cursor.value.name);
+						cursor.continue();
+						return;
+					}
+
+					deferred.resolve(saves);
+				};
+
+				request.onerror = function () {
+					deferred.reject();
+				};
 
 				return deferred.promise();
 
@@ -765,13 +839,15 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					db = dbMaster.db;
+					request = dbMaster.db.transaction([dbMaster.savedGame], 'readonly').objectStore(dbMaster.savedGame).get(gameName);
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + dbMaster.savedGame + ' WHERE name=?', [gameName], function (tx, results) {
-						deferred.resolve(results.rows.item(0));
-					});
-				});
+				request.onsuccess = function () {
+					deferred.resolve(request.result);
+				};
+
+				request.onerror = function () {
+					deferred.reject();
+				};
 
 				return deferred.promise();
 
@@ -780,13 +856,10 @@
 			mapIsExist: function (data) {
 
 				var dbMaster = this,
-					deferred = $.Deferred(),
-					db = dbMaster.db;
+					deferred = $.Deferred();
 
-				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
-						deferred.resolve(Boolean(results.rows.length));
-					});
+				dbMaster.getRow(data.type, data.jsMapKey).then(function (row) {
+					deferred.resolve(Boolean(row));
 				});
 
 				return deferred.promise();
