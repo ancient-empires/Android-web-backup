@@ -315,7 +315,7 @@
 		db: {
 
 			name: 'AE2DB',
-			version: '1',
+			version: '2',
 			description: 'AE2 DB',
 			size: 1024 * 1024 * 15, // 1024 x 1024 x 20 = 1MB x 15 = 15MB
 			db: false, // field for db
@@ -340,11 +340,16 @@
 					}
 				}
 
-				function createSavedGameStore(db) {
+				function createSavedGameStore(db, transaction) {
 					var store;
 
 					if (!db.objectStoreNames.contains(dbMaster.savedGame)) {
 						store = db.createObjectStore(dbMaster.savedGame, { keyPath: 'name' });
+					} else {
+						store = transaction.objectStore(dbMaster.savedGame);
+					}
+
+					if (!store.indexNames.contains('date')) {
 						store.createIndex('date', 'date', { unique: false });
 					}
 				}
@@ -368,7 +373,7 @@
 					createMapStore(db, dbMaster.missionMaps);
 					createMapStore(db, dbMaster.skirmishMaps);
 					createMapStore(db, dbMaster.userMap);
-					createSavedGameStore(db);
+					createSavedGameStore(db, event.target.transaction);
 				};
 
 				request.onsuccess = function (event) {
@@ -767,7 +772,7 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-					request;
+					transaction;
 
 				_.each(data.map, function (value, key) {
 					if (!/briefing/i.test(key)) { // save briefing only
@@ -786,23 +791,25 @@
 					});
 				});
 
-				dbMaster
-					.removeSave(name)
-					.then(function () {
-						request = dbMaster.db.transaction([dbMaster.savedGame], 'readwrite').objectStore(dbMaster.savedGame).put({
-							date: date,
-							name: name,
-							game: JSON.stringify(data)
-						});
+				transaction = dbMaster.db.transaction([dbMaster.savedGame], 'readwrite');
 
-						request.onsuccess = function () {
-							deferred.resolve();
-						};
+				transaction.oncomplete = function () {
+					deferred.resolve();
+				};
 
-						request.onerror = function () {
-							deferred.reject();
-						};
-					});
+				transaction.onerror = function () {
+					deferred.reject();
+				};
+
+				transaction.onabort = function () {
+					deferred.reject();
+				};
+
+				transaction.objectStore(dbMaster.savedGame).put({
+					date: date,
+					name: name,
+					game: JSON.stringify(data)
+				});
 
 				return deferred.promise();
 
