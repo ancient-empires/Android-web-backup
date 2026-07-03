@@ -20,7 +20,6 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
 1. [Node.js](https://nodejs.org/en/download/) version >= 12.0.0.
 2. A modern web browser such as [Google Chrome](https://chrome.google.com).
 
-
 ### How to setup & start the game
 
 1. **Install Node.js.**
