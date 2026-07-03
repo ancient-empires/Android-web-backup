@@ -1,8 +1,8 @@
 # Ancient Empires - Modern Web version and Android builds
-This repository provides the backup of source code for the Ancient Empires Android & web versions, as well as the APK files of the Android version.
+Modern Web version and Android builds
 
 * [Original repository](https://github.com/webbestmaster/main) (by [webbestmaster](https://github.com/webbestmaster))
-* [Fork repository](https://github.com/ancient-empires-resources/webbestmaster-backup)
+* [Fork repository](https://github.com/ancient-empires-resources/webbestmaster-backup) (use [GoogleChromePortableLegacyWin7](https://portableapps.com/downloading/?a=GoogleChromePortableLegacyWin7&s=s&p=&d=pa&f=GoogleChromePortableLegacyWin7_109.0.5414.120_online.paf.exe))
 * [Modern Web support repository](https://github.com/TAbdiukov/Ancient-Empires-Modern-Web) (by [Tim Abdiukov](https://github.com/TAbdiukov))
 
 ## Download Android version
