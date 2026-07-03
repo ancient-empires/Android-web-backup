@@ -23,6 +23,73 @@
 
 		},
 
+		playWhenAllowed: function (audio, roadNumber, shouldResume) {
+
+			var player = this,
+				playPromise;
+
+			if ( win.APP.info.get('music') === 'off' || player.roads[roadNumber] !== audio ) {
+				return;
+			}
+
+			playPromise = audio.play();
+
+			if ( playPromise && playPromise.then ) {
+				playPromise.then(function () {
+					player.clearUserGesture(audio);
+				}, function (error) {
+					if (!shouldResume) {
+						return;
+					}
+
+					if ( error && error.name !== 'NotAllowedError' ) {
+						return;
+					}
+
+					player.waitForUserGesture(audio, roadNumber);
+				});
+			}
+
+		},
+
+		waitForUserGesture: function (audio, roadNumber) {
+
+			var player = this,
+				resume = audio.soundMasterResume;
+
+			if (resume) {
+				return;
+			}
+
+			resume = function () {
+				player.clearUserGesture(audio);
+				player.playWhenAllowed(audio, roadNumber, true);
+			};
+
+			audio.soundMasterResume = resume;
+
+			win.addEventListener('click', resume, true);
+			win.addEventListener('touchend', resume, true);
+			win.addEventListener('keydown', resume, true);
+
+		},
+
+		clearUserGesture: function (audio) {
+
+			var resume = audio.soundMasterResume;
+
+			if (!resume) {
+				return;
+			}
+
+			win.removeEventListener('click', resume, true);
+			win.removeEventListener('touchend', resume, true);
+			win.removeEventListener('keydown', resume, true);
+
+			audio.soundMasterResume = null;
+
+		},
+
 		play: function (data) {
 
 			var player = this,
@@ -41,7 +108,7 @@
 					}
 					var audio = this;
 					audio.currentTime = 0;
-					audio.play();
+					player.playWhenAllowed(audio, roadNumber, true);
 				}, false);
 			}
 
@@ -49,14 +116,17 @@
 				if ( win.APP.info.get('music') === 'off' ) {
 					return;
 				}
-				var audio = this;
-				audio.play();
+				player.playWhenAllowed(this, roadNumber, isLoop);
 			});
 
 			player.roads[roadNumber].src = '';
 			player.roads[roadNumber] = newAudio;
 
 			newAudio.src = player.pathPrefix + sound;
+
+			if (isLoop) {
+				player.waitForUserGesture(newAudio, roadNumber);
+			}
 
 		},
 
@@ -65,6 +135,10 @@
 			var player = this,
 				roadNumber = data.road,
 				road = player.roads[roadNumber];
+
+			if (road) {
+				player.clearUserGesture(road);
+			}
 
 			if (road && road.pause) {
 				road.pause();
