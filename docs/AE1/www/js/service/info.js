@@ -162,6 +162,10 @@
 				this.set('os', 'ios', true);
 			}
 
+			if (!this.link[this.get('os')] || !this.link[this.get('os')].pro) {
+				this.set('os', 'android', true);
+			}
+
 		}
 
 	};

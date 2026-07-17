@@ -1,8 +1,9 @@
-# Ancient Empires source code backup (Android & web versions)
-This repository provides the backup of source code for the Ancient Empires Android & web versions, as well as the APK files of the Android version.
+# Ancient Empires - Modern Web version and Android builds
+Modern Web version and Android builds
 
 * [Original repository](https://github.com/webbestmaster/main) (by [webbestmaster](https://github.com/webbestmaster))
-* [Fork repository](https://github.com/ancient-empires-resources/webbestmaster-backup)
+* [Fork repository](https://github.com/ancient-empires-resources/webbestmaster-backup) (use [GoogleChromePortableLegacyWin7](https://portableapps.com/downloading/?a=GoogleChromePortableLegacyWin7&s=s&p=&d=pa&f=GoogleChromePortableLegacyWin7_109.0.5414.120_online.paf.exe))
+* [Modern Web support repository](https://github.com/TAbdiukov/Ancient-Empires-Modern-Web) (by [Tim Abdiukov](https://github.com/TAbdiukov))
 
 ## Download Android version
 
@@ -16,10 +17,8 @@ This game is designed to run in [Android WebView](https://developer.chrome.com/d
 
 To run the AE1 and AE2 games in web browser, you must have all these prerequisites ready:
 
-1. A web browser that supports [Web SQL](https://www.w3.org/TR/webdatabase/), such as [Google Chrome](https://chrome.google.com).
-2. The "[User-Agent Switcher and Manager](https://chrome.google.com/webstore/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg)" browser extension for Chrome.
-3. [Node.js](https://nodejs.org/en/download/) version >= 12.0.0.
-4. [`http-server`](https://www.npmjs.com/package/http-server) NPM package.
+1. [Node.js](https://nodejs.org/en/download/) version >= 12.0.0.
+2. A modern web browser such as [Google Chrome](https://chrome.google.com).
 
 ### How to setup & start the game
 
@@ -35,6 +34,7 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
     You may run
     ```shell
     npm install
+	npm install http-server
     ```
     in this directory to install all the NPM packages needed.
 3. **Run HTTP server.**
@@ -58,9 +58,7 @@ To run the AE1 and AE2 games in web browser, you must have all these prerequisit
 
     Open Google Chrome.
 
-    Then click on "**User-Agent Switcher and Manager**", select one of the Android user agents.
-
-    After that, copy and paste the server address you saw in the console into the browser address bar to launch the game.
+    Access the server address you saw in the console into the browser address bar to launch the game.
 5. **After finishing, stop the server.**
 
     After you finish playing the game and close the browser, go back to the console and press `Ctrl`+`C` to stop the server.

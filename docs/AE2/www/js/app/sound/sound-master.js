@@ -19,6 +19,8 @@
 
 			win.addEventListener('hashchange', soundMaster.playBgSound.bind(soundMaster), false);
 
+			soundMaster.playBgSound();
+
 		},
 
 		roads: [{}, {}, {}, {}], // 4 roads
